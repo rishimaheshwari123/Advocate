@@ -86,7 +86,7 @@ const Slider = () => {
   };
 
   return (
-    <div className="relative bg-[#62000f]">
+    <div className="relative">
       <Swiper
         modules={[
           Navigation,
@@ -101,18 +101,9 @@ const Slider = () => {
         fadeEffect={{ crossFade: true }}
         spaceBetween={0}
         breakpoints={{
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 0,
-          },
-          768: {
-            slidesPerView: 1,
-            spaceBetween: 0,
-          },
-          1024: {
-            slidesPerView: 1,
-            spaceBetween: 0,
-          },
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 1 },
+          1024: { slidesPerView: 1 },
         }}
         onSlideChange={handleSlideChange}
       >
@@ -121,27 +112,25 @@ const Slider = () => {
             <img
               src={item.image}
               alt={item.title}
-              className="w-full h-[80vh] sm:h-[60vh] md:h-[80vh] lg:h-[90vh] object-cover"
+              className="w-full h-[70vh] object-cover"
             />
             <div
-              className={`absolute inset-0 p-8 z-10 flex flex-col justify-center transition-opacity duration-1000 ${
+              className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${
                 textVisible ? "opacity-100" : "opacity-0"
               }`}
             >
-              <div className="bg-[#62000f] bg-opacity-60 text-white p-5  sm:p-6 md:p-8 lg:p-12 max-w-full  md:max-w-lg ml-auto">
-                <p className="text-[#efcc41] text-xs sm:text-sm md:text-base font-bold mb-2">
+              <div className="bg-gradient-to-r from-[#000000a6] to-[#0000004d] text-white p-6 rounded-lg shadow-lg max-w-md w-full text-center transform transition-all duration-500 ease-in-out hover:scale-105">
+                <p className="text-[#efcc41] text-xs font-semibold uppercase mb-2">
                   {item.title}
                 </p>
-                <h2 className="text-white text-xl sm:text-2xl md:text-4xl lg:text-5xl font-bold mb-4">
+                <h2 className="text-white text-2xl font-bold mb-3">
                   {item.headline}
                 </h2>
-                <p className="text-white text-sm sm:text-base md:text-lg mb-6">
-                  {item.description}
-                </p>
+                <p className="text-white text-sm mb-4">{item.description}</p>
                 {item.buttonText && (
                   <Link
-                    to={item.buttonLink ? item.buttonLink : "#"}
-                    className="bg-[#efcc41] text-[#62000f] px-4 py-2 sm:px-6 sm:py-3 rounded-full font-semibold hover:bg-[#ffc107] transition duration-300"
+                    to={item.buttonLink || "#"}
+                    className="bg-[#efcc41] text-[#62000f] px-5 py-2 rounded-full font-semibold hover:bg-[#ffc107] transition duration-300"
                   >
                     {item.buttonText}
                   </Link>
@@ -151,13 +140,6 @@ const Slider = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-
-      {/* Centered Advice Message */}
-      <div className="absolute top-0 left-0 right-0 flex items-center justify-center bg-black bg-opacity-70 p-4 z-10">
-        <p className="text-white text-base sm:text-lg font-semibold text-center max-w-xs sm:max-w-md mx-4 border border-white rounded-lg p-2 shadow-lg animate-blink">
-          “Free” Advice is more Expensive than “Fee” Advice
-        </p>
-      </div>
     </div>
   );
 };

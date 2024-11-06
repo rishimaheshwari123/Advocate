@@ -80,7 +80,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="bg-gray-800 p-4 text-white border-b-2 relative">
+      <nav className="bg-gray-800 p-4 text-white relative">
         <div className="w-11/12 mx-auto">
           <div className="flex justify-between items-center">
             {/* Logo */}
