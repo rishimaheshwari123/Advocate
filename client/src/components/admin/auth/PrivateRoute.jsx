@@ -2,13 +2,17 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 function PrivateRoute({ children }) {
-  const { token } = useSelector((state) => state.auth);
+  const { token, user } = useSelector((state) => state.auth);
 
-  if (token !== null) {
-    return children;
-  } else {
+  if (!token) {
     return <Navigate to="/login" />;
   }
+
+  if (user?.role !== "SuperAdmin") {
+    return <Navigate to="/" />;
+  }
+
+  return children;
 }
 
 export default PrivateRoute;

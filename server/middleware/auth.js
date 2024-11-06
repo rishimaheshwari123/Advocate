@@ -7,14 +7,14 @@ dotenv.config();
 
 // This function is used as middleware to authenticate user requests
 exports.auth = async (req, res, next) => {
-	
+
 	try {
 		// Extracting JWT from request cookies, body or header
 		const token =
-		req.cookies.token ||
-		req.body.token ||
-		req.header("Authorization").replace("Bearer ", "");
-		
+			req.cookies.token ||
+			req.body.token ||
+			req.header("Authorization").replace("Bearer ", "");
+
 		console.log(token)
 		// If JWT is missing, return 401 Unauthorized response
 		if (!token) {
@@ -22,7 +22,7 @@ exports.auth = async (req, res, next) => {
 		}
 
 		try {
-		
+
 			// Verifying the JWT using the secret key stored in environment variables
 
 			const decode = await jwt.verify(token, process.env.JWT_SECRET);
@@ -49,6 +49,23 @@ exports.auth = async (req, res, next) => {
 };
 
 
+exports.isEmployee = async (req, res, next) => {
+	try {
+		const userDetails = await User.findOne({ email: req.user.email });
+
+		if (userDetails.role !== "Employee") {
+			return res.status(401).json({
+				success: false,
+				message: "This is a Protected Route for Employee",
+			});
+		}
+		next();
+	} catch (error) {
+		return res
+			.status(500)
+			.json({ success: false, message: `User Role Can't be Verified` });
+	}
+};
 exports.isUser = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });
@@ -67,14 +84,14 @@ exports.isUser = async (req, res, next) => {
 	}
 };
 
-exports.isAdmin = async (req, res, next) => {
+exports.isCompany = async (req, res, next) => {
 	try {
 		const userDetails = await User.findOne({ email: req.user.email });
 
-		if (userDetails.role !== "Admin") {
+		if (userDetails.role !== "Company") {
 			return res.status(401).json({
 				success: false,
-				message: "This is a Protected Route for Admin",
+				message: "This is a Protected Route for Company",
 			});
 		}
 		next();

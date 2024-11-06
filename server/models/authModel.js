@@ -25,9 +25,8 @@ const authSchema = new mongoose.Schema(
         },
         role: {
             type: String,
-            enum: ["Admin", "SuperAdmin"],
-            default: "Admin",
-            required: true,
+            enum: ["User", "Employee", "Company", "SuperAdmin"],
+            default: "User",
         },
         permissions: {
             canAdd: { type: Boolean, default: false },
