@@ -16,3 +16,9 @@ export const gallery = {
   DELETE_GALLERY: BASE_URL + "/gallery/delete",
   IMAGE_UPLOAD: BASE_URL + "/image/multi",
 }
+
+export const company = {
+  CREATE_COMPANY: BASE_URL + "/company/create",
+  GET_ALL_COMPANY: BASE_URL + "/company/getAll",
+  COMPANY_LOGIN: BASE_URL + "/company/login"
+}

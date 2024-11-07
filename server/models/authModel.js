@@ -28,11 +28,11 @@ const authSchema = new mongoose.Schema(
             enum: ["User", "Employee", "Company", "SuperAdmin"],
             default: "User",
         },
-        permissions: {
-            canAdd: { type: Boolean, default: false },
-            canEdit: { type: Boolean, default: false },
-            canDelete: { type: Boolean, default: false }
-        },
+        // permissions: {
+        //     canAdd: { type: Boolean, default: false },
+        //     canEdit: { type: Boolean, default: false },
+        //     canDelete: { type: Boolean, default: false }
+        // },
 
         token: {
             type: String,

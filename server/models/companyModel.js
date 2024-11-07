@@ -10,17 +10,32 @@ const companySchema = new mongoose.Schema(
             type: String,
             trim: true,
         },
-        registrationNumber: {
+        pincode: {
             type: String,
-            unique: true,
+
+        },
+        pancard: {
+            type: String,
             trim: true,
         },
-        taxId: {
+        country: {
             type: String,
-            unique: true,
+            trim: true,
+        },
+
+        contactNumber: {
+            type: String,
+            trim: true,
+        },
+        state: {
+            type: String,
             trim: true,
         },
         email: {
+            type: String,
+            trim: true,
+        },
+        userName: {
             type: String,
             trim: true,
         },
@@ -28,28 +43,37 @@ const companySchema = new mongoose.Schema(
             type: String,
             trim: true,
         },
-        contactNumber: {
+        from: {
             type: String,
             trim: true,
         },
-        industryType: {
+        to: {
             type: String,
             trim: true,
         },
-        website: {
+        gst: {
             type: String,
             trim: true,
         },
+
+        permissions: {
+            admin: {
+                crm: { type: Boolean, default: false },
+                accounting: { type: Boolean, default: false },
+                hrm: { type: Boolean, default: false },
+                payroll: { type: Boolean, default: false },
+            },
+            hr: { type: Boolean, default: false },
+            other: { type: Boolean, default: false }
+        },
+
+
         role: {
             type: String,
             enum: ["User", "Employee", "Company", "SuperAdmin"],
             default: "Company",
         },
-        companySize: {
-            type: String,
-            enum: ["Small", "Medium", "Large"],
-            default: "Small",
-        },
+
 
     },
     { timestamps: true }

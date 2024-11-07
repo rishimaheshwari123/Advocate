@@ -2,72 +2,78 @@ const bcrypt = require("bcrypt");
 const companyModel = require("../models/companyModel");
 const jwt = require("jsonwebtoken");
 
-const registerCtrl = async (req, res) => {
+
+const createCompanyCtrl = async (req, res) => {
   try {
     const {
       companyName,
       companyAddress,
-      registrationNumber,
-      taxId,
+      pincode,
+      pancard,
+      country,
+      state,
       email,
       password,
       contactNumber,
-      industryType,
-      website,
-      companySize
+      userName,
+      from,
+      to,
+      gst,
+      permissions = {},
+      role = "Company",
     } = req.body;
 
-    // Check required fields for company registration
-    if (!companyName || !companyAddress || !email || !contactNumber || !industryType || !companySize || !password) {
+    if (!companyName || !companyAddress || !pincode || !pancard || !email || !password || !contactNumber) {
       return res.status(403).json({
         success: false,
         message: "All required fields must be filled",
       });
     }
 
-    // Check if the company already exists
     const existingCompany = await companyModel.findOne({ email });
     if (existingCompany) {
       return res.status(400).json({
         success: false,
-        message: "Company already exists. Please log in to continue.",
+        message: "email already exists. Please log in to continue.",
       });
     }
 
     // Hash the password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Prepare permissions structure with defaults
+    const formattedPermissions = {
+      admin: {
+        crm: permissions.admin?.crm || false,
+        accounting: permissions.admin?.accounting || false,
+        hrm: permissions.admin?.hrm || false,
+        payroll: permissions.admin?.payroll || false,
+      },
+      hr: permissions.hr || false,
+      other: permissions.other || false,
+    };
+
     // Create new company record
     const company = await companyModel.create({
       companyName,
       companyAddress,
-      registrationNumber,
-      taxId,
+      pincode,
+      pancard,
+      country,
+      state,
       email,
-      contactNumber,
-      industryType,
-      website,
-      companySize,
       password: hashedPassword,
+      contactNumber,
+      userName,
+      from,
+      to,
+      gst,
+      permissions: formattedPermissions,
+      role,
     });
-
-    // Generate JWT token
-    const token = jwt.sign(
-      { email: company.email, id: company._id, role: "Company" },
-      process.env.JWT_SECRET,
-      { expiresIn: "3d" } // Optional: Set token expiration
-    );
-
-    // Set cookie options
-    const options = {
-      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // 3 days
-      httpOnly: true,
-    };
-    res.cookie("token", token, options);
 
     return res.status(200).json({
       success: true,
-      token,
       company,
       message: "Company registered successfully",
     });
@@ -80,12 +86,13 @@ const registerCtrl = async (req, res) => {
   }
 };
 
-const loginCtrl = async (req, res) => {
+
+const loginCompanyCtrl = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { userName, password } = req.body;
 
     // Check required fields for login
-    if (!email || !password) {
+    if (!userName || !password) {
       return res.status(400).json({
         success: false,
         message: "Please fill in all required fields",
@@ -93,7 +100,7 @@ const loginCtrl = async (req, res) => {
     }
 
     // Find company by email
-    const company = await companyModel.findOne({ email });
+    const company = await companyModel.findOne({ userName });
 
     if (!company) {
       return res.status(401).json({
@@ -138,4 +145,23 @@ const loginCtrl = async (req, res) => {
   }
 };
 
-module.exports = { registerCtrl, loginCtrl };
+
+
+const getAllCompany = async (req, res) => {
+  try {
+    const companies = await companyModel.find({})
+    return res.status(200).json({
+      success: true,
+      totalCompanies: companies.length,
+      companies
+    })
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Error in getting all company. Please try again.",
+    });
+  }
+}
+module.exports = { createCompanyCtrl, loginCompanyCtrl, getAllCompany };

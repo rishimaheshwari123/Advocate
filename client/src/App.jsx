@@ -16,6 +16,7 @@ import Footer from "./components/comman/Footer";
 import AddGallery from "./components/admin/page/AddGallery";
 import GetGallery from "./components/admin/page/GetGallery";
 import Gallery from "./pages/Gallery";
+import CreateCompany from "./components/admin/page/CreateCompany";
 
 const App = () => {
   const location = useLocation();
@@ -77,6 +78,14 @@ const App = () => {
             element={
               <PrivateRoute>
                 <GetGallery />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/admin/addCompany"
+            element={
+              <PrivateRoute>
+                <CreateCompany />
               </PrivateRoute>
             }
           />

@@ -62,6 +62,12 @@ const Sidebar = () => {
       icon: <MdOutlineFeedback />,
       label: "Get Gallery",
     },
+
+    {
+      to: "/admin/addCompany",
+      icon: <FaRegNewspaper />,
+      label: "Add Company",
+    },
   ];
 
   return (
