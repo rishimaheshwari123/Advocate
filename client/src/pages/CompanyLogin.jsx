@@ -1,51 +1,39 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { login } from "../services/operations/auth";
+import { loginCompany } from "../services/operations/company";
 
-function Login() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+const CompanyLogin = () => {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const { email, password } = formData;
-
-  const handleOnChange = (e) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [e.target.name]: e.target.value,
-    }));
-  };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const handleOnSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    login(formData.email, formData.password, navigate, dispatch);
+    await loginCompany(userName, password, navigate, dispatch);
   };
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
-        <form onSubmit={handleOnSubmit} className="space-y-4">
+        <h2 className="text-2xl font-bold text-center mb-6">Company Login</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium mb-2">Email</label>
+            <label className="block text-sm font-medium mb-2">Username</label>
             <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleOnChange}
+              type="text"
+              name="userName"
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
               className="w-full p-3 border rounded-lg focus:outline-none focus:border-blue-500"
-              placeholder="Enter your email"
+              placeholder="Enter your username"
               required
             />
           </div>
@@ -55,7 +43,7 @@ function Login() {
               type={showPassword ? "text" : "password"}
               name="password"
               value={password}
-              onChange={handleOnChange}
+              onChange={(e) => setPassword(e.target.value)}
               className="w-full p-3 border rounded-lg focus:outline-none focus:border-blue-500"
               placeholder="Enter your password"
               required
@@ -77,22 +65,10 @@ function Login() {
           >
             Login
           </button>
-          <Link
-            to={"/companies-login"}
-            className="w-full block bg-green-500 text-white p-3 rounded-lg font-semibold text-center hover:bg-green-600 transition duration-300 mt-4"
-          >
-            Company Login
-          </Link>
         </form>
-        <div className="mt-4 text-center">
-          <span className="text-sm">Don't have an account? </span>
-          <Link to="/register" className="text-blue-500 hover:underline">
-            Register
-          </Link>
-        </div>
       </div>
     </div>
   );
-}
+};
 
-export default Login;
+export default CompanyLogin;

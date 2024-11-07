@@ -8,7 +8,6 @@ import {
 } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-
 import { logout } from "../../services/operations/auth";
 
 const navLinks = [
@@ -49,6 +48,7 @@ const Navbar = () => {
   const dispatch = useDispatch();
 
   const { token, user } = useSelector((state) => state.auth);
+  const { company } = useSelector((state) => state.company);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
@@ -58,11 +58,6 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout(navigate));
-  };
-
-  const goToProfile = () => {
-    navigate("/profile");
-    setIsOpen(false);
   };
 
   useEffect(() => {
@@ -121,12 +116,18 @@ const Navbar = () => {
                 </li>
               ))}
 
-              {token && user ? (
+              {token &&
+              (user?.role === "SuperAdmin" || company?.role === "Company") ? (
                 <>
-                  {user.role === "SuperAdmin" && (
+                  {(user?.role === "SuperAdmin" ||
+                    company?.role === "Company") && (
                     <li>
                       <Link
-                        to="/admin/dashboard"
+                        to={
+                          user?.role === "SuperAdmin"
+                            ? "/admin/dashboard"
+                            : "/company/dashboard"
+                        }
                         className="px-4 py-2 font-bold bg-yellow-500 text-white rounded"
                       >
                         Dashboard
@@ -209,12 +210,18 @@ const Navbar = () => {
                 </li>
               ))}
 
-              {token && user ? (
+              {token &&
+              (user?.role === "SuperAdmin" || company?.role === "Company") ? (
                 <>
-                  {user.role === "SuperAdmin" && (
+                  {(user?.role === "SuperAdmin" ||
+                    company?.role === "Company") && (
                     <li>
                       <Link
-                        to="/admin/dashboard"
+                        to={
+                          user?.role === "SuperAdmin"
+                            ? "/admin/dashboard"
+                            : "/company/dashboard"
+                        }
                         className="px-4 py-2 font-bold bg-yellow-500 text-white rounded"
                       >
                         Dashboard

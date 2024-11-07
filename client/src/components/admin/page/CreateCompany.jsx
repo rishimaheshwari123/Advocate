@@ -8,8 +8,8 @@ const CreateCompany = () => {
   const [formData, setFormData] = useState({
     companyName: "",
     companyAddress: "",
-    pincode: "",
-    pancard: "",
+    pin: "",
+    pan: "",
     country: "",
     state: "",
     email: "",
@@ -73,8 +73,8 @@ const CreateCompany = () => {
       setFormData({
         companyName: "",
         companyAddress: "",
-        pincode: "",
-        pancard: "",
+        pin: "",
+        pan: "",
         country: "",
         state: "",
         email: "",
@@ -142,8 +142,8 @@ const CreateCompany = () => {
                 <input
                   className="p-2 border rounded w-full"
                   type="text"
-                  name="pincode"
-                  value={formData.pincode}
+                  name="pin"
+                  value={formData.pin}
                   onChange={handleChange}
                   required
                 />
@@ -153,8 +153,8 @@ const CreateCompany = () => {
                 <input
                   className="p-2 border rounded w-full"
                   type="text"
-                  name="pancard"
-                  value={formData.pancard}
+                  name="pan"
+                  value={formData.pan}
                   onChange={handleChange}
                   required
                 />
@@ -272,7 +272,7 @@ const CreateCompany = () => {
               Password
               <div className="relative">
                 <input
-                  className="p-2 border rounded w-full mb-4"
+                  className="p-2 border rounded w-full "
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={formData.password}

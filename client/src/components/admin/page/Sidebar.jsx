@@ -4,18 +4,18 @@ import { CiMenuFries } from "react-icons/ci";
 import { RxCross1 } from "react-icons/rx";
 import { AiOutlineUser } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
-import { FaHome } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { logout } from "../../../services/operations/auth";
-import { FaRegNewspaper } from "react-icons/fa";
+import { FaHome, FaRegNewspaper } from "react-icons/fa";
 import { FcBullish } from "react-icons/fc";
 import { MdOutlineFeedback } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../../services/operations/auth";
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(
     localStorage.getItem("sidebarCollapsed") === "true"
   );
   const { user } = useSelector((state) => state.auth);
+  const { company } = useSelector((state) => state.company);
   const dispatch = useDispatch();
   const sidebarRef = useRef(null);
   const navigate = useNavigate();
@@ -48,26 +48,38 @@ const Sidebar = () => {
     };
   }, []);
 
+  // Define navigation items based on user roles
   const navItems = [
     { to: "/", icon: <FaHome />, label: "Back To Home" },
-    { to: "/admin/dashboard", icon: <FcBullish />, label: "Dashboard" },
-
-    {
-      to: "/admin/addGallery",
-      icon: <FaRegNewspaper />,
-      label: "Add Gallery",
-    },
-    {
-      to: "/admin/getGallery",
-      icon: <MdOutlineFeedback />,
-      label: "Get Gallery",
-    },
-
-    {
-      to: "/admin/addCompany",
-      icon: <FaRegNewspaper />,
-      label: "Add Company",
-    },
+    ...(user?.role === "SuperAdmin"
+      ? [
+          { to: "/admin/dashboard", icon: <FcBullish />, label: "Dashboard" },
+          {
+            to: "/admin/addGallery",
+            icon: <FaRegNewspaper />,
+            label: "Add Gallery",
+          },
+          {
+            to: "/admin/getGallery",
+            icon: <MdOutlineFeedback />,
+            label: "Get Gallery",
+          },
+          {
+            to: "/admin/addCompany",
+            icon: <FaRegNewspaper />,
+            label: "Add Company",
+          },
+          {
+            to: "/admin/getCompany",
+            icon: <MdOutlineFeedback />,
+            label: "Get Company",
+          },
+        ]
+      : company?.role === "Company"
+      ? [
+          // { to: "/about", icon: <FaHome />, label: "About Page" }
+        ]
+      : []),
   ];
 
   return (
@@ -80,7 +92,7 @@ const Sidebar = () => {
       <div className="flex items-center justify-between p-4">
         {/* Logo section */}
         <div
-          className={` ${
+          className={`${
             isCollapsed ? "hidden" : "block"
           } text-white font-bold text-xl`}
         >

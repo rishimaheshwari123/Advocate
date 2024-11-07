@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.post("/create", createCompanyCtrl)
 router.post("/login", loginCompanyCtrl)
-router.post("/getAll", getAllCompany)
+router.get("/getAll", getAllCompany)
 
 
 

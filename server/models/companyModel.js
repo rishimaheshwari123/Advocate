@@ -10,13 +10,11 @@ const companySchema = new mongoose.Schema(
             type: String,
             trim: true,
         },
-        pincode: {
+        pin: {
             type: String,
-
         },
-        pancard: {
+        pan: {
             type: String,
-            trim: true,
         },
         country: {
             type: String,

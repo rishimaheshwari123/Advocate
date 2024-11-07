@@ -1,4 +1,5 @@
 import { setUser, setToken } from "../../redux/authSlice";
+import { setCompany } from "../../redux/companySlice";
 import { apiConnector } from "../apiConnector";
 import { endpoints } from "../apis";
 import Swal from "sweetalert2";
@@ -108,9 +109,11 @@ export function logout(navigate) {
   return (dispatch) => {
     dispatch(setToken(null));
     dispatch(setUser(null));
+    dispatch(setCompany(null));
 
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("company");
     Swal.fire({
       title: `User Logout Succesfull!`,
       text: `Have a nice day!`,

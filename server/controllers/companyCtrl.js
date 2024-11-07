@@ -8,8 +8,8 @@ const createCompanyCtrl = async (req, res) => {
     const {
       companyName,
       companyAddress,
-      pincode,
-      pancard,
+      pin,
+      pan,
       country,
       state,
       email,
@@ -23,7 +23,7 @@ const createCompanyCtrl = async (req, res) => {
       role = "Company",
     } = req.body;
 
-    if (!companyName || !companyAddress || !pincode || !pancard || !email || !password || !contactNumber) {
+    if (!companyName || !companyAddress || !pin || !pan || !email || !password || !contactNumber) {
       return res.status(403).json({
         success: false,
         message: "All required fields must be filled",
@@ -57,8 +57,8 @@ const createCompanyCtrl = async (req, res) => {
     const company = await companyModel.create({
       companyName,
       companyAddress,
-      pincode,
-      pancard,
+      pin,
+      pan,
       country,
       state,
       email,
