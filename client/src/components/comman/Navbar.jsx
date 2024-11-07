@@ -17,7 +17,7 @@ const navLinks = [
   {
     name: "Our Services",
     sublinks: [
-      { name: "EPS Registration", href: "/eps-registration" },
+      { name: "EPF Registration", href: "/epf-registration" },
       { name: "ESIC Registration", href: "/esic-registration" },
       { name: "GST Registration", href: "/gst-registration" },
       {
@@ -148,7 +148,7 @@ const Navbar = () => {
                     to="/login"
                     className="px-4 py-2 font-bold bg-green-500 text-white rounded"
                   >
-                    Client Login
+                    Login
                   </Link>
                 </li>
               )}
@@ -236,7 +236,7 @@ const Navbar = () => {
                     to="/login"
                     className="px-4 py-2 font-bold bg-green-500 text-white rounded"
                   >
-                    Client Login
+                    Login
                   </Link>
                 </li>
               )}
