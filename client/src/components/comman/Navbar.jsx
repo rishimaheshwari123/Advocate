@@ -33,7 +33,7 @@ const navLinks = [
       { name: "HR" },
       { name: "Payroll" },
       { name: "Attendance" },
-      { name: "Complete Software" },
+      { name: "All In One" },
     ],
   },
   { name: "Gallery", href: "/gallery" },

@@ -30,11 +30,11 @@ const Slider = () => {
       image:
         "https://bl-i.thgim.com/public/incoming/hfreq1/article68733245.ece/alternates/FREE_1200/IMG_iStock-1323246008_2_1_MD9MCE1K.jpg",
       title: "Your Compliance, Our Commitment",
-      headline: "EPS & ESIC Registration Made Easy",
+      headline: "EPF & ESIC Registration Made Easy",
       description:
-        "We streamline EPS and ESIC registration processes, ensuring compliance with all legal requirements for your peace of mind.",
+        "We streamline EPF and ESIC registration processes, ensuring compliance with all legal requirements for your peace of mind.",
       buttonText: "REGISTER NOW",
-      buttonLink: "/eps-registration",
+      buttonLink: "/EPF-registration",
     },
     {
       id: 2,
