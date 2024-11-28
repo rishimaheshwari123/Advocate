@@ -42,6 +42,7 @@ const CreateCompany = () => {
           [name]: checked,
         },
       }));
+      console.log(formData.permissions)
     } else {
       // Handle other input changes
       setFormData((prevData) => {
@@ -91,32 +92,32 @@ const CreateCompany = () => {
   const handleSubmit = async () => {
     const result = await createComapanyApi(formData);
     if (result) {
-      setFormData({
-        companyName: "",
-        companyAddress: "",
-        pin: "",
-        pan: "",
-        country: "",
-        state: "",
-        email: "",
-        contactNumber: "",
-        from: "",
-        to: "",
-        gst: "",
-    hasGST: false, // New property
+    //   setFormData({
+    //     companyName: "",
+    //     companyAddress: "",
+    //     pin: "",
+    //     pan: "",
+    //     country: "",
+    //     state: "",
+    //     email: "",
+    //     contactNumber: "",
+    //     from: "",
+    //     to: "",
+    //     gst: "",
+    // hasGST: false, // New property
       
-        permissions: {
+    //     permissions: {
        
-            crm: false,
-            accounting: false,
-            hrm: false,
-            payroll: false,
+    //         crm: false,
+    //         accounting: false,
+    //         hrm: false,
+    //         payroll: false,
          
-        },
-        userName: "",
-        password: "",
-      });
-      setStep(1);
+    //     },
+    //     userName: "",
+    //     password: "",
+    //   });
+    //   setStep(1);
     }
   };
 
