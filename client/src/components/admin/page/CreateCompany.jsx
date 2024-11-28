@@ -5,7 +5,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 const CreateCompany = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [step, setStep] = useState(1);
-  const [gstAV,setGstAV] = useState(true)
+  const [gstAV, setGstAV] = useState(true);
   const [formData, setFormData] = useState({
     companyName: "",
     companyAddress: "",
@@ -28,11 +28,10 @@ const CreateCompany = () => {
     userName: "",
     password: "",
   });
-  
 
   const handleChange = (e) => {
     const { name, type, checked, value } = e.target;
-  
+
     if (type === "checkbox") {
       // Update permissions for the checkbox toggle
       setFormData((prevData) => ({
@@ -56,22 +55,24 @@ const CreateCompany = () => {
 
   useEffect(() => {
     const { companyName } = formData;
-  
+
     if (companyName) {
       // Generate a username based on the company name
       const uniqueNumber = Math.floor(1000 + Math.random() * 9000); // Generate 4-digit random number
-      const formattedUsername = `${companyName.replace(/\s+/g, "").toLowerCase()}${uniqueNumber}`;
+      const formattedUsername = `${companyName
+        .replace(/\s+/g, "")
+        .toLowerCase()}${uniqueNumber}`;
       setFormData((prevData) => ({
         ...prevData,
         userName: formattedUsername,
       }));
     }
-  
+
     // Calculate the current financial year
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-11
     const year = currentDate.getFullYear();
-  
+
     if (currentMonth <= 3) {
       setFormData((prevData) => ({
         ...prevData,
@@ -86,7 +87,6 @@ const CreateCompany = () => {
       }));
     }
   }, [formData.companyName]);
-  
 
   const handleSubmit = async () => {
     const result = await createComapanyApi(formData);
@@ -103,15 +103,13 @@ const CreateCompany = () => {
         from: "",
         to: "",
         gst: "",
-    hasGST: false, // New property
-      
+        hasGST: false,
+
         permissions: {
-       
-            crm: false,
-            accounting: false,
-            hrm: false,
-            payroll: false,
-         
+          crm: false,
+          accounting: false,
+          hrm: false,
+          payroll: false,
         },
         userName: "",
         password: "",
@@ -245,36 +243,35 @@ const CreateCompany = () => {
                 />
               </label>
               <label className="flex items-center mb-2">
-  <input
-    type="checkbox"
-    className="mr-2"
-    checked={formData.hasGST}
-    name="hasGST"
-    onChange={(e) =>
-      setFormData((prevData) => ({
-        ...prevData,
-        hasGST: e.target.checked,
-        gst: e.target.checked ? prevData.gst : "", // Clear GST field if unchecked
-      }))
-    }
-  />
-  Do you have a GST number?
-</label>
+                <input
+                  type="checkbox"
+                  className="mr-2"
+                  checked={formData.hasGST}
+                  name="hasGST"
+                  onChange={(e) =>
+                    setFormData((prevData) => ({
+                      ...prevData,
+                      hasGST: e.target.checked,
+                      gst: e.target.checked ? prevData.gst : "", // Clear GST field if unchecked
+                    }))
+                  }
+                />
+                Do you have a GST number?
+              </label>
 
-{formData.hasGST && (
-  <label>
-    GST Number
-    <input
-      className="p-2 border rounded w-full"
-      type="text"
-      name="gst"
-      value={formData.gst}
-      onChange={handleChange}
-      placeholder="Enter your GST number"
-    />
-  </label>
-)}
-
+              {formData.hasGST && (
+                <label>
+                  GST Number
+                  <input
+                    className="p-2 border rounded w-full"
+                    type="text"
+                    name="gst"
+                    value={formData.gst}
+                    onChange={handleChange}
+                    placeholder="Enter your GST number"
+                  />
+                </label>
+              )}
             </div>
 
             <div className="flex justify-between mt-6">
@@ -368,7 +365,6 @@ const CreateCompany = () => {
                 </label>
               ))}
             </div>
-   
 
             <div className="flex justify-between mt-6">
               <button

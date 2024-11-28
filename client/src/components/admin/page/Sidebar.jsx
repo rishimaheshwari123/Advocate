@@ -4,7 +4,7 @@ import { CiMenuFries } from "react-icons/ci";
 import { RxCross1 } from "react-icons/rx";
 import { AiOutlineUser } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
-import { FaHome, FaRegNewspaper } from "react-icons/fa";
+import { FaHome, FaRegNewspaper, FaUsers } from "react-icons/fa";
 import { FcBullish } from "react-icons/fc";
 import { MdOutlineFeedback } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -48,9 +48,9 @@ const Sidebar = () => {
     };
   }, []);
 
-  // Define navigation items based on user roles
   const navItems = [
     { to: "/", icon: <FaHome />, label: "Back To Home" },
+
     ...(user?.role === "SuperAdmin"
       ? [
           { to: "/admin/dashboard", icon: <FcBullish />, label: "Dashboard" },
@@ -75,9 +75,20 @@ const Sidebar = () => {
             label: "Get Company",
           },
         ]
-      : company?.role === "Company"
+      : []),
+
+    ...(company?.role === "Company" && company.permissions?.hrm
       ? [
-          // { to: "/about", icon: <FaHome />, label: "About Page" }
+          {
+            to: "/company/add-employee",
+            icon: <FaUsers />,
+            label: "Add Employee",
+          },
+          // {
+          //   to: "/company/manage-employees",
+          //   icon: <FaUsersCog />,
+          //   label: "Manage Employees",
+          // },
         ]
       : []),
   ];

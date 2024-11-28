@@ -20,6 +20,7 @@ import Gallery from "./pages/Gallery";
 import CreateCompany from "./components/admin/page/CreateCompany";
 import GetComapny from "./components/admin/page/GetComapny";
 import CompanyLogin from "./pages/CompanyLogin";
+import AddEmployee from "./components/admin/page/hrm/AddEmployee";
 
 const App = () => {
   const location = useLocation();
@@ -85,6 +86,7 @@ const App = () => {
           {company?.role === "Company" && (
             <>
               <Route path="/company/dashboard" element={<Dashboard />} />
+              <Route path="/company/add-employee" element={<AddEmployee />} />
             </>
           )}
         </Route>
