@@ -41,6 +41,7 @@ const CreateCompany = () => {
           [name]: checked,
         },
       }));
+      console.log(formData.permissions);
     } else {
       // Handle other input changes
       setFormData((prevData) => {
@@ -103,7 +104,7 @@ const CreateCompany = () => {
         from: "",
         to: "",
         gst: "",
-        hasGST: false,
+        hasGST: false, // New property
 
         permissions: {
           crm: false,

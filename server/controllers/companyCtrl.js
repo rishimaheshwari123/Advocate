@@ -23,6 +23,7 @@ const createCompanyCtrl = async (req, res) => {
       role = "Company",
     } = req.body;
 
+
     if (!companyName || !companyAddress || !pin || !pan || !email || !password || !contactNumber) {
       return res.status(403).json({
         success: false,
@@ -44,10 +45,10 @@ const createCompanyCtrl = async (req, res) => {
     // Prepare permissions structure with defaults
     const formattedPermissions = {
 
-        crm: permissions.admin?.crm || false,
-        accounting: permissions.admin?.accounting || false,
-        hrm: permissions.admin?.hrm || false,
-        payroll: permissions.admin?.payroll || false,
+        crm: permissions.crm || false,
+        accounting: permissions.accounting || false,
+        hrm: permissions.hrm || false,
+        payroll: permissions.payroll || false,
     
     };
 
