@@ -185,7 +185,7 @@ const Footer = () => {
       </div>
 
       <div className="mt-10 border-t border-gray-700 pt-4 p-4">
-        <p className="text-center">Made By TG IT Team❤️</p>
+        <p className="text-center">Made By I-NEXT ETS Team❤️</p>
       </div>
     </footer>
   );

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { createComapanyApi } from "../../../services/operations/company";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 const CreateCompany = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [step, setStep] = useState(1);
+  const [gstAV,setGstAV] = useState(true)
   const [formData, setFormData] = useState({
     companyName: "",
     companyAddress: "",
@@ -16,47 +17,33 @@ const CreateCompany = () => {
     contactNumber: "",
     from: "",
     to: "",
-    gst: "",
+    gst: "Not Provide",
+    hasGST: false, // New property
     permissions: {
-      admin: {
-        crm: false,
-        accounting: false,
-        hrm: false,
-        payroll: false,
-      },
-      hr: false,
-      other: false,
+      crm: false,
+      accounting: false,
+      hrm: false,
+      payroll: false,
     },
     userName: "",
     password: "",
   });
+  
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-
+    const { name, type, checked, value } = e.target;
+  
     if (type === "checkbox") {
-      const [group, key] = name.split(".");
-      if (key) {
-        setFormData({
-          ...formData,
-          permissions: {
-            ...formData.permissions,
-            [group]: {
-              ...formData.permissions[group],
-              [key]: checked,
-            },
-          },
-        });
-      } else {
-        setFormData({
-          ...formData,
-          permissions: {
-            ...formData.permissions,
-            [name]: checked,
-          },
-        });
-      }
+      // Update permissions for the checkbox toggle
+      setFormData((prevData) => ({
+        ...prevData,
+        permissions: {
+          ...prevData.permissions,
+          [name]: checked,
+        },
+      }));
     } else {
+      // Handle other input changes
       setFormData((prevData) => {
         const updatedData = { ...prevData, [name]: value };
         if (name === "companyName" || name === "from") {
@@ -66,6 +53,40 @@ const CreateCompany = () => {
       });
     }
   };
+
+  useEffect(() => {
+    const { companyName } = formData;
+  
+    if (companyName) {
+      // Generate a username based on the company name
+      const uniqueNumber = Math.floor(1000 + Math.random() * 9000); // Generate 4-digit random number
+      const formattedUsername = `${companyName.replace(/\s+/g, "").toLowerCase()}${uniqueNumber}`;
+      setFormData((prevData) => ({
+        ...prevData,
+        userName: formattedUsername,
+      }));
+    }
+  
+    // Calculate the current financial year
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth() + 1; // JavaScript months are 0-11
+    const year = currentDate.getFullYear();
+  
+    if (currentMonth <= 3) {
+      setFormData((prevData) => ({
+        ...prevData,
+        from: `${year - 1}-04-01`,
+        to: `${year}-03-31`,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        from: `${year}-04-01`,
+        to: `${year + 1}-03-31`,
+      }));
+    }
+  }, [formData.companyName]);
+  
 
   const handleSubmit = async () => {
     const result = await createComapanyApi(formData);
@@ -82,15 +103,15 @@ const CreateCompany = () => {
         from: "",
         to: "",
         gst: "",
+    hasGST: false, // New property
+      
         permissions: {
-          admin: {
+       
             crm: false,
             accounting: false,
             hrm: false,
             payroll: false,
-          },
-          hr: false,
-          other: false,
+         
         },
         userName: "",
         password: "",
@@ -223,16 +244,37 @@ const CreateCompany = () => {
                   onChange={handleChange}
                 />
               </label>
-              <label>
-                GST
-                <input
-                  className="p-2 border rounded w-full"
-                  type="text"
-                  name="gst"
-                  value={formData.gst}
-                  onChange={handleChange}
-                />
-              </label>
+              <label className="flex items-center mb-2">
+  <input
+    type="checkbox"
+    className="mr-2"
+    checked={formData.hasGST}
+    name="hasGST"
+    onChange={(e) =>
+      setFormData((prevData) => ({
+        ...prevData,
+        hasGST: e.target.checked,
+        gst: e.target.checked ? prevData.gst : "", // Clear GST field if unchecked
+      }))
+    }
+  />
+  Do you have a GST number?
+</label>
+
+{formData.hasGST && (
+  <label>
+    GST Number
+    <input
+      className="p-2 border rounded w-full"
+      type="text"
+      name="gst"
+      value={formData.gst}
+      onChange={handleChange}
+      placeholder="Enter your GST number"
+    />
+  </label>
+)}
+
             </div>
 
             <div className="flex justify-between mt-6">
@@ -318,35 +360,15 @@ const CreateCompany = () => {
                 <label key={perm} className="mr-4">
                   <input
                     type="checkbox"
-                    name={`admin.${perm}`}
-                    checked={formData.permissions.admin[perm]}
+                    name={`${perm}`}
+                    checked={formData.permissions[perm]}
                     onChange={handleChange}
                   />
                   {perm.charAt(0).toUpperCase() + perm.slice(1)}
                 </label>
               ))}
             </div>
-            <div className="mt-4">
-              <h3 className="font-semibold">HR and Other</h3>
-              <label className="block">
-                <input
-                  type="checkbox"
-                  name="hr"
-                  checked={formData.permissions.hr}
-                  onChange={handleChange}
-                />
-                HR
-              </label>
-              <label className="block">
-                <input
-                  type="checkbox"
-                  name="other"
-                  checked={formData.permissions.other}
-                  onChange={handleChange}
-                />
-                Other
-              </label>
-            </div>
+   
 
             <div className="flex justify-between mt-6">
               <button

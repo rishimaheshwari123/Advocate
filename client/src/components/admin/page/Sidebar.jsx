@@ -96,7 +96,7 @@ const Sidebar = () => {
             isCollapsed ? "hidden" : "block"
           } text-white font-bold text-xl`}
         >
-          <h2>Trade Gyan</h2>
+          <h2>SD</h2>
         </div>
         {/* Toggle button */}
         <button

@@ -44,7 +44,7 @@ export async function login(email, password, navigate, dispatch) {
     dispatch(setUser(response.data.user));
     navigate("/admin/dashboard");
   } catch (error) {
-    console.log("LOGIN API ERROR............", error?.response);
+    console.log("LOGIN API ERROR............", error);
     Swal.fire({
       title: "Login Failed",
       text:

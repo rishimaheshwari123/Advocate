@@ -43,14 +43,12 @@ const createCompanyCtrl = async (req, res) => {
 
     // Prepare permissions structure with defaults
     const formattedPermissions = {
-      admin: {
+
         crm: permissions.admin?.crm || false,
         accounting: permissions.admin?.accounting || false,
         hrm: permissions.admin?.hrm || false,
         payroll: permissions.admin?.payroll || false,
-      },
-      hr: permissions.hr || false,
-      other: permissions.other || false,
+    
     };
 
     // Create new company record

@@ -55,16 +55,12 @@ const companiSchema = new mongoose.Schema(
         },
 
         permissions: {
-            admin: {
+        
                 crm: { type: Boolean, default: false },
                 accounting: { type: Boolean, default: false },
                 hrm: { type: Boolean, default: false },
                 payroll: { type: Boolean, default: false },
-            },
-            hr: { type: Boolean, default: false },
-            other: { type: Boolean, default: false }
         },
-
 
         role: {
             type: String,
