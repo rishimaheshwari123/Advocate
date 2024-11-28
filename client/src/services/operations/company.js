@@ -4,7 +4,7 @@ import { company } from "../apis"
 import { setCompany } from "../../redux/companySlice"
 import { setToken } from "../../redux/authSlice";
 
-const { CREATE_COMPANY, COMPANY_LOGIN, GET_ALL_COMPANY } = company;
+const { CREATE_COMPANY, COMPANY_LOGIN, GET_ALL_COMPANY, CREATE_EMPLOYEE, GET_EMPLOYEE, GET_SINGLE_EMPLOYEE, SEND_OFFER_LETTER } = company;
 export const createComapanyApi = async (formData) => {
     try {
         const response = await apiConnector("POST", CREATE_COMPANY, formData);
@@ -84,3 +84,118 @@ export async function loginCompany(userName, password, navigate, dispatch) {
         });
     }
 }
+
+
+export const createEmployeeApi = async (data) => {
+    try {
+        Swal.fire({
+            title: "Please wait...",
+            text: "Creating employee...",
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+        });
+
+        const response = await apiConnector("POST", CREATE_EMPLOYEE, data);
+
+        Swal.close();
+
+        Swal.fire("Success", response?.data?.message, "success");
+        return response.data?.success;
+    } catch (error) {
+        Swal.close();
+
+        Swal.fire("Error", error?.response?.data?.message || "Something went wrong", "error");
+        console.error(error);
+        return null;
+    }
+};
+
+
+
+export const getALLEmployeeApi = async (companyId) => {
+    let result = [];
+    try {
+        const response = await apiConnector("GET", `${GET_EMPLOYEE}/${companyId}`);
+        console.log("API Response:", response);
+
+        if (!response?.data?.success) {
+            throw new Error(response?.data?.message);
+        }
+
+        result = response?.data?.employees || [];
+        return result;
+    } catch (error) {
+        console.log(error)
+        Swal.fire({
+            text: error.response?.data?.message || "Something went wrong, please try again later",
+            icon: "error",
+        });
+        return result;
+    }
+};
+export const getSingleEmployeeApi = async (id) => {
+    let result = [];
+    try {
+        const response = await apiConnector("GET", `${GET_SINGLE_EMPLOYEE}/${id}`);
+        console.log("API Response:", response);
+
+        if (!response?.data?.success) {
+            throw new Error(response?.data?.message);
+        }
+
+        result = response?.data?.employee || [];
+        return result;
+    } catch (error) {
+        console.log(error)
+        Swal.fire({
+            text: error.response?.data?.message || "Something went wrong, please try again later",
+            icon: "error",
+        });
+        return result;
+    }
+};
+
+
+
+export const sendOfferLetterApi = async (data) => {
+    // Show loading alert
+    Swal.fire({
+        title: "Loading...",
+        text: "Please wait while we process your request.",
+        allowOutsideClick: false,
+        didOpen: () => {
+            Swal.showLoading();
+        },
+    });
+
+    try {
+        // Make the API call
+        const response = await apiConnector("POST", SEND_OFFER_LETTER, data);
+
+        // Check if the response is successful and contains expected data
+        if (response?.data?.success) {
+            Swal.fire({
+                title: "Good job!",
+                text: "Your message has been sent successfully!",
+                icon: "success",
+            });
+            return true; // Indicates the success of the operation
+        } else {
+            // Handle case where success flag is not set or data is missing
+            throw new Error("Unexpected response data");
+        }
+    } catch (error) {
+        console.log(error); // Log the error for debugging
+
+        // Show error message
+        Swal.fire({
+            title: "Error!",
+            text: error?.response?.data?.message || "There was a problem sending your message. Please try again later.",
+            icon: "error",
+        });
+
+        return false; // Indicates failure
+    }
+};

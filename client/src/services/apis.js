@@ -20,5 +20,9 @@ export const gallery = {
 export const company = {
   CREATE_COMPANY: BASE_URL + "/company/create",
   GET_ALL_COMPANY: BASE_URL + "/company/getAll",
-  COMPANY_LOGIN: BASE_URL + "/company/login"
+  COMPANY_LOGIN: BASE_URL + "/company/login",
+  CREATE_EMPLOYEE: BASE_URL + "/company/create-employee",
+  GET_EMPLOYEE: BASE_URL + "/company/get-employee",
+  GET_SINGLE_EMPLOYEE: BASE_URL + "/company/get-single-employee",
+  SEND_OFFER_LETTER: BASE_URL + "/company/create-offerletter"
 }

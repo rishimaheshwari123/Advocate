@@ -41,10 +41,14 @@ const employeeSchema = new mongoose.Schema(
             enum: ["User", "Employee", "Company", "SuperAdmin"],
             default: "Employee",
         },
-        companyId: {
+        companyId: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Company",
-        },
+            ref: "Compani",
+        }],
+        isOffer: {
+            type: Boolean,
+            default: true
+        }
     },
     { timestamps: true }
 );

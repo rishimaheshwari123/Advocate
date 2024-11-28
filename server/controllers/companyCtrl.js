@@ -1,6 +1,11 @@
 const bcrypt = require("bcrypt");
 const companyModel = require("../models/companyModel");
+const employeeModel = require("../models/employeeModel");
 const jwt = require("jsonwebtoken");
+const mailSender = require("../utils/mailSenderr");
+const { welcomeEmailTemplate } = require("../template/welcomeEmailTemplate");
+const mailSender2 = require("../utils/mailSender2");
+const { offerLetterEmail } = require("../template/offerLetter");
 
 
 const createCompanyCtrl = async (req, res) => {
@@ -45,11 +50,11 @@ const createCompanyCtrl = async (req, res) => {
     // Prepare permissions structure with defaults
     const formattedPermissions = {
 
-        crm: permissions.crm || false,
-        accounting: permissions.accounting || false,
-        hrm: permissions.hrm || false,
-        payroll: permissions.payroll || false,
-    
+      crm: permissions.crm || false,
+      accounting: permissions.accounting || false,
+      hrm: permissions.hrm || false,
+      payroll: permissions.payroll || false,
+
     };
 
     // Create new company record
@@ -163,4 +168,197 @@ const getAllCompany = async (req, res) => {
     });
   }
 }
-module.exports = { createCompanyCtrl, loginCompanyCtrl, getAllCompany };
+
+
+
+
+
+const createEmployeeCtrl = async (req, res) => {
+  try {
+    const {
+      firstName,
+      lastName,
+      email,
+      contactNumber,
+      position,
+      password,
+      department,
+      address,
+      companyId,
+    } = req.body;
+
+    // Check required fields for employee registration
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !contactNumber ||
+      !position ||
+      !password ||
+      !department ||
+      !address ||
+      !companyId
+    ) {
+      return res.status(403).json({
+        success: false,
+        message: "All required fields must be filled",
+      });
+    }
+
+    // Check if the employee already exists
+    const existingEmployee = await employeeModel.findOne({ email });
+    if (existingEmployee) {
+      return res.status(400).json({
+        success: false,
+        message: "Employee already exists. Please log in to continue.",
+      });
+    }
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new employee
+    const employee = await employeeModel.create({
+      firstName,
+      lastName,
+      email,
+      contactNumber,
+      position,
+      password: hashedPassword,
+      department,
+      address,
+      companyId,
+    });
+
+    // Add the employee to the company's employee list
+    if (employee) {
+      await companyModel.findByIdAndUpdate(companyId, {
+        $push: { employeeId: employee._id },
+      });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { email: employee.email, id: employee._id, role: "Employee" },
+      process.env.JWT_SECRET,
+      { expiresIn: "3d" }
+    );
+
+    // Set cookie options
+    const options = {
+      expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+      httpOnly: true,
+    };
+    res.cookie("token", token, options);
+
+    // Send a welcome email
+    const name = `${firstName} ${lastName}`;
+    const emailRes = await mailSender2(
+      email,
+      welcomeEmailTemplate(name, email, password)
+    );
+
+    // Check the response of the email sending
+    if (emailRes) {
+      return res.status(200).json({
+        success: true,
+        token,
+        employee,
+        message: "Employee created successfully. A welcome email has been sent!",
+      });
+    } else {
+      return res.status(200).json({
+        success: true,
+        token,
+        employee,
+        message:
+          "Employee created successfully, but we were unable to send the welcome email. Please verify the email address.",
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Employee registration failed. Please try again.",
+    });
+  }
+};
+
+
+const getAllEmployees = async (req, res) => {
+  try {
+    // Destructure companyId from params
+    const { companyId } = req.params;
+
+    // Find all employees for the given companyId
+    const employees = await employeeModel.find({ companyId });
+
+    // Return success response
+    return res.status(200).json({
+      success: true,
+      employees,
+    });
+  } catch (error) {
+    console.error(error);
+    // Return error response
+    return res.status(500).json({
+      success: false,
+      message: "Error in getting employees for the company. Please try again.",
+    });
+  }
+};
+const getSingleEmpCtrl = async (req, res) => {
+  try {
+    // Destructure companyId from params
+    const { id } = req.params;
+
+    // Find all employees for the given companyId
+    const employee = await employeeModel.findById(id);
+
+    // Return success response
+    return res.status(200).json({
+      success: true,
+      employee,
+    });
+  } catch (error) {
+    console.error(error);
+    // Return error response
+    return res.status(500).json({
+      success: false,
+      message: "Error in getting Single employees . Please try again.",
+    });
+  }
+};
+
+const sendOfferLetter = async (req, res) => {
+  try {
+    const { companyName, employeeName, email, registrationNo, phone, joiningDate, id } = req.body;
+
+    // Send the offer letter email
+    await mailSender(email, "Offer Letter Send Successfully!", offerLetterEmail(companyName, employeeName, email, registrationNo, phone, joiningDate));
+
+    // Update the isOffer field to false
+    await employeeModel.findByIdAndUpdate(
+      id,
+      { isOffer: false },
+      { new: true } // This ensures the updated document is returned
+    );
+
+    // Send a successful response
+    res.status(200).send({
+      message: "Offer Letter sent successfully!",
+      success: true,
+    });
+  } catch (error) {
+    // Handle error
+    return res.status(500).json({
+      success: false,
+      message: "Error in sending offer letter. Please try again.",
+    });
+  }
+};
+
+
+
+
+module.exports = { createCompanyCtrl, loginCompanyCtrl, getAllCompany, createEmployeeCtrl, getAllEmployees, getSingleEmpCtrl, sendOfferLetter };

@@ -55,11 +55,11 @@ const companiSchema = new mongoose.Schema(
         },
 
         permissions: {
-        
-                crm: { type: Boolean, default: false },
-                accounting: { type: Boolean, default: false },
-                hrm: { type: Boolean, default: false },
-                payroll: { type: Boolean, default: false },
+
+            crm: { type: Boolean, default: false },
+            accounting: { type: Boolean, default: false },
+            hrm: { type: Boolean, default: false },
+            payroll: { type: Boolean, default: false },
         },
 
         role: {
@@ -67,6 +67,10 @@ const companiSchema = new mongoose.Schema(
             enum: ["User", "Employee", "Company", "SuperAdmin"],
             default: "Company",
         },
+        employeeId: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Employee",
+        }]
 
 
     },

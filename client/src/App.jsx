@@ -21,6 +21,8 @@ import CreateCompany from "./components/admin/page/CreateCompany";
 import GetComapny from "./components/admin/page/GetComapny";
 import CompanyLogin from "./pages/CompanyLogin";
 import AddEmployee from "./components/admin/page/hrm/AddEmployee";
+import GetEmployee from "./components/admin/page/hrm/GetEmployee";
+import SingleEmployee from "./components/admin/page/hrm/SingleEmployee";
 
 const App = () => {
   const location = useLocation();
@@ -87,6 +89,11 @@ const App = () => {
             <>
               <Route path="/company/dashboard" element={<Dashboard />} />
               <Route path="/company/add-employee" element={<AddEmployee />} />
+              <Route path="/company/get-employee" element={<GetEmployee />} />
+              <Route
+                path="/company/get-employee/:id"
+                element={<SingleEmployee />}
+              />
             </>
           )}
         </Route>

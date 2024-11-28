@@ -4,7 +4,7 @@ import { CiMenuFries } from "react-icons/ci";
 import { RxCross1 } from "react-icons/rx";
 import { AiOutlineUser } from "react-icons/ai";
 import { MdLogout } from "react-icons/md";
-import { FaHome, FaRegNewspaper, FaUsers } from "react-icons/fa";
+import { FaHome, FaRegNewspaper, FaUsers, FaUsersCog } from "react-icons/fa";
 import { FcBullish } from "react-icons/fc";
 import { MdOutlineFeedback } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
@@ -84,11 +84,11 @@ const Sidebar = () => {
             icon: <FaUsers />,
             label: "Add Employee",
           },
-          // {
-          //   to: "/company/manage-employees",
-          //   icon: <FaUsersCog />,
-          //   label: "Manage Employees",
-          // },
+          {
+            to: "/company/get-employee",
+            icon: <FaUsersCog />,
+            label: "Get Employees",
+          },
         ]
       : []),
   ];
