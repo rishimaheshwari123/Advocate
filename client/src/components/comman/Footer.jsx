@@ -50,7 +50,7 @@ const Footer = () => {
           <ul className="text-sm sm:text-base space-y-2">
             <li>
               <Link to="/eps-registration" className="hover:text-yellow-400">
-                EPS Registration
+                EPF Registration
               </Link>
             </li>
             <li>
