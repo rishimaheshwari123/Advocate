@@ -27,20 +27,7 @@ const navLinks = [
       { name: "GST Return", href: "/gst-return" },
     ],
   },
-  {
-    name: "Online",
-    sublinks: [
-      { name: "EPS", href: "/epf" },
-      { name: "ESIC", href: "/esic" },
-      { name: "GST", href: "/gst" },
-      {
-        name: "TDS",
-        href: "/tds",
-      },
-      { name: "PT", href: "/pt" },
-      { name: "Income Tax", href: "/income-tax" },
-    ],
-  },
+
   {
     name: "Downloads",
     sublinks: [
@@ -52,6 +39,20 @@ const navLinks = [
   },
   { name: "Gallery", href: "/gallery" },
   { name: "Inquiry", href: "/inquiry" },
+  {
+    name: "Online",
+    sublinks: [
+      { name: "EPF", href: "/epf" },
+      { name: "ESIC", href: "/esic" },
+      { name: "GST", href: "/gst" },
+      {
+        name: "TDS",
+        href: "/tds",
+      },
+      { name: "PT", href: "/pt" },
+      { name: "Income Tax", href: "/income-tax" },
+    ],
+  },
   { name: "Contact Us", href: "/contact" },
 ];
 
