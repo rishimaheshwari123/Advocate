@@ -4,7 +4,7 @@ import { company } from "../apis"
 import { setCompany } from "../../redux/companySlice"
 import { setToken } from "../../redux/authSlice";
 
-const { CREATE_COMPANY, COMPANY_LOGIN, GET_ALL_COMPANY, CREATE_EMPLOYEE, GET_EMPLOYEE, GET_SINGLE_EMPLOYEE, SEND_OFFER_LETTER } = company;
+const { CREATE_COMPANY, COMPANY_LOGIN, GET_ALL_COMPANY, CREATE_EMPLOYEE, GET_EMPLOYEE, GET_SINGLE_EMPLOYEE, SEND_OFFER_LETTER, ATTENDANCE } = company;
 export const createComapanyApi = async (formData) => {
     try {
         const response = await apiConnector("POST", CREATE_COMPANY, formData);
@@ -197,5 +197,18 @@ export const sendOfferLetterApi = async (data) => {
         });
 
         return false; // Indicates failure
+    }
+};
+
+
+export const attendanceApi = async (formData, id) => {
+    try {
+        const response = await apiConnector("POST", `${ATTENDANCE}/${id}`, formData);
+        Swal.fire("Success", response?.data?.message, "success");
+        return response.data;
+    } catch (error) {
+        Swal.fire("Error", error?.response?.data?.message, "error");
+        console.error(error);
+        return null;
     }
 };

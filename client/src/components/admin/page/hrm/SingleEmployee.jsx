@@ -12,6 +12,8 @@ const SingleEmployee = () => {
   const [companyName, setCompanyName] = useState("");
   const [registrationNo, setRegistrationNo] = useState("");
   const [joiningDate, setJoiningDate] = useState("");
+  const [isAttendanceSheetVisible, setIsAttendanceSheetVisible] =
+    useState(false);
 
   useEffect(() => {
     const fetchEmployee = async () => {
@@ -54,6 +56,10 @@ const SingleEmployee = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  const toggleAttendanceSheet = () => {
+    setIsAttendanceSheetVisible((prev) => !prev);
+  };
 
   if (loading) {
     return <p className="text-center text-lg">Loading...</p>;
@@ -100,6 +106,70 @@ const SingleEmployee = () => {
             </button>
           </div>
         )}
+      </div>
+
+      {/* Attendance Section */}
+      <div className="mt-8">
+        <h2 className="text-2xl font-semibold">Attendance Summary</h2>
+        <div className="mt-4">
+          <p className="font-medium">Today:</p>
+          <div className="flex space-x-4">
+            {employee.attendance.length > 0 ? (
+              <p className="text-lg">
+                Status:{" "}
+                {employee.attendance[employee.attendance.length - 1].status ===
+                "P"
+                  ? "Present"
+                  : "Absent"}
+              </p>
+            ) : (
+              <p>No attendance recorded yet.</p>
+            )}
+          </div>
+
+          <button
+            onClick={toggleAttendanceSheet}
+            className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg"
+          >
+            {isAttendanceSheetVisible
+              ? "Hide Attendance Sheet"
+              : "Show Full Attendance"}
+          </button>
+
+          {isAttendanceSheetVisible && (
+            <div className="mt-6">
+              <h3 className="text-xl font-medium">Full Attendance Sheet</h3>
+              <table className="w-full mt-4 table-auto border-collapse border border-gray-200">
+                <thead>
+                  <tr>
+                    <th className="border p-2">Date</th>
+                    <th className="border p-2">Day</th>
+                    <th className="border p-2">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {employee.attendance.map((entry, index) => {
+                    const date = new Date(entry.date);
+                    const day = date.toLocaleString("en-us", {
+                      weekday: "long",
+                    });
+                    return (
+                      <tr key={index}>
+                        <td className="border p-2">
+                          {date.toLocaleDateString()}
+                        </td>
+                        <td className="border p-2">{day}</td>
+                        <td className="border p-2">
+                          {entry.status === "P" ? "Present" : "Absent"}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Modal for entering company details */}

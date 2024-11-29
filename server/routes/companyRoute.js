@@ -1,5 +1,5 @@
 const express = require("express")
-const { createCompanyCtrl, loginCompanyCtrl, getAllCompany, createEmployeeCtrl, getAllEmployees, getSingleEmpCtrl, sendOfferLetter } = require("../controllers/companyCtrl")
+const { createCompanyCtrl, loginCompanyCtrl, getAllCompany, createEmployeeCtrl, getAllEmployees, getSingleEmpCtrl, sendOfferLetter, createAttandanceCtrl } = require("../controllers/companyCtrl")
 const router = express.Router()
 
 
@@ -19,4 +19,8 @@ router.get("/get-single-employee/:id", getSingleEmpCtrl)
 
 // offer letter  
 router.post("/create-offerletter", sendOfferLetter)
+
+
+// attandance 
+router.post("/create-attandance/:id", createAttandanceCtrl)
 module.exports = router

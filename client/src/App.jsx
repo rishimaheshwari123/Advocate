@@ -23,6 +23,7 @@ import CompanyLogin from "./pages/CompanyLogin";
 import AddEmployee from "./components/admin/page/hrm/AddEmployee";
 import GetEmployee from "./components/admin/page/hrm/GetEmployee";
 import SingleEmployee from "./components/admin/page/hrm/SingleEmployee";
+import AddAttendance from "./components/admin/page/hrm/AddAttendance";
 
 const App = () => {
   const location = useLocation();
@@ -93,6 +94,10 @@ const App = () => {
               <Route
                 path="/company/get-employee/:id"
                 element={<SingleEmployee />}
+              />
+              <Route
+                path="/company/get-attendance"
+                element={<AddAttendance />}
               />
             </>
           )}

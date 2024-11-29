@@ -48,7 +48,18 @@ const employeeSchema = new mongoose.Schema(
         isOffer: {
             type: Boolean,
             default: true
-        }
+        },
+        attendance: [
+            {
+                status: {
+                    type: String
+                },
+                date: {
+                    type: Date,
+                    default: Date.now,
+                },
+            }
+        ]
     },
     { timestamps: true }
 );

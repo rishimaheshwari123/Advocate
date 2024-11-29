@@ -359,6 +359,68 @@ const sendOfferLetter = async (req, res) => {
 };
 
 
+const createAttandanceCtrl = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    if (!status) {
+      return res.status(400).json({
+        success: false,
+        message: "Attendance status is required.",
+      });
+    }
+
+    const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+    const employee = await employeeModel.findById(id);
+
+    // Check if attendance is already recorded for today
+    const todayAttendance = employee.attendance.find(
+      (att) => att.date.split('T')[0] === currentDate
+    );
+
+    if (todayAttendance) {
+      return res.status(400).json({
+        success: false,
+        message: "Attendance already recorded for today.",
+      });
+    }
+
+    const newAttendance = {
+      status,
+      date: new Date(),
+    };
+
+    const updatedEmployee = await employeeModel.findByIdAndUpdate(
+      id,
+      { $push: { attendance: newAttendance } },
+      { new: true }
+    );
+
+    if (!updatedEmployee) {
+      return res.status(404).json({
+        success: false,
+        message: "Employee not found.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Attendance added successfully.",
+      data: updatedEmployee,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Error in creating attendance. Please try again.",
+    });
+  }
+};
 
 
-module.exports = { createCompanyCtrl, loginCompanyCtrl, getAllCompany, createEmployeeCtrl, getAllEmployees, getSingleEmpCtrl, sendOfferLetter };
+
+
+
+
+module.exports = { createCompanyCtrl, loginCompanyCtrl, getAllCompany, createEmployeeCtrl, getAllEmployees, getSingleEmpCtrl, sendOfferLetter, createAttandanceCtrl };

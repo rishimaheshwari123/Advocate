@@ -89,6 +89,11 @@ const Sidebar = () => {
             icon: <FaUsersCog />,
             label: "Get Employees",
           },
+          {
+            to: "/company/get-attendance",
+            icon: <FaUsersCog />,
+            label: "Attendance",
+          },
         ]
       : []),
   ];
