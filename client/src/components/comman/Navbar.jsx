@@ -28,6 +28,20 @@ const navLinks = [
     ],
   },
   {
+    name: "Online",
+    sublinks: [
+      { name: "EPS", href: "/epf" },
+      { name: "ESIC", href: "/esic" },
+      { name: "GST", href: "/gst" },
+      {
+        name: "TDS",
+        href: "/tds",
+      },
+      { name: "PT", href: "/pt" },
+      { name: "Income Tax", href: "/income-tax" },
+    ],
+  },
+  {
     name: "Downloads",
     sublinks: [
       { name: "HR" },
