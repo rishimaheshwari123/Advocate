@@ -42,15 +42,19 @@ const navLinks = [
   {
     name: "Online",
     sublinks: [
-      { name: "EPF", href: "/epf" },
-      { name: "ESIC", href: "/esic" },
-      { name: "GST", href: "/gst" },
+      { name: "EPF", href: "https://www.epfindia.gov.in" },
+      { name: "ESIC", href: "https://www.esic.gov.in" },
+      { name: "GST", href: "https://www.gst.gov.in" },
       {
         name: "TDS",
-        href: "/tds",
+        href: "https://contents.tdscpc.gov.in",
       },
-      { name: "PT", href: "/pt" },
-      { name: "Income Tax", href: "/income-tax" },
+      {
+        name: "Challan",
+        href: "https://mptreasury.gov.in",
+      },
+      { name: "PT", href: "https://mptax.mp.gov.in" },
+      { name: "Income Tax", href: "https://www.incometax.gov.in" },
     ],
   },
   { name: "Contact Us", href: "/contact" },
