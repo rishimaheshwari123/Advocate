@@ -14,6 +14,9 @@ const SingleEmployee = () => {
   const [joiningDate, setJoiningDate] = useState("");
   const [isAttendanceSheetVisible, setIsAttendanceSheetVisible] =
     useState(false);
+  const [selectedMonth, setSelectedMonth] = useState(new Date().getMonth()); // Default to current month
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear()); // Default to current year
+  const [filteredAttendance, setFilteredAttendance] = useState([]);
 
   useEffect(() => {
     const fetchEmployee = async () => {
@@ -21,6 +24,7 @@ const SingleEmployee = () => {
       try {
         const result = await getSingleEmployeeApi(id);
         setEmployee(result);
+        filterAttendance(result.attendance);
       } catch (error) {
         console.error("Error fetching employee:", error);
       } finally {
@@ -30,6 +34,22 @@ const SingleEmployee = () => {
 
     fetchEmployee();
   }, [id]);
+
+  useEffect(() => {
+    if (employee) {
+      filterAttendance(employee.attendance);
+    }
+  }, [selectedMonth, selectedYear, employee]);
+
+  const filterAttendance = (attendance) => {
+    const filtered = attendance.filter((entry) => {
+      const date = new Date(entry.date);
+      const month = date.getMonth();
+      const year = date.getFullYear();
+      return month === selectedMonth && year === selectedYear;
+    });
+    setFilteredAttendance(filtered);
+  };
 
   const handleSendOfferLetter = async () => {
     if (!companyName || !registrationNo || !joiningDate) {
@@ -59,6 +79,13 @@ const SingleEmployee = () => {
 
   const toggleAttendanceSheet = () => {
     setIsAttendanceSheetVisible((prev) => !prev);
+  };
+
+  const countPresentsInCurrentMonth = () => {
+    const currentMonthAttendances = filteredAttendance.filter(
+      (entry) => entry.status === "P"
+    );
+    return currentMonthAttendances.length;
   };
 
   if (loading) {
@@ -111,65 +138,89 @@ const SingleEmployee = () => {
       {/* Attendance Section */}
       <div className="mt-8">
         <h2 className="text-2xl font-semibold">Attendance Summary</h2>
-        <div className="mt-4">
-          <p className="font-medium">Today:</p>
-          <div className="flex space-x-4">
-            {employee.attendance.length > 0 ? (
-              <p className="text-lg">
-                Status:{" "}
-                {employee.attendance[employee.attendance.length - 1].status ===
-                "P"
-                  ? "Present"
-                  : "Absent"}
-              </p>
-            ) : (
-              <p>No attendance recorded yet.</p>
-            )}
-          </div>
 
-          <button
-            onClick={toggleAttendanceSheet}
-            className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg"
+        {/* Filter for Month and Year */}
+        <div className="mt-4 flex space-x-4">
+          <select
+            value={selectedMonth}
+            onChange={(e) => setSelectedMonth(Number(e.target.value))}
+            className="p-2 border border-gray-300 rounded-lg"
           >
-            {isAttendanceSheetVisible
-              ? "Hide Attendance Sheet"
-              : "Show Full Attendance"}
-          </button>
-
-          {isAttendanceSheetVisible && (
-            <div className="mt-6">
-              <h3 className="text-xl font-medium">Full Attendance Sheet</h3>
-              <table className="w-full mt-4 table-auto border-collapse border border-gray-200">
-                <thead>
-                  <tr>
-                    <th className="border p-2">Date</th>
-                    <th className="border p-2">Day</th>
-                    <th className="border p-2">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {employee.attendance.map((entry, index) => {
-                    const date = new Date(entry.date);
-                    const day = date.toLocaleString("en-us", {
-                      weekday: "long",
-                    });
-                    return (
-                      <tr key={index}>
-                        <td className="border p-2">
-                          {date.toLocaleDateString()}
-                        </td>
-                        <td className="border p-2">{day}</td>
-                        <td className="border p-2">
-                          {entry.status === "P" ? "Present" : "Absent"}
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
-          )}
+            {[...Array(12).keys()].map((month) => (
+              <option key={month} value={month}>
+                {new Date(0, month).toLocaleString("default", {
+                  month: "long",
+                })}
+              </option>
+            ))}
+          </select>
+          <select
+            value={selectedYear}
+            onChange={(e) => setSelectedYear(Number(e.target.value))}
+            className="p-2 border border-gray-300 rounded-lg"
+          >
+            {[2023, 2024, 2025].map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
         </div>
+
+        <p className="font-medium mt-4">
+          Attendance for{" "}
+          {new Date(selectedYear, selectedMonth).toLocaleString("default", {
+            month: "long",
+            year: "numeric",
+          })}
+          :
+        </p>
+        <div className="flex space-x-4">
+          <p className="text-lg">
+            Present Days: {countPresentsInCurrentMonth()}
+          </p>
+        </div>
+
+        <button
+          onClick={toggleAttendanceSheet}
+          className="mt-4 bg-blue-600 text-white py-2 px-4 rounded-lg"
+        >
+          {isAttendanceSheetVisible
+            ? "Hide Attendance Sheet"
+            : "Show Full Attendance"}
+        </button>
+
+        {isAttendanceSheetVisible && (
+          <div className="mt-6">
+            <h3 className="text-xl font-medium">Full Attendance Sheet</h3>
+            <table className="w-full mt-4 table-auto border-collapse border border-gray-200">
+              <thead>
+                <tr>
+                  <th className="border p-2">Date</th>
+                  <th className="border p-2">Day</th>
+                  <th className="border p-2">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredAttendance.map((entry, index) => {
+                  const date = new Date(entry.date);
+                  const day = date.toLocaleString("en-us", { weekday: "long" });
+                  return (
+                    <tr key={index}>
+                      <td className="border p-2">
+                        {date.toLocaleDateString()}
+                      </td>
+                      <td className="border p-2">{day}</td>
+                      <td className="border p-2">
+                        {entry.status === "P" ? "Present" : "Absent"}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
 
       {/* Modal for entering company details */}
@@ -216,18 +267,18 @@ const SingleEmployee = () => {
                 />
               </div>
             </div>
-            <div className="mt-6 flex justify-between">
-              <button
-                onClick={closeModal}
-                className="bg-gray-300 text-black py-2 px-4 rounded-lg"
-              >
-                Cancel
-              </button>
+            <div className="mt-6 flex justify-center space-x-4">
               <button
                 onClick={handleSendOfferLetter}
-                className="bg-blue-600 text-white py-2 px-4 rounded-lg"
+                className="bg-blue-600 text-white py-3 px-6 rounded-lg"
               >
                 Send Offer Letter
+              </button>
+              <button
+                onClick={closeModal}
+                className="bg-red-600 text-white py-3 px-6 rounded-lg"
+              >
+                Cancel
               </button>
             </div>
           </div>
