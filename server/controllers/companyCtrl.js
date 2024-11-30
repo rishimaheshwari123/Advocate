@@ -371,13 +371,21 @@ const createAttandanceCtrl = async (req, res) => {
       });
     }
 
-    const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+    const currentDate = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
     const employee = await employeeModel.findById(id);
 
+    if (!employee) {
+      return res.status(404).json({
+        success: false,
+        message: "Employee not found.",
+      });
+    }
+
     // Check if attendance is already recorded for today
-    const todayAttendance = employee.attendance.find(
-      (att) => att.date.split('T')[0] === currentDate
-    );
+    const todayAttendance = employee.attendance.find((att) => {
+      const attendanceDate = att.date instanceof Date ? att.date.toISOString().split("T")[0] : att.date.split("T")[0];
+      return attendanceDate === currentDate;
+    });
 
     if (todayAttendance) {
       return res.status(400).json({
@@ -417,6 +425,7 @@ const createAttandanceCtrl = async (req, res) => {
     });
   }
 };
+
 
 
 
