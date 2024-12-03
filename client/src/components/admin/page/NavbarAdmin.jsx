@@ -17,14 +17,6 @@ const Navbar = () => {
           { to: "/admin/addGallery", icon: <FaRegNewspaper />, label: "Add Gallery" },
           { to: "/admin/getGallery", icon: <MdOutlineFeedback />, label: "Get Gallery" },
           { to: "/admin/addCompany", icon: <FaRegNewspaper />, label: "Add Company" },
-          { to: "/admin/addCompany", icon: <FaRegNewspaper />, label: "Add Company" },
-          { to: "/admin/addCompany", icon: <FaRegNewspaper />, label: "Add Company" },
-          { to: "/admin/addCompany", icon: <FaRegNewspaper />, label: "Add Company" },
-          { to: "/admin/addCompany", icon: <FaRegNewspaper />, label: "Add Company" },
-          { to: "/admin/addCompany", icon: <FaRegNewspaper />, label: "Add Company" },
-          { to: "/admin/addCompany", icon: <FaRegNewspaper />, label: "Add Company" },
-          { to: "/admin/addCompany", icon: <FaRegNewspaper />, label: "Add Company" },
-          { to: "/admin/getCompany", icon: <MdOutlineFeedback />, label: "Get Company" },
 
         ]
         
