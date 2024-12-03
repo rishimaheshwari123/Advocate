@@ -112,7 +112,7 @@ const Sidebar = () => {
             isCollapsed ? "hidden" : "block"
           } text-white font-bold text-xl`}
         >
-          <h2>SD</h2>
+          <h2>S.D Taxation Associate</h2>
         </div>
         {/* Toggle button */}
         <button

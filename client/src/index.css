@@ -115,3 +115,19 @@
   height: 50%;
   background: rgba(255, 255, 255, 0.1);
 }
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #21b5c9;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #2d2d2d;
+  border-radius: 10px;
+}

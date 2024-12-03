@@ -98,8 +98,9 @@ const Navbar = () => {
         <div className="w-11/12 mx-auto">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link to="/" className="text-2xl font-bold text-[#yourTextColor]">
-              S.D Taxation Associate
+            <Link to="/" className="text-[16px] block font-bold text-[#yourTextColor]">
+              S.D Taxation 
+              <span className="block text-center">Associate</span>
             </Link>
 
             {/* Desktop Links */}

@@ -38,7 +38,7 @@ const Slider = () => {
     },
     {
       id: 2,
-      image: "https://theleaflet.in/wp-content/uploads/2023/07/GST.png",
+      image: "https://etimg.etb2bimg.com/photo/115869083.cms",
       title: "Efficient GST Solutions",
       headline: "Seamless GST Registration & Returns",
       description:
@@ -70,7 +70,7 @@ const Slider = () => {
     },
     {
       id: 5,
-      image: "https://theleaflet.in/wp-content/uploads/2023/07/GST.png",
+      image: "https://etimg.etb2bimg.com/photo/115869083.cms",
       title: "GST Return Filing",
       headline: "Accurate & Timely GST Return Filing",
       description:
@@ -112,7 +112,7 @@ const Slider = () => {
             <img
               src={item.image}
               alt={item.title}
-              className="w-full h-[70vh] object-cover"
+              className="w-full h-[80vh] object-cover"
             />
             <div
               className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ${
