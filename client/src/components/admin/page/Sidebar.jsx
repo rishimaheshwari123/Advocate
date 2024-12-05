@@ -17,8 +17,8 @@ const Sidebar = () => {
   const { user } = useSelector((state) => state.auth);
   const { company } = useSelector((state) => state.company);
   const dispatch = useDispatch();
-  const sidebarRef = useRef(null);
   const navigate = useNavigate();
+  const sidebarRef = useRef(null);
 
   // Function to handle logout
   const handleLogout = async () => {

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { FaHome, FaRegNewspaper, FaUsers, FaUsersCog } from "react-icons/fa";
 import { FcBullish } from "react-icons/fc";
-import { MdOutlineFeedback } from "react-icons/md";
+import { MdLogout, MdOutlineFeedback } from "react-icons/md";
+import { logout } from "../../../services/operations/auth";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
@@ -12,7 +13,8 @@ const Navbar = () => {
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
   const [hoveredItem, setHoveredItem] = useState(null);
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   useEffect(() => {
     const updateDateTime = () => {
       const date = new Date();
@@ -35,18 +37,51 @@ const Navbar = () => {
             label: "Company",
             sublinks: [
               { to: "/admin/addCompany", label: "Company Establishment" },
-              { to: "/admin/companyLogin", label: "Company Login" },
+              { to: "/companies-login", label: "Company Login" },
+              { to: "#", label: "Licience" },
+              { to: "#", label: "Backup Data" },
+              { to: "#", label: "Google Meet" },
+              { to: "#", label: "Close Establishment" },
+            ],
+          },
+          // {
+          //   to: "/admin/getGallery",
+          //   icon: <MdOutlineFeedback />,
+          //   label: "Get Gallery",
+          // },
+
+          {
+            icon: <FaRegNewspaper />,
+            label: "CRM",
+            sublinks: [
+              { to: "#", label: "Leads" },
+              { to: "#", label: "Deals" },
+              { to: "#", label: "Clients" },
+              { to: "#", label: "Contacts" },
+              { to: "#", label: "Piplines" },
+              { to: "#", label: "Custom Fields" },
             ],
           },
           {
-            to: "/admin/getGallery",
-            icon: <MdOutlineFeedback />,
-            label: "Get Gallery",
+            icon: <FaRegNewspaper />,
+            label: "EPR",
+            sublinks: [
+              { to: "#", label: "Master" },
+              { to: "#", label: "Data Export" },
+              { to: "#", label: "Transactions" },
+              { to: "#", label: "Display" },
+              { to: "#", label: "Outtanding" },
+             
+            ],
           },
         ]
       : []),
   ];
 
+
+  const handleLogout = async () => {
+    dispatch(logout(navigate));
+  };
   return (
     <div className="fixed top-0 left-0 w-full z-50 bg-blue-400 flex h-[140px]">
       <nav className="flex items-center justify-between py-3 w-[85%]">
@@ -76,7 +111,7 @@ const Navbar = () => {
                 onMouseLeave={() => setHoveredItem(null)}
               >
                 <NavLink
-                  to={item.to}
+                  to={'#'}
                   className={({ isActive }) =>
                     `flex items-center gap-2 px-3 py-2 text-lg ${
                       isActive
@@ -107,7 +142,27 @@ const Navbar = () => {
           </ul>
         </div>
       </nav>
-      <div className="w-[15%] min-h-screen bg-yellow-700"></div>
+      <div className="w-[15%] min-h-screen bg-yellow-700 pt-1 px-2 text-center">
+
+        <div className=" flex flex-col gap-3 font-semibold">
+          <p className=" bg-red-900 text-white border border-white p-2 ">{company ? company.companyName : "S.D. Taxation Ass."}</p>
+          <button
+          onClick={handleLogout}
+                  className=" bg-red-900 text-white border border-white p-2  flex items-center justify-center gap-2">
+              <MdLogout /> Logout
+          
+        
+        </button>
+        </div>
+
+        <div className="bg-yellow-500 min-w-full min-h-full mt-3 border rounded shadow-2xl">
+          <p className=" text-red-700 my-2 font-bold underline"> Wishes</p>
+        </div>
+
+        <div>
+
+        </div>
+      </div>
 
     </div>
   );
