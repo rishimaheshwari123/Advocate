@@ -7,7 +7,6 @@ const { welcomeEmailTemplate } = require("../template/welcomeEmailTemplate");
 const mailSender2 = require("../utils/mailSender2");
 const { offerLetterEmail } = require("../template/offerLetter");
 
-
 const createCompanyCtrl = async (req, res) => {
   try {
     const {
@@ -28,8 +27,15 @@ const createCompanyCtrl = async (req, res) => {
       role = "Company",
     } = req.body;
 
-
-    if (!companyName || !companyAddress || !pin || !pan || !email || !password || !contactNumber) {
+    if (
+      !companyName ||
+      !companyAddress ||
+      !pin ||
+      !pan ||
+      !email ||
+      !password ||
+      !contactNumber
+    ) {
       return res.status(403).json({
         success: false,
         message: "All required fields must be filled",
@@ -49,12 +55,10 @@ const createCompanyCtrl = async (req, res) => {
 
     // Prepare permissions structure with defaults
     const formattedPermissions = {
-
       crm: permissions.crm || false,
       accounting: permissions.accounting || false,
       hrm: permissions.hrm || false,
       payroll: permissions.payroll || false,
-
     };
 
     // Create new company record
@@ -89,7 +93,6 @@ const createCompanyCtrl = async (req, res) => {
     });
   }
 };
-
 
 const loginCompanyCtrl = async (req, res) => {
   try {
@@ -149,17 +152,14 @@ const loginCompanyCtrl = async (req, res) => {
   }
 };
 
-
-
 const getAllCompany = async (req, res) => {
   try {
-    const companies = await companyModel.find({})
+    const companyModeles = await companyModel.find({});
     return res.status(200).json({
       success: true,
-      totalCompanies: companies.length,
-      companies
-    })
-
+      totalcompanyModeles: companyModeles.length,
+      companyModeles,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({
@@ -167,11 +167,7 @@ const getAllCompany = async (req, res) => {
       message: "Error in getting all company. Please try again.",
     });
   }
-}
-
-
-
-
+};
 
 const createEmployeeCtrl = async (req, res) => {
   try {
@@ -264,7 +260,8 @@ const createEmployeeCtrl = async (req, res) => {
         success: true,
         token,
         employee,
-        message: "Employee created successfully. A welcome email has been sent!",
+        message:
+          "Employee created successfully. A welcome email has been sent!",
       });
     } else {
       return res.status(200).json({
@@ -283,7 +280,6 @@ const createEmployeeCtrl = async (req, res) => {
     });
   }
 };
-
 
 const getAllEmployees = async (req, res) => {
   try {
@@ -332,10 +328,29 @@ const getSingleEmpCtrl = async (req, res) => {
 
 const sendOfferLetter = async (req, res) => {
   try {
-    const { companyName, employeeName, email, registrationNo, phone, joiningDate, id } = req.body;
+    const {
+      companyName,
+      employeeName,
+      email,
+      registrationNo,
+      phone,
+      joiningDate,
+      id,
+    } = req.body;
 
     // Send the offer letter email
-    await mailSender(email, "Offer Letter Send Successfully!", offerLetterEmail(companyName, employeeName, email, registrationNo, phone, joiningDate));
+    await mailSender(
+      email,
+      "Offer Letter Send Successfully!",
+      offerLetterEmail(
+        companyName,
+        employeeName,
+        email,
+        registrationNo,
+        phone,
+        joiningDate
+      )
+    );
 
     // Update the isOffer field to false
     await employeeModel.findByIdAndUpdate(
@@ -357,7 +372,6 @@ const sendOfferLetter = async (req, res) => {
     });
   }
 };
-
 
 const createAttandanceCtrl = async (req, res) => {
   try {
@@ -383,7 +397,10 @@ const createAttandanceCtrl = async (req, res) => {
 
     // Check if attendance is already recorded for today
     const todayAttendance = employee.attendance.find((att) => {
-      const attendanceDate = att.date instanceof Date ? att.date.toISOString().split("T")[0] : att.date.split("T")[0];
+      const attendanceDate =
+        att.date instanceof Date
+          ? att.date.toISOString().split("T")[0]
+          : att.date.split("T")[0];
       return attendanceDate === currentDate;
     });
 
@@ -427,9 +444,162 @@ const createAttandanceCtrl = async (req, res) => {
 };
 
 
+const createLead = async (req, res) => {
+  try {
+    const { companyId, leadName, contactNumber, reason, reference } = req.body;
+
+    // Validate input
+    if (!companyId || !leadName || !contactNumber) {
+      return res.status(400).json({
+        success: false,
+        message: "companyId, leadName, and contactNumber are required.",
+      });
+    }
+
+    // Create a new lead object
+    const newLead = {
+      leadName,
+      contactNumber,
+      reason,
+      reference,
+    };
+
+    // Add the lead to the company's leads array
+    const company = await companyModel.findByIdAndUpdate(
+      companyId,
+      { $push: { leads: newLead } },
+      { new: true, runValidators: true }
+    );
+
+    if (!company) {
+      return res.status(404).json({
+        success: false,
+        message: "Company not found.",
+      });
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "Lead created successfully.",
+      lead: newLead,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Server error.",
+      error: error.message,
+    });
+  }
+};
 
 
+const createDeal = async (req, res) => {
+  try {
+    const { companyId, leadId, dealName, assignedTo, remarks } = req.body;
 
+    // Validate input
+    if (!companyId || !leadId || !dealName || !assignedTo) {
+      return res.status(400).json({
+        success: false,
+        message: "companyId, leadId, dealName, and assignedTo are required.",
+      });
+    }
 
+    // Create a new deal object
+    const newDeal = {
+      dealName,
+      assignedTo,
+      remarks,
+    };
 
-module.exports = { createCompanyCtrl, loginCompanyCtrl, getAllCompany, createEmployeeCtrl, getAllEmployees, getSingleEmpCtrl, sendOfferLetter, createAttandanceCtrl };
+    // Update the lead with the new deal
+    const company = await companyModel.findOneAndUpdate(
+      { _id: companyId, "leads._id": leadId },
+      { $push: { "leads.$.deals": newDeal } },
+      { new: true, runValidators: true }
+    );
+
+    if (!company) {
+      return res.status(404).json({
+        success: false,
+        message: "Company or lead not found.",
+      });
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "Deal created successfully.",
+      deal: newDeal,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Server error.",
+      error: error.message,
+    });
+  }
+};
+const getAllLeads = async (req, res) => {
+  try {
+    const { companyId } = req.params; // Get companyId from route parameters
+    const { page = 1, limit = 10 } = req.query; // Get pagination parameters from query, default to page 1 and limit 10
+
+    // Validate input
+    if (!companyId) {
+      return res.status(400).json({
+        success: false,
+        message: "companyId is required.",
+      });
+    }
+
+    // Find the company by ID
+    const company = await companyModel.findById(companyId, { leads: 1 });
+
+    if (!company) {
+      return res.status(404).json({
+        success: false,
+        message: "Company not found.",
+      });
+    }
+
+    const totalLeads = company.leads.length; // Total number of leads
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    // Sort leads by createdAt descending and apply pagination
+    const paginatedLeads = company.leads
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      .slice(startIndex, endIndex);
+
+    res.status(200).json({
+      success: true,
+      totalLeads,
+      currentPage: page,
+      totalPages: Math.ceil(totalLeads / limit),
+      leads: paginatedLeads,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Server error.",
+      error: error.message,
+    });
+  }
+};
+
+module.exports = {
+  createCompanyCtrl,
+  loginCompanyCtrl,
+  getAllCompany,
+  createEmployeeCtrl,
+  getAllEmployees,
+  getSingleEmpCtrl,
+  sendOfferLetter,
+  createAttandanceCtrl,
+  createLead,
+  createDeal,
+  getAllLeads
+};

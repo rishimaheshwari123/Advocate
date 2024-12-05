@@ -1,5 +1,5 @@
 const express = require("express")
-const { createCompanyCtrl, loginCompanyCtrl, getAllCompany, createEmployeeCtrl, getAllEmployees, getSingleEmpCtrl, sendOfferLetter, createAttandanceCtrl } = require("../controllers/companyCtrl")
+const { createCompanyCtrl, loginCompanyCtrl, getAllCompany, createEmployeeCtrl, getAllEmployees, getSingleEmpCtrl, sendOfferLetter, createAttandanceCtrl, createDeal, getAllLeads, createLead } = require("../controllers/companyCtrl")
 const router = express.Router()
 
 
@@ -23,4 +23,11 @@ router.post("/create-offerletter", sendOfferLetter)
 
 // attandance 
 router.post("/create-attandance/:id", createAttandanceCtrl)
+
+//Leads Routes
+router.post("/leads/create", createLead); // Endpoint to create a lead
+router.post("/deals/create", createDeal); // Endpoint to create a deal
+router.get("/leads/:companyId", getAllLeads);
+
+
 module.exports = router

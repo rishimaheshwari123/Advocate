@@ -25,5 +25,9 @@ export const company = {
   GET_EMPLOYEE: BASE_URL + "/company/get-employee",
   GET_SINGLE_EMPLOYEE: BASE_URL + "/company/get-single-employee",
   SEND_OFFER_LETTER: BASE_URL + "/company/create-offerletter",
-  ATTENDANCE: BASE_URL + "/company/create-attandance"
+  ATTENDANCE: BASE_URL + "/company/create-attandance",
+
+
+
+  CREATE_LEAD_API : BASE_URL+ "/company/leads/create"
 }
