@@ -114,12 +114,48 @@ const loginCtrl = async (req, res) => {
   }
 };
 
+const frogetPasswordCtrl = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    // Find the user by email
+    const user = await authModel.findOne({ email });
+
+    // If user doesn't exist, return error message
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "User is not registered. Please register the user.",
+      });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password with the hashed password
+    const updatedUser = await authModel.findOneAndUpdate(
+      { email }, // Match the user by email
+      { password: hashedPassword }, // Update the password
+      { new: true } // Return the updated user
+    );
+
+    // Send success response
+    return res.status(201).json({
+      success: true,
+      message: "Your password has been updated successfully!",
+    });
+  } catch (error) {
+    console.error("Error updating password", error);
+    return res.status(500).json({
+      success: false,
+      message: "Error in forget password API. Please try again.",
+    });
+  }
+};
 
 
 
 
 
 
-
-
-module.exports = { registerCtrl, loginCtrl };
+module.exports = { registerCtrl, loginCtrl, frogetPasswordCtrl };

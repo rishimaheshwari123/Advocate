@@ -1,11 +1,13 @@
 const express = require("express")
-const { createCompanyCtrl, loginCompanyCtrl, getAllCompany, createEmployeeCtrl, getAllEmployees, getSingleEmpCtrl, sendOfferLetter, createAttandanceCtrl, createDeal, getAllLeads, createLead } = require("../controllers/companyCtrl")
+const { createCompanyCtrl, loginCompanyCtrl, getAllCompany, createEmployeeCtrl, getAllEmployees, getSingleEmpCtrl, sendOfferLetter, createAttandanceCtrl, createDeal, getAllLeads, createLead, frogetPasswordCtrl } = require("../controllers/companyCtrl")
 const router = express.Router()
 
 
 router.post("/create", createCompanyCtrl)
 router.post("/login", loginCompanyCtrl)
 router.get("/getAll", getAllCompany)
+router.put("/forget-password", frogetPasswordCtrl)
+
 
 
 

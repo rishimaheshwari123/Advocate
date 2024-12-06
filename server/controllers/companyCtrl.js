@@ -98,6 +98,7 @@ const loginCompanyCtrl = async (req, res) => {
   try {
     const { userName, password } = req.body;
 
+    console.log(password)
     // Check required fields for login
     if (!userName || !password) {
       return res.status(400).json({
@@ -117,7 +118,10 @@ const loginCompanyCtrl = async (req, res) => {
     }
 
     // Compare passwords
+
     const isPasswordMatch = await bcrypt.compare(password, company.password);
+    console.log(isPasswordMatch)
+    console.log(company.password)
     if (isPasswordMatch) {
       // Generate JWT token
       const token = jwt.sign(
@@ -590,6 +594,57 @@ const getAllLeads = async (req, res) => {
   }
 };
 
+
+const frogetPasswordCtrl = async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    // Ensure email and password are provided
+    if (!email || !newPassword) {
+      return res.status(400).json({
+        success: false,
+        message: "Email and new password are required.",
+      });
+    }
+
+    // Find the user by email
+    const user = await companyModel.findOne({ email });
+
+    // If user doesn't exist, return error message
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found. Please register the user.",
+      });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+
+    // Update the user's password with the hashed password
+    const updatedUser = await companyModel.findByIdAndUpdate(
+      user._id,
+      { password: hashedPassword },
+      { new: true, runValidators: true }
+    );
+
+    // Send success response
+    return res.status(200).json({
+      success: true,
+      message: "Your password has been updated successfully!",
+      updatedUser
+    });
+  } catch (error) {
+    console.error("Error updating password:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Internal server error. Please try again later.",
+    });
+  }
+};
+
+
+
 module.exports = {
   createCompanyCtrl,
   loginCompanyCtrl,
@@ -601,5 +656,6 @@ module.exports = {
   createAttandanceCtrl,
   createLead,
   createDeal,
-  getAllLeads
+  getAllLeads,
+  frogetPasswordCtrl
 };
