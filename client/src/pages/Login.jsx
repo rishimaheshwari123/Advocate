@@ -71,6 +71,12 @@ function Login() {
               )}
             </div>
           </div>
+          <div className="flex justify-end">
+            {" "}
+            <Link className="text-end" to="/forget-password">
+              Forget Password
+            </Link>
+          </div>
           <button
             type="submit"
             className="w-full bg-blue-500 text-white p-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300"

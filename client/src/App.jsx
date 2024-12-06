@@ -25,6 +25,8 @@ import GetEmployee from "./components/admin/page/hrm/GetEmployee";
 import SingleEmployee from "./components/admin/page/hrm/SingleEmployee";
 import AddAttendance from "./components/admin/page/hrm/AddAttendance";
 import CreateLeads from "./components/admin/page/crm/CreateLeads";
+import ForgetPassword from "./pages/ForgetPassword";
+import ForgetPasswordComapany from "./pages/ForgetPasswordComapany";
 
 const App = () => {
   const location = useLocation();
@@ -66,6 +68,22 @@ const App = () => {
           element={
             <OpenRoute>
               <Register />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="/forget-password"
+          element={
+            <OpenRoute>
+              <ForgetPassword />
+            </OpenRoute>
+          }
+        />
+        <Route
+          path="/company-forget-password"
+          element={
+            <OpenRoute>
+              <ForgetPasswordComapany />
             </OpenRoute>
           }
         />

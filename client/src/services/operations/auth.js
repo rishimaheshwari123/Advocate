@@ -5,7 +5,8 @@ import { endpoints } from "../apis";
 import Swal from "sweetalert2";
 const {
   LOGIN_API,
-  SIGNUP_API
+  SIGNUP_API,
+  FORGOT_PASSWORD_API,
 } = endpoints;
 
 export async function login(email, password, navigate, dispatch) {
@@ -122,3 +123,34 @@ export function logout(navigate) {
     navigate("/");
   };
 }
+
+
+export const updatePassword = async (email, newPassword) => {
+  Swal.fire({
+    title: "Loading",
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    allowEnterKey: false,
+    showConfirmButton: false,
+    didOpen: () => {
+      Swal.showLoading();
+    },
+  });
+
+  try {
+    const response = await apiConnector("PUT", `${FORGOT_PASSWORD_API}`, { email, newPassword })
+    if (!response.data.success) {
+      throw new Error(response.data.message);
+    }
+
+    Swal.fire({
+      title: `Password Update  Succesfull!`,
+      text: `Have a nice day!`,
+      icon: "success",
+    });
+
+  } catch (error) {
+    console.error("Error updating password", error);
+    throw new Error("There was an error updating the password. Please try again.");
+  }
+};

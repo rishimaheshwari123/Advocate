@@ -58,6 +58,12 @@ const CompanyLogin = () => {
                 <AiOutlineEye size={22} />
               )}
             </div>
+            <div className="flex justify-end">
+              {" "}
+              <Link className="text-end" to="/company-forget-password">
+                Forget Password
+              </Link>
+            </div>
           </div>
           <button
             type="submit"

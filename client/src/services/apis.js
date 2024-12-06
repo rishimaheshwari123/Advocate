@@ -5,6 +5,7 @@ const BASE_URL = process.env.REACT_APP_BASE_URL
 export const endpoints = {
   LOGIN_API: BASE_URL + "/auth/login",
   SIGNUP_API: BASE_URL + "/auth/register",
+  FORGOT_PASSWORD_API: BASE_URL + "/auth/forget-password",
 }
 export const contact = {
   CONTACT: BASE_URL + "/contact/create",
@@ -26,8 +27,9 @@ export const company = {
   GET_SINGLE_EMPLOYEE: BASE_URL + "/company/get-single-employee",
   SEND_OFFER_LETTER: BASE_URL + "/company/create-offerletter",
   ATTENDANCE: BASE_URL + "/company/create-attandance",
+  FORGOT_PASSWORD_API: BASE_URL + "/company/forget-password",
 
 
 
-  CREATE_LEAD_API : BASE_URL+ "/company/leads/create"
+  CREATE_LEAD_API: BASE_URL + "/company/leads/create"
 }

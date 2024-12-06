@@ -14,6 +14,7 @@ const {
   SEND_OFFER_LETTER,
   ATTENDANCE,
   CREATE_LEAD_API,
+  FORGOT_PASSWORD_API
 } = company;
 
 
@@ -26,6 +27,40 @@ export const createComapanyApi = async (formData) => {
     Swal.fire("Error", error?.response?.data?.message, "error");
     console.error(error);
     return null;
+  }
+};
+
+
+export const updatePassword = async (email, newPassword) => {
+  Swal.fire({
+    title: "Loading",
+    allowOutsideClick: false,
+    showConfirmButton: false,
+    didOpen: () => Swal.showLoading(),
+  });
+
+  try {
+    const response = await apiConnector("PUT", `${FORGOT_PASSWORD_API}`, {
+      email,
+      newPassword,
+    });
+
+    if (!response.data.success) {
+      throw new Error(response.data.message);
+    }
+
+    Swal.fire({
+      title: response?.data?.message,
+      text: response?.data?.message,
+      icon: "success",
+    });
+  } catch (error) {
+    console.error("Error updating password:", error);
+    Swal.fire({
+      title: "Error",
+      text: error.response?.data?.message || "Failed to update the password. Please try again.",
+      icon: "error",
+    });
   }
 };
 
@@ -237,13 +272,13 @@ export const attendanceApi = async (formData, id) => {
 
 
 export const createLeadsForCompony = async (formData) => {
-    try {
-      const response = await apiConnector("POST", CREATE_LEAD_API, formData);
-      Swal.fire("Success", response?.data?.message, "success");
-      return response.data;
-    } catch (error) {
-      Swal.fire("Error", error?.response?.data?.message, "error");
-      console.error(error);
-      return null;
-    }
-  };
+  try {
+    const response = await apiConnector("POST", CREATE_LEAD_API, formData);
+    Swal.fire("Success", response?.data?.message, "success");
+    return response.data;
+  } catch (error) {
+    Swal.fire("Error", error?.response?.data?.message, "error");
+    console.error(error);
+    return null;
+  }
+};
