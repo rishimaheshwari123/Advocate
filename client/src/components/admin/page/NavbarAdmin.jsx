@@ -19,12 +19,15 @@ const Navbar = () => {
     const updateDateTime = () => {
       const date = new Date();
       setCurrentDate(date.toLocaleDateString());
-    
+
       setCurrentTime(
-        date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true }) // For 12-hour format
+        date.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        }) // For 12-hour format
         // date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }) // For 24-hour format
       );
-      
     };
 
     updateDateTime();
@@ -69,63 +72,49 @@ const Navbar = () => {
           },
           {
             icon: <FaRegNewspaper />,
-            label: "EPR",
+            label: "ERP",
             sublinks: [
               { to: "#", label: "Master" },
               { to: "#", label: "Data Export" },
               { to: "#", label: "Transactions" },
               { to: "#", label: "Display" },
               { to: "#", label: "Outtanding" },
-             
             ],
           },
 
           {
             icon: <FaRegNewspaper />,
             label: "HRM",
-            sublinks: [
-              
-            ],
+            sublinks: [],
           },
           {
             icon: <FaRegNewspaper />,
             label: "Payroll",
-            sublinks: [
-              
-            ],
+            sublinks: [],
           },
           {
             icon: <FaRegNewspaper />,
             label: "Report",
-            sublinks: [
-              
-            ],
+            sublinks: [],
           },
           {
             icon: <FaRegNewspaper />,
             label: "Setting",
-            sublinks: [
-              
-            ],
+            sublinks: [],
           },
           {
             icon: <FaRegNewspaper />,
             label: "Help",
-            sublinks: [
-              
-            ],
+            sublinks: [],
           },
           {
             icon: <FaRegNewspaper />,
             label: "Change F.Y.",
-            sublinks: [
-              
-            ],
+            sublinks: [],
           },
         ]
       : []),
   ];
-
 
   const handleLogout = async () => {
     dispatch(logout(navigate));
@@ -141,11 +130,19 @@ const Navbar = () => {
           </div>
           <div className="h-[40px]  p-2">
             <div className="p  flex justify-between items-center h-full font-bold text-[17px]">
-              <div className="bg-orange-300 px-3 py-1">Client Grievance Alert</div>
-              <div className="bg-orange-300 px-3 py-1  border min-w-[62%] m text-center ">Alerts--!</div>
+              <div className="bg-orange-300 px-3 py-1">
+                Client Grievance Alert
+              </div>
+              <div className="bg-orange-300 px-3 py-1  border min-w-[62%] m text-center ">
+                Alerts--!
+              </div>
               <div className="flex gap-4">
-                <span className="border p-1 shadow-2xl bg-orange-300 px-3 ">{currentDate}</span>
-                <span className="border p-1 shadow-2xl bg-orange-300 px-3 ">{currentTime}</span>
+                <span className="border p-1 shadow-2xl bg-orange-300 px-3 ">
+                  {currentDate}
+                </span>
+                <span className="border p-1 shadow-2xl bg-orange-300 px-3 ">
+                  {currentTime}
+                </span>
               </div>
             </div>
           </div>
@@ -159,7 +156,7 @@ const Navbar = () => {
                 onMouseLeave={() => setHoveredItem(null)}
               >
                 <NavLink
-                  to={'#'}
+                  to={"#"}
                   className={({ isActive }) =>
                     `flex  justify-center font-semibold items-center gap-2 px-3 py-2 text-lg bg-blue-300 border ${
                       isActive
@@ -174,7 +171,10 @@ const Navbar = () => {
                 {item.sublinks.length > 0 && hoveredItem === index && (
                   <ul className="absolute top-full left-0 bg-white b shadow-md border rounded w-48 z-50">
                     {item.sublinks.map((sublink, subIndex) => (
-                      <li key={subIndex} className="hover:bg-red-600 font-semibold  ">
+                      <li
+                        key={subIndex}
+                        className="hover:bg-red-600 font-semibold  "
+                      >
                         <NavLink
                           to={sublink.to}
                           className="block px-4 py-2 my-2 text-sm text-black hover:text-white border border-red-500"
@@ -191,27 +191,24 @@ const Navbar = () => {
         </div>
       </nav>
       <div className="w-[15%] min-h-screen  pt-1 px-2 text-center">
-
         <div className=" flex flex-col gap-3 font-semibold">
-          <p className=" bg-red-900 text-white border border-white p-2 ">{company ? company.companyName : "S.D. Taxation Ass."}</p>
+          <p className=" bg-red-900 text-white border border-white p-2 ">
+            {company ? company.companyName : "S.D. Taxation Ass."}
+          </p>
           <button
-          onClick={handleLogout}
-                  className=" bg-red-900 text-white border border-white p-2  flex items-center justify-center gap-2">
-              <MdLogout /> Logout
-          
-        
-        </button>
+            onClick={handleLogout}
+            className=" bg-red-900 text-white border border-white p-2  flex items-center justify-center gap-2"
+          >
+            <MdLogout /> Logout
+          </button>
         </div>
 
         <div className="bg-orange-300 min-w-full min-h-full mt-3 border rounded shadow-2xl">
           <p className=" text-red-700 my-2 font-bold underline"> Wishes</p>
         </div>
 
-        <div>
-
-        </div>
+        <div></div>
       </div>
-
     </div>
   );
 };
