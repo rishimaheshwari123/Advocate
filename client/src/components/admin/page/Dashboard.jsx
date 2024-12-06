@@ -47,7 +47,7 @@ const Dashboard = () => {
 
   return (
     <div className="p-4 h-[80vh]">
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8 ">
+      {/* <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8 ">
         {data.map((item, index) => (
           <div
             key={index}
@@ -57,8 +57,8 @@ const Dashboard = () => {
             <h3 className="text-xl font-semibold">{item.title}</h3>
             <p className="text-2xl">{item.value}</p>
           </div>
-        ))}
-      </div>
+        ))} */}
+      {/* </div> */}
     </div>
   );
 };

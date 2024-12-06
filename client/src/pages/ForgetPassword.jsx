@@ -40,7 +40,6 @@ function ForgetPassword() {
     try {
       await updatePassword(email, newPassword); // Call the updated function
 
-      // After successful password update, navigate to login
       navigate("/login"); // Redirect to login after successful password change
     } catch (error) {
       alert(error.message); // If error occurs, show alert message

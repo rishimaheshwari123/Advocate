@@ -44,7 +44,7 @@ const Navbar = () => {
             icon: <FaRegNewspaper />,
             label: "Company",
             sublinks: [
-              { to: "/admin/addCompany", label: "Company Establishment" },
+              { to: "/admin/addCompany", label: "Create Establishment" },
               { to: "/companies-login", label: "Company Login" },
               { to: "#", label: "Licience" },
               { to: "#", label: "Backup Data" },
@@ -123,24 +123,31 @@ const Navbar = () => {
     <div className="fixed top-0 left-0 w-full z-50  flex h-[140px]">
       <nav className="flex items-center justify-between py-3 w-[85%] ">
         <div className="flex-1">
-          <div className="min-w-full flex text-2xl justify-center items-center bg-blue-300">
-            <p className=" p-2 font-semibold">
+          <div className="min-w-full flex text-2xl mt-5 justify-center py-3 items-center bg-[#b1d7e0] shadow-inner shadow-gray-500">
+            <p
+              className="p-2 font-bold text-2xl"
+              style={{
+                textShadow: "2px 2px 4px yellow",
+              }}
+            >
               {company ? company?.companyName : "S.D. Taxation Associate"}
             </p>
           </div>
-          <div className="h-[40px]  p-2">
+
+          <div className="h-[40px] my-[6px]">
             <div className="p  flex justify-between items-center h-full font-bold text-[17px]">
-              <div className="bg-orange-300 px-3 py-1">
-                Client Grievance Alert
+              <div className="bg-[#fcd5b5] shadow-lg shadow-gray-500 px-3 py-1">
+                Client Grievance Alert{" "}
+                <span className="text-red-600">{">>>"}</span>
               </div>
-              <div className="bg-orange-300 px-3 py-1  border min-w-[62%] m text-center ">
+              <div className="bg-[#fcd5b5] px-3 py-1 shadow-lg shadow-gray-500 border min-w-[62%] m text-center ">
                 Alerts--!
               </div>
               <div className="flex gap-4">
-                <span className="border p-1 shadow-2xl bg-orange-300 px-3 ">
+                <span className="border p-1 shadow-lg  shadow-gray-500 bg-[#fcd5b5] px-3 ">
                   {currentDate}
                 </span>
-                <span className="border p-1 shadow-2xl bg-orange-300 px-3 ">
+                <span className="border p-1 shadow-lg  shadow-gray-500 bg-[#fcd5b5] px-3 ">
                   {currentTime}
                 </span>
               </div>
@@ -155,29 +162,31 @@ const Navbar = () => {
                 onMouseEnter={() => setHoveredItem(index)}
                 onMouseLeave={() => setHoveredItem(null)}
               >
-                <NavLink
-                  to={"#"}
-                  className={({ isActive }) =>
-                    `flex  justify-center font-semibold items-center gap-2 px-3 py-2 text-lg bg-blue-300 border ${
-                      isActive
-                        ? "border-b-2 border-white"
-                        : "hover:border-b-2 hover:border-gray-400"
-                    }`
-                  }
-                >
-                  {/* <span>{item.icon}</span> */}
-                  <span>{item.label}</span>
-                </NavLink>
+                <div className="bg-white p-[2px] shadow-lg shadow-gray-600">
+                  <NavLink
+                    to={"#"}
+                    className={({ isActive }) =>
+                      `flex  justify-center font-semibold items-center gap-2 px-3 py-2 text-lg bg-[#b1d7e0] shadow-inner shadow-gray-500 border ${
+                        isActive
+                          ? "border-b-2 border-white"
+                          : "hover:border-b-2 hover:border-gray-400"
+                      }`
+                    }
+                  >
+                    {/* <span>{item.icon}</span> */}
+                    <span className="font-bold">{item.label}</span>
+                  </NavLink>
+                </div>
                 {item.sublinks.length > 0 && hoveredItem === index && (
                   <ul className="absolute top-full left-0 bg-white b shadow-md border rounded w-48 z-50">
                     {item.sublinks.map((sublink, subIndex) => (
                       <li
                         key={subIndex}
-                        className="hover:bg-red-600 font-semibold  "
+                        className=" bg-gray-200 hover:bg-gray-100  mx-1 "
                       >
                         <NavLink
                           to={sublink.to}
-                          className="block px-4 py-2 my-2 text-sm text-black hover:text-white border border-red-500"
+                          className="block px-4 font-bold py-2 my-2 shadow-inner shadow-black text-sm text-black "
                         >
                           {sublink.label}
                         </NavLink>
@@ -188,6 +197,11 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+        </div>
+        <div className="fixed bottom-[4px]    w-[85%]">
+          <button className="bg-[#b1d7e0]   shadow-inner  shadow-gray-500 text-black font-semibold px-4 py-4   w-full ">
+            Wish
+          </button>
         </div>
       </nav>
       <div className="w-[15%] min-h-screen  pt-1 px-2 text-center">
@@ -203,7 +217,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        <div className="bg-orange-300 min-w-full min-h-full mt-3 border rounded shadow-2xl">
+        <div className="bg-[#fcd5b5] min-w-full min-h-full mt-3 border rounded shadow-2xl">
           <p className=" text-red-700 my-2 font-bold underline"> Wishes</p>
         </div>
 
