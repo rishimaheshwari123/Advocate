@@ -114,6 +114,34 @@ const Navbar = () => {
           },
         ]
       : []),
+    ...(company?.role === "Company" && company.permissions?.hrm
+      ? [
+          {
+            icon: <FaRegNewspaper />,
+            label: "Employee",
+            sublinks: [
+              { to: "/company/add-employee", label: "Add Employee" },
+              { to: "/company/get-employee", label: "Get Employees" },
+              { to: "/company/get-attendance", label: "Attendance" },
+            ],
+          },
+          {
+            icon: <FaRegNewspaper />,
+            label: "Report",
+            sublinks: [],
+          },
+          {
+            icon: <FaRegNewspaper />,
+            label: "Setting",
+            sublinks: [],
+          },
+          {
+            icon: <FaRegNewspaper />,
+            label: "Help",
+            sublinks: [],
+          },
+        ]
+      : []),
   ];
 
   const handleLogout = async () => {

@@ -55,7 +55,7 @@ const AddEmployee = () => {
   });
 
   return (
-    <div className="max-w-lg mx-auto p-6 bg-white shadow-md rounded-lg">
+    <div className="min-w-[80vw] mx-auto p-6 bg-white shadow-md rounded-lg">
       <h1 className="text-2xl font-bold mb-4">Add Employee</h1>
       <form onSubmit={formik.handleSubmit}>
         {/** First Name */}
