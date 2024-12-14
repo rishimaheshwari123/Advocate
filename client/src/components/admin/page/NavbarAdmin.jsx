@@ -211,16 +211,6 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
-
-      <div className="flex justify-end">
-        <div className="bg-[#fcd5b5] w-[15%] h-[60vh] mt-3 "></div>
-      </div>
-      <div className="fixed bottom-[4px] flex gap-2 w-screen   ">
-        <button className="bg-[#b1d7e0] text-start  shadow-inner  shadow-gray-500 text-black font-semibold px-4 py-4   w-full ">
-          Wishes Aleart {">>>"}
-        </button>
-        <button className="bg-[#b1d7e0]   shadow-inner  shadow-gray-500 text-black font-semibold px-4 py-4   w-full "></button>
-      </div>
     </div>
   );
 };
