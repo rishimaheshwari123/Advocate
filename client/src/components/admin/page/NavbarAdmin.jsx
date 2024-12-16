@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { FaHome, FaRegNewspaper, FaUsers, FaUsersCog } from "react-icons/fa";
 import { FcBullish } from "react-icons/fc";
@@ -12,22 +12,24 @@ const Navbar = () => {
 
   const [currentDate, setCurrentDate] = useState("");
   const [currentTime, setCurrentTime] = useState("");
+  const [currentDay, setCurrentDay] = useState(""); // New state for the current day
   const [hoveredItem, setHoveredItem] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   useEffect(() => {
     const updateDateTime = () => {
       const date = new Date();
-      setCurrentDate(date.toLocaleDateString());
 
+      setCurrentDate(date.toLocaleDateString());
       setCurrentTime(
         date.toLocaleTimeString([], {
           hour: "2-digit",
           minute: "2-digit",
           hour12: true,
-        }) // For 12-hour format
-        // date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false }) // For 24-hour format
+        })
       );
+      setCurrentDay(date.toLocaleDateString("en-US", { weekday: "long" })); // Extract current day
     };
 
     updateDateTime();
@@ -42,7 +44,7 @@ const Navbar = () => {
           // { to: "/admin/dashboard", icon: <FcBullish />, label: "Dashboard" },
           {
             icon: <FaRegNewspaper />,
-            label: "Company",
+            label: "Establishment",
             sublinks: [
               { to: "/admin/addCompany", label: "Create Establishment" },
               { to: "/admin/getCompany", label: "Open Company" },
@@ -110,6 +112,16 @@ const Navbar = () => {
           },
           {
             icon: <FaRegNewspaper />,
+            label: "From",
+            sublinks: [],
+          },
+          {
+            icon: <FaRegNewspaper />,
+            label: "E-Return",
+            sublinks: [],
+          },
+          {
+            icon: <FaRegNewspaper />,
             label: "Change F.Y.",
             sublinks: [],
           },
@@ -150,10 +162,15 @@ const Navbar = () => {
   };
   return (
     <div className="fixed top-0 left-0 w-full z-50   h-[140px]">
-      <div>
-        <nav className="flex items-center justify-between  w-screen  ">
+      <div className="flex ">
+        <nav className="flex items-center justify-between  w-[90vw] ">
           <div className="flex-1">
-            <div className="min-w-full flex justify-center items-center text-2xl  py-14 bg-[#b1d7e0] shadow-inner shadow-gray-500 relative">
+            <div className="min-w-full flex justify-center items-center text-2xl  py-9 bg-[#b1d7e0] shadow-inner shadow-gray-500 relative">
+              <div className="absolute left-2 flex flex-col gap-1 font-semibold text-5xl p-1">
+                <Link to={"/admin/dashboard"}>
+                  <FaHome />
+                </Link>
+              </div>
               <p
                 className="p-2 font-bold text-5xl text-center absolute left-1/2 transform -translate-x-1/2"
                 style={{
@@ -162,39 +179,55 @@ const Navbar = () => {
               >
                 {company ? company?.companyName : "S.D. Taxation Associate"}
               </p>
-
-              <div className="absolute right-4 flex flex-col gap-1 font-semibold bg-white p-1">
-                <p className="bg-red-900 text-white border border-white py-1 px-2 text-center">
-                  {company ? company.companyName : "S.D. Taxation Ass."}
-                </p>
-                <button
-                  onClick={handleLogout}
-                  className="bg-red-900 text-white border border-white py-1 flex items-center justify-center gap-2"
-                >
-                  <MdLogout /> Logout
-                </button>
-              </div>
             </div>
 
             <div className="h-[40px] my-[6px]">
               <div className="px-1  flex justify-between items-center h-full font-bold text-[17px]">
-                <div className="bg-[#fcd5b5] rounded-sm shadow-lg shadow-gray-500 px-3 py-1">
-                  Client Grievance Alert{" "}
-                  <span className="text-red-600">{">>>"}</span>
+                <Link
+                  to={"/admin/dashboard"}
+                  className="bg-[#fcd5b5] rounded-sm shadow-lg shadow-gray-500 px-3 py-1"
+                >
+                  Dashboard
+                </Link>
+                <div className="bg-[#e1eeda] rounded-sm px-3 py-1 shadow-lg shadow-gray-500 border min-w-[62%] m text-center">
+                  {user ? (
+                    <div className="flex gap-2  justify-center items-center">
+                      <p className="font-semibold ">S.D. Taxation Associate</p>
+                      <p className="text-sm text-gray-600">
+                        {"( F.Y.2024-25)"}
+                      </p>
+                    </div>
+                  ) : company ? (
+                    <>
+                      <p className="font-semibold">{company?.companyName}</p>
+                      <p className="text-sm text-gray-600">
+                        {company?.from} - {company?.to}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-gray-500">No data available</p>
+                  )}
                 </div>
-                <div className="bg-[#fcd5b5] rounded-sm px-3 py-1 shadow-lg shadow-gray-500 border min-w-[62%] m text-center ">
-                  Alerts--!
-                </div>
+
                 <div className="">
                   <span className="border p-1 shadow-lg rounded-sm shadow-gray-500 bg-[#fcd5b5] px-3 ">
                     {currentDate} <span className="mr-10"></span>
+                  </span>
+                </div>
+                <div className="">
+                  <span className="border p-1 shadow-lg rounded-sm shadow-gray-500 bg-[#fcd5b5] px-3 ">
+                    {currentDay}
+                  </span>
+                </div>
+                <div className="">
+                  <span className="border p-1 shadow-lg rounded-sm shadow-gray-500 bg-[#fcd5b5] px-3 ">
                     {currentTime}
                   </span>
                 </div>
               </div>
             </div>
 
-            <ul className="grid grid-cols-9  space-x-2 relative mt- justify-between">
+            <ul className="grid grid-cols-11  relative ">
               {navItems.map((item, index) => (
                 <li
                   key={index}
@@ -206,7 +239,7 @@ const Navbar = () => {
                     <NavLink
                       to={"#"}
                       className={({ isActive }) =>
-                        `flex  justify-center  rounded-[4px] font-semibold items-center gap-2 px-3 py-2 text-lg bg-[#b1d7e0] shadow-inner shadow-gray-500 border ${
+                        `flex  justify-center  rounded-[4px] font-semibold items-center gap-2 px-3 py-1 text-lg bg-[#b1d7e0] shadow-inner shadow-gray-500 border ${
                           isActive
                             ? "border-b-2 border-white"
                             : "hover:border-b-2 hover:border-gray-400"
@@ -214,7 +247,9 @@ const Navbar = () => {
                       }
                     >
                       {/* <span>{item.icon}</span> */}
-                      <span className="font-bold ">{item.label}</span>
+                      <span className="font-bold text-[14px]  ">
+                        {item.label}
+                      </span>
                     </NavLink>
                   </div>
                   {item.sublinks.length > 0 && hoveredItem === index && (
@@ -239,6 +274,20 @@ const Navbar = () => {
             </ul>
           </div>
         </nav>
+
+        <div className="w-[9.8vw]">
+          <div className="absolute right-1 flex flex-col gap-1 font-semibold bg-white p-1">
+            <p className="bg-[#853e10] rounded-md text-xl text-white border border-white py-2 px-6 text-center">
+              My Profile
+            </p>
+            <button
+              onClick={handleLogout}
+              className="bg-[#853e10] rounded-md text-xl text-white border border-white py-2 flex items-center justify-center gap-2"
+            >
+              <MdLogout /> Logout
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
