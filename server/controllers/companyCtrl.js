@@ -12,6 +12,7 @@ const createCompanyCtrl = async (req, res) => {
     const {
       companyName,
       companyAddress,
+      code,
       pin,
       pan,
       country,
@@ -65,6 +66,7 @@ const createCompanyCtrl = async (req, res) => {
     const company = await companyModel.create({
       companyName,
       companyAddress,
+      code,
       pin,
       pan,
       country,

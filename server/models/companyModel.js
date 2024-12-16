@@ -6,6 +6,11 @@ const companiSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    code: {
+      type: String,
+      trim: true,
+    },
+
     companyAddress: {
       type: String,
       trim: true,
@@ -74,24 +79,24 @@ const companiSchema = new mongoose.Schema(
     ],
 
     leads: [
-        {
-            leadName: { type: String, required: true, trim: true }, // Name of the lead
-            contactNumber: { type: String, required: true, trim: true }, // Contact number of the lead
-            reason: { type: String, trim: true }, // Reason for lead creation
-            reference: { type: String, trim: true }, // Reference source
-            createdAt: { type: Date, default: Date.now }, // Timestamp for lead creation
-            updatedAt: { type: Date }, // Timestamp for the last update
-            deals: [
-                {
-                    dealName: { type: String, trim: true }, // Name of the deal
-                    dealStatus: { type: String, enum: ["Pending", "In Progress", "Completed"], default: "Pending" }, // Deal status
-                    assignedTo: { type: String, required: true, }, // Employee managing the deal
-                    remarks: { type: String, trim: true }, // Additional remarks
-                    createdAt: { type: Date, default: Date.now }, // Timestamp for deal creation
-                    updatedAt: { type: Date }, // Timestamp for the last deal update
-                },
-            ],
-        },
+      {
+        leadName: { type: String, required: true, trim: true }, // Name of the lead
+        contactNumber: { type: String, required: true, trim: true }, // Contact number of the lead
+        reason: { type: String, trim: true }, // Reason for lead creation
+        reference: { type: String, trim: true }, // Reference source
+        createdAt: { type: Date, default: Date.now }, // Timestamp for lead creation
+        updatedAt: { type: Date }, // Timestamp for the last update
+        deals: [
+          {
+            dealName: { type: String, trim: true }, // Name of the deal
+            dealStatus: { type: String, enum: ["Pending", "In Progress", "Completed"], default: "Pending" }, // Deal status
+            assignedTo: { type: String, required: true, }, // Employee managing the deal
+            remarks: { type: String, trim: true }, // Additional remarks
+            createdAt: { type: Date, default: Date.now }, // Timestamp for deal creation
+            updatedAt: { type: Date }, // Timestamp for the last deal update
+          },
+        ],
+      },
     ],
   },
   { timestamps: true }

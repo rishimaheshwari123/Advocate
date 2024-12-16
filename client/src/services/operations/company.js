@@ -74,7 +74,7 @@ export const getALLCompanyApi = async () => {
       throw new Error(response?.data?.message);
     }
 
-    result = response?.data?.companies || []; // Ensure result is an array
+    result = response?.data?.companyModeles || []; // Ensure result is an array
     return result;
   } catch (error) {
     Swal.fire({

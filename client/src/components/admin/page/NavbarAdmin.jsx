@@ -45,6 +45,7 @@ const Navbar = () => {
             label: "Company",
             sublinks: [
               { to: "/admin/addCompany", label: "Create Establishment" },
+              { to: "/admin/getCompany", label: "Open Company" },
               { to: "/companies-login", label: "Company Login" },
               { to: "#", label: "Licence" },
               { to: "#", label: "Backup Data" },

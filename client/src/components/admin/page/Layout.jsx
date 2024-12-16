@@ -12,7 +12,7 @@ function Layout() {
         <NavbarAdmin />
       </div>
 
-      <div className=" lg:mt-[250px] lg:ml-0  flex justify-center items-center  mt-3 ml-[100px] mx-auto w-screen ">
+      <div className=" lg:mt-[250px] lg:ml-24 mx-1 mt-3 ml-[100px] ">
         <Outlet />
       </div>
     </div>

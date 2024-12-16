@@ -10,6 +10,7 @@ const CreateCompany = () => {
     companyName: "",
     companyAddress: "",
     pin: "",
+    code: "",
     pan: "",
     country: "",
     state: "",
@@ -96,6 +97,7 @@ const CreateCompany = () => {
         companyName: "",
         companyAddress: "",
         pin: "",
+        code: "",
         pan: "",
         country: "",
         state: "",
@@ -153,6 +155,17 @@ const CreateCompany = () => {
                   type="text"
                   name="companyAddress"
                   value={formData.companyAddress}
+                  onChange={handleChange}
+                  required
+                />
+              </label>
+              <label>
+                Comapny Code
+                <input
+                  className="p-2 border rounded w-full"
+                  type="text"
+                  name="code"
+                  value={formData.code}
                   onChange={handleChange}
                   required
                 />
