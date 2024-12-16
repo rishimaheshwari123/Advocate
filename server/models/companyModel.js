@@ -2,35 +2,42 @@ const mongoose = require("mongoose");
 
 const companiSchema = new mongoose.Schema(
   {
-    companyName: {
-      type: String,
-      trim: true,
-    },
     code: {
       type: String,
       trim: true,
     },
-
-    companyAddress: {
+    companyName: {
+      type: String,
+      trim: true,
+    },
+    flatOrBlock: {
+      type: String,
+      trim: true,
+    },
+    building: {
+      type: String,
+      trim: true,
+    },
+    roadStreet: {
+      type: String,
+      trim: true,
+    },
+    area: {
+      type: String,
+      trim: true,
+    },
+    city: {
       type: String,
       trim: true,
     },
     pin: {
       type: String,
     },
-    pan: {
+    state: {
       type: String,
+      trim: true,
     },
     country: {
-      type: String,
-      trim: true,
-    },
-
-    contactNumber: {
-      type: String,
-      trim: true,
-    },
-    state: {
       type: String,
       trim: true,
     },
@@ -38,14 +45,21 @@ const companiSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    userName: {
+
+    mNumber: {
       type: String,
       trim: true,
     },
-    password: {
+    tNumber: {
       type: String,
       trim: true,
     },
+
+    manageFor: {
+      type: String,
+      enum: ['Only Accounts', 'Inventory With Accounts', 'School Account'],
+    },
+
     from: {
       type: String,
       trim: true,
@@ -58,6 +72,21 @@ const companiSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    typeOfDealer: {
+      type: String,
+      enum: ['Regular', 'Composition'],
+    },
+
+    userName: {
+      type: String,
+      trim: true,
+    },
+    password: {
+      type: String,
+      trim: true,
+    },
+
+
 
     permissions: {
       crm: { type: Boolean, default: false },

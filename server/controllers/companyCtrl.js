@@ -11,31 +11,43 @@ const createCompanyCtrl = async (req, res) => {
   try {
     const {
       companyName,
-      companyAddress,
       code,
+      flatOrBlock,
+      building,
+      roadStreet,
+      area,
+      city,
       pin,
-      pan,
-      country,
       state,
+      country,
       email,
-      password,
-      contactNumber,
-      userName,
+      mNumber,
+      tNumber,
+      manageFor,
       from,
       to,
       gst,
+      typeOfDealer,
+      userName,
+      password,
       permissions = {},
       role = "Company",
     } = req.body;
 
+    // Validate required fields
     if (
       !companyName ||
-      !companyAddress ||
+      !flatOrBlock ||
+      !building ||
+      !roadStreet ||
+      !area ||
+      !city ||
       !pin ||
-      !pan ||
+      !state ||
+      !country ||
       !email ||
       !password ||
-      !contactNumber
+      !mNumber
     ) {
       return res.status(403).json({
         success: false,
@@ -43,11 +55,12 @@ const createCompanyCtrl = async (req, res) => {
       });
     }
 
+    // Check if the company already exists
     const existingCompany = await companyModel.findOne({ email });
     if (existingCompany) {
       return res.status(400).json({
         success: false,
-        message: "email already exists. Please log in to continue.",
+        message: "Email already exists. Please log in to continue.",
       });
     }
 
@@ -65,19 +78,25 @@ const createCompanyCtrl = async (req, res) => {
     // Create new company record
     const company = await companyModel.create({
       companyName,
-      companyAddress,
       code,
+      flatOrBlock,
+      building,
+      roadStreet,
+      area,
+      city,
       pin,
-      pan,
-      country,
       state,
+      country,
       email,
-      password: hashedPassword,
-      contactNumber,
-      userName,
+      mNumber,
+      tNumber,
+      manageFor,
       from,
       to,
       gst,
+      typeOfDealer,
+      userName,
+      password: hashedPassword,
       permissions: formattedPermissions,
       role,
     });
@@ -95,6 +114,7 @@ const createCompanyCtrl = async (req, res) => {
     });
   }
 };
+
 
 const loginCompanyCtrl = async (req, res) => {
   try {
