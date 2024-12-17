@@ -15,6 +15,8 @@ const CreateCompany = () => {
     pin: "",
     state: "",
     country: "",
+    pen: "",
+    ten: "",
     email: "",
     mNumber: "",
     tNumber: "",
@@ -103,6 +105,8 @@ const CreateCompany = () => {
         pin: "",
         state: "",
         country: "",
+        pen: "",
+        ten: "",
         email: "",
         mNumber: "",
         tNumber: "",
@@ -246,7 +250,7 @@ const CreateCompany = () => {
             </div>
           </div>
 
-          <div className="companycode flex flex-col lg:flex-row mt-10  items-center space-x-4">
+          <div className="companycode flex flex-col lg:flex-row   items-center space-x-4">
             <label
               htmlFor="name"
               className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[15vw]"
@@ -261,6 +265,39 @@ const CreateCompany = () => {
               onChange={handleChange}
               required
             />
+          </div>
+          <div className="grid lg:grid-cols-2 gap-2">
+            <div className="pen flex flex-col lg:flex-row items-center space-x-4">
+              <label
+                htmlFor="pen"
+                className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[22vw]"
+              >
+                <span> PAN </span>
+              </label>
+              <input
+                className="p-2 border-black border-2 rounded w-full"
+                type="text"
+                name="pen"
+                value={formData.pen}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="telephone flex flex-col lg:flex-row items-center space-x-4">
+              <label
+                htmlFor="ten"
+                className=" my-2 border-2 border-black px-4 py-[7px] rounded-md text-center min-w-fit "
+              >
+                <span> TAN</span>
+              </label>
+              <input
+                className="p-2 border-black border-2 rounded w-full"
+                type="text"
+                name="ten"
+                value={formData.ten}
+                onChange={handleChange}
+              />
+            </div>
           </div>
           <div className="email flex flex-col lg:flex-row items-center space-x-4">
             <label

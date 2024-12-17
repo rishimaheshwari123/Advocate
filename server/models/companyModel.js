@@ -41,6 +41,14 @@ const companiSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    pen: {
+      type: String,
+      trim: true,
+    },
+    ten: {
+      type: String,
+      trim: true,
+    },
     email: {
       type: String,
       trim: true,
