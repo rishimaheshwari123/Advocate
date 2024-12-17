@@ -6,7 +6,6 @@ const CreateCompany = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     companyName: "",
-    code: "",
     flatOrBlock: "",
     building: "",
     roadStreet: "",
@@ -96,7 +95,6 @@ const CreateCompany = () => {
     if (result) {
       setFormData({
         companyName: "",
-        code: "",
         flatOrBlock: "",
         building: "",
         roadStreet: "",
@@ -250,7 +248,7 @@ const CreateCompany = () => {
             </div>
           </div>
 
-          <div className="companycode flex flex-col lg:flex-row   items-center space-x-4">
+          {/* <div className="companycode flex flex-col lg:flex-row   items-center space-x-4">
             <label
               htmlFor="name"
               className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[15vw]"
@@ -265,7 +263,7 @@ const CreateCompany = () => {
               onChange={handleChange}
               required
             />
-          </div>
+          </div> */}
           <div className="grid lg:grid-cols-2 gap-2">
             <div className="pen flex flex-col lg:flex-row items-center space-x-4">
               <label

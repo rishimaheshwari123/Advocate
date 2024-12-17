@@ -68,7 +68,7 @@ const GetCompany = () => {
                   {company.companyName || "N/A"}
                 </div>
                 <div className="bg-white  rounded  text-[12px] border-2 border-black p-2 shadow col-span-2">
-                  {company.code || "N/A"}
+                  {`SDBZU000${index + 1}`}
                 </div>
                 <div className="bg-white  text-[12px] rounded border-2 border-black p-2 shadow col-span-3">
                   {formatFinancialYear(
