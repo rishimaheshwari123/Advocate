@@ -161,130 +161,217 @@ const Navbar = () => {
     dispatch(logout(navigate));
   };
   return (
-    <div className="fixed top-0 left-0 w-full z-50   h-[140px]">
-      <div className="flex ">
-        <nav className="flex items-center justify-between  w-[90vw] ">
-          <div className="flex-1">
-            <div className="min-w-full flex justify-center items-center text-2xl  py-9 bg-[#b1d7e0] shadow-inner shadow-gray-500 relative">
-              <div className="absolute left-2 flex flex-col gap-1 font-semibold text-5xl p-1">
-                <Link to={"/admin/dashboard"}>
-                  <FaHome />
-                </Link>
-              </div>
-              <p
-                className="p-2 font-bold text-5xl text-center absolute left-1/2 transform -translate-x-1/2"
-                style={{
-                  textShadow: "2px 2px 4px yellow",
-                }}
-              >
-                {company ? company?.companyName : "S.D. Taxation Associate"}
-              </p>
-            </div>
-
-            <div className="h-[40px] my-[6px]">
-              <div className="px-1  flex justify-between items-center h-full font-bold text-[17px]">
-                <Link
-                  to={"/admin/dashboard"}
-                  className="bg-[#fcd5b5] rounded-sm shadow-lg shadow-gray-500 px-3 py-1"
+    <div>
+      <div className="fixed top-0 left-0 w-full z-50   h-[140px]">
+        <div className="flex ">
+          <nav className="flex items-center justify-between  w-[90vw] ">
+            <div className="flex-1">
+              <div className="min-w-full flex justify-center items-center text-2xl  py-9 bg-[#b1d7e0] shadow-inner shadow-gray-500 relative">
+                <div className="absolute left-2 flex flex-col gap-1 font-semibold text-5xl p-1">
+                  <Link to={"/admin/dashboard"}>
+                    <FaHome />
+                  </Link>
+                </div>
+                <p
+                  className="p-2 font-bold text-5xl text-center absolute left-1/2 transform -translate-x-1/2"
+                  style={{
+                    textShadow: "2px 2px 4px yellow",
+                  }}
                 >
-                  Dashboard
-                </Link>
-                <div className="bg-[#e1eeda] rounded-sm px-3 py-1 shadow-lg shadow-gray-500 border min-w-[62%] m text-center">
-                  {user ? (
-                    <div className="flex gap-2  justify-center items-center">
-                      <p className="font-semibold ">S.D. Taxation Associate</p>
-                      <p className="text-sm text-gray-600">
-                        {"( F.Y.2024-25)"}
-                      </p>
-                    </div>
-                  ) : company ? (
-                    <>
-                      <p className="font-semibold">{company?.companyName}</p>
-                      <p className="text-sm text-gray-600">
-                        {company?.from} - {company?.to}
-                      </p>
-                    </>
-                  ) : (
-                    <p className="text-gray-500">No data available</p>
-                  )}
-                </div>
-
-                <div className="">
-                  <span className="border p-1 shadow-lg rounded-sm shadow-gray-500 bg-[#fcd5b5] px-3 ">
-                    {currentDate} <span className="mr-10"></span>
-                  </span>
-                </div>
-                <div className="">
-                  <span className="border p-1 shadow-lg rounded-sm shadow-gray-500 bg-[#fcd5b5] px-3 ">
-                    {currentDay}
-                  </span>
-                </div>
-                <div className="">
-                  <span className="border p-1 shadow-lg rounded-sm shadow-gray-500 bg-[#fcd5b5] px-3 ">
-                    {currentTime}
-                  </span>
-                </div>
+                  {company ? company?.companyName : "S.D. Taxation Associate"}
+                </p>
               </div>
-            </div>
 
-            <ul className="grid grid-cols-11  relative ">
-              {navItems.map((item, index) => (
-                <li
-                  key={index}
-                  className="relative group"
-                  onMouseEnter={() => setHoveredItem(index)}
-                  onMouseLeave={() => setHoveredItem(null)}
-                >
-                  <div className=" shadow-md shadow-gray-600">
-                    <NavLink
-                      to={"#"}
-                      className={({ isActive }) =>
-                        `flex  justify-center  rounded-[4px] font-semibold items-center gap-2 px-3 py-1 text-lg bg-[#b1d7e0] shadow-inner shadow-gray-500 border ${
-                          isActive
-                            ? "border-b-2 border-white"
-                            : "hover:border-b-2 hover:border-gray-400"
-                        }`
-                      }
-                    >
-                      {/* <span>{item.icon}</span> */}
-                      <span className="font-bold text-[14px]  ">
-                        {item.label}
-                      </span>
-                    </NavLink>
+              <div className="h-[40px] my-[6px]">
+                <div className=" flex gap-1  items-center h-full font-bold text-[17px]">
+                  <Link
+                    to={"/admin/dashboard"}
+                    className="bg-[#fcd5b5] rounded-sm s px-8 py-1"
+                  >
+                    Dashboard
+                  </Link>
+                  <div className="bg-[#e1eeda] rounded-sm px-3 py-1  s border min-w-[62%] m text-center">
+                    {user ? (
+                      <div className="flex gap-2  justify-center items-center">
+                        <p className="font-semibold ">
+                          S.D. Taxation Associate
+                        </p>
+                        <p className="text-sm text-gray-600">
+                          {"( F.Y.2024-25)"}
+                        </p>
+                      </div>
+                    ) : company ? (
+                      <>
+                        <p className="font-semibold">{company?.companyName}</p>
+                        <p className="text-sm text-gray-600">
+                          {company?.from} - {company?.to}
+                        </p>
+                      </>
+                    ) : (
+                      <p className="text-gray-500">No data available</p>
+                    )}
                   </div>
-                  {item.sublinks.length > 0 && hoveredItem === index && (
-                    <ul className="absolute top-full left-0 bg-white rounded-sm shadow-md border  w-48 z-50">
-                      {item.sublinks.map((sublink, subIndex) => (
-                        <li
-                          key={subIndex}
-                          className=" bg-gray-200 hover:bg-gray-100  mx-1 "
-                        >
-                          <NavLink
-                            to={sublink.to}
-                            className="block px-4 font-bold py-2 my-2 shadow-inner  rounded-sm shadow-black text-sm text-black "
-                          >
-                            {sublink.label}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-        </nav>
 
-        <div className="w-[9.8vw]">
-          <div className="absolute right-1 flex flex-col gap-1 font-semibold bg-white p-1">
-            <p className="bg-[#853e10] rounded-md text-xl text-white border border-white py-2 px-6 text-center">
-              My Profile
-            </p>
-            <button
-              onClick={handleLogout}
-              className="bg-[#853e10] rounded-md text-xl text-white border border-white py-2 flex items-center justify-center gap-2"
-            >
-              <MdLogout /> Logout
+                  <div className="">
+                    <span className="border p-1 shadow-lg rounded-sm  s bg-[#fcd5b5] px-3 ">
+                      {currentDate} <span className="mr-10"></span>
+                    </span>
+                  </div>
+                  <div className="">
+                    <span className="border p-1 shadow-lg rounded-sm s bg-[#fcd5b5] px-3 ">
+                      {currentDay}
+                    </span>
+                  </div>
+                  <div className="">
+                    <span className="border p-1 shadow-lg rounded-sm s bg-[#fcd5b5] px-3 ">
+                      {currentTime}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <ul className="grid grid-cols-11  relative ">
+                {navItems.map((item, index) => (
+                  <li
+                    key={index}
+                    className="relative group"
+                    onMouseEnter={() => setHoveredItem(index)}
+                    onMouseLeave={() => setHoveredItem(null)}
+                  >
+                    <div className=" ">
+                      <NavLink
+                        to={"#"}
+                        className={({ isActive }) =>
+                          `flex  justify-center bg-[#b1d7e0] ml-[1px]  rounded-[4px] font-semibold items-center gap-2 px-3 py-1 text-lg s ${
+                            isActive
+                              ? "border-b-2 border-white"
+                              : "hover:border-b-2 hover:border-gray-400"
+                          }`
+                        }
+                      >
+                        {/* <span>{item.icon}</span> */}
+                        <span className="font-bold text-[14px]  ">
+                          {item.label}
+                        </span>
+                      </NavLink>
+                    </div>
+                    {item.sublinks.length > 0 && hoveredItem === index && (
+                      <ul className="absolute top-full left-0 bg-white rounded-sm shadow-md border  w-48 z-50">
+                        {item.sublinks.map((sublink, subIndex) => (
+                          <li
+                            key={subIndex}
+                            className=" bg-gray-200 hover:bg-gray-100  mx-1 "
+                          >
+                            <NavLink
+                              to={sublink.to}
+                              className="block px-4 font-bold py-2 my-2 shadow-inner   text-sm s rounded-md"
+                            >
+                              {sublink.label}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </nav>
+
+          <div className="w-[9.8vw]">
+            <div className="absolute right-1 flex flex-col gap-1 font-semibold  p-1">
+              <p className="bg-[#853e10] rounded-md text-xl text-white border border-white py-2 px-5 text-center">
+                My Profile
+              </p>
+              <button
+                onClick={handleLogout}
+                className="bg-[#853e10] rounded-md text-xl text-white border border-white py-2 flex items-center justify-center gap-2"
+              >
+                <MdLogout /> Logout
+              </button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+              <button
+                onClick={handleLogout}
+                className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"
+              ></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden z-50 lg:block bg-[#b1d7e0] rounded-t-lg overflow-hidden shadow-lg fixed bottom-0 w-[89.5vw]">
+        <div className="flex justify-between items-center px-4 py-2">
+          {/* Wishes Section */}
+          <div className="flex items-center">
+            <button className="bg-[#85b6d3] text-black font-bold text-[12px] py-2 px-4 border-[1px] border-black rounded-md">
+              Wishes
+            </button>
+            <div className="text-red-600 text-2xl font-bold ml-1">»»</div>
+          </div>
+
+          {/* Client Grievance Alerts Section */}
+          <div className="flex items-center">
+            <button className="bg-[#85b6d3] text-black font-bold text-[12px] py-2 px-4 border-[1px] border-black rounded-md">
+              Client Grievance Alerts
+            </button>
+            <div className="text-red-600 text-2xl font-bold ml-1">»»</div>
+          </div>
+
+          {/* Notification Alerts Section */}
+          <div className="flex items-center">
+            <button className="bg-[#85b6d3] text-black text-[12px] font-bold py-2 px-4 border-[1px] border-black rounded-md">
+              Notification Alerts
             </button>
           </div>
         </div>

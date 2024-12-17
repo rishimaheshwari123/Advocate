@@ -129,7 +129,7 @@ const CreateCompany = () => {
   };
 
   return (
-    <div className=" w-[70vw] mx-auto">
+    <div className=" w-[50vw] mx-auto  rounded-[100px] p-5 border-2 border-blue-500 shadow-lg shadow-blue-500">
       <div className="">
         <h2 className="text-center bg-[#fcd5b5] font-bold rounded-md px-4 py-2 w-fit mx-auto">
           Create New Company
@@ -152,91 +152,100 @@ const CreateCompany = () => {
               required
             />
           </div>
-          <div className="address grid lg:grid-cols-2 gap-5">
-            <div>
-              <span className="text-sm">Flat/Block</span>
-              <input
-                className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
-                type="text"
-                name="flatOrBlock"
-                value={formData.flatOrBlock}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <span className="text-sm">Building</span>
-              <input
-                className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
-                type="text"
-                name="building"
-                value={formData.building}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <span className="text-sm">Road/Street</span>
-              <input
-                className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
-                type="text"
-                name="roadStreet"
-                value={formData.roadStreet}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <span className="text-sm">Area</span>
-              <input
-                className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
-                type="text"
-                name="area"
-                value={formData.area}
-                onChange={handleChange}
-              />
-            </div>
+          <div className="companyName flex flex-col lg:flex-row space-x-4">
+            <label
+              htmlFor="name"
+              className="border-2 my-2 border-black px-4 h-fit py-2 rounded-md text-center w-fit lg:w-[15vw]"
+            >
+              <span>Address</span>
+            </label>
+            <div className="address grid lg:grid-cols-2 border-2 border-black rounded-3xl p-3 w-full">
+              <div className="flex items-center">
+                <span className="text-sm mt-5">Flat/Block</span>
+                <input
+                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  type="text"
+                  name="flatOrBlock"
+                  value={formData.flatOrBlock}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm mt-5">Building</span>
+                <input
+                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  type="text"
+                  name="building"
+                  value={formData.building}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm mt-5">Road/Street</span>
+                <input
+                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  type="text"
+                  name="roadStreet"
+                  value={formData.roadStreet}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm mt-5">Area</span>
+                <input
+                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  type="text"
+                  name="area"
+                  value={formData.area}
+                  onChange={handleChange}
+                />
+              </div>
 
-            <div>
-              <span className="text-sm">City</span>
-              <input
-                className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
-                type="text"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <span className="text-sm">Pin</span>
-              <input
-                className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
-                type="text"
-                name="pin"
-                value={formData.pin}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <span className="text-sm">State</span>
-              <input
-                className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
-                type="text"
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div>
-              <span className="text-sm">Country</span>
-              <input
-                className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
-                type="text"
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                required
-              />
+              <div className="flex items-center">
+                <span className="text-sm mt-5">City</span>
+                <input
+                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  type="text"
+                  name="city"
+                  value={formData.city}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm mt-5">Pin</span>
+                <input
+                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  type="text"
+                  name="pin"
+                  value={formData.pin}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm mt-5">State</span>
+                <input
+                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  type="text"
+                  name="state"
+                  value={formData.state}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="flex items-center">
+                <span className="text-sm mt-5">Country</span>
+                <input
+                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  type="text"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
             </div>
           </div>
+
           <div className="companycode flex flex-col lg:flex-row mt-10  items-center space-x-4">
             <label
               htmlFor="name"
@@ -273,7 +282,7 @@ const CreateCompany = () => {
             <div className="mobile flex flex-col lg:flex-row items-center space-x-4">
               <label
                 htmlFor="name"
-                className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[18vw]"
+                className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[22vw]"
               >
                 <span> Mobile Number </span>
               </label>
@@ -306,7 +315,7 @@ const CreateCompany = () => {
             <h3 className="border-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[15vw]">
               Manage For
             </h3>
-            <div className="border-2 border-black px-4 py-[7px] rounded-md w-full">
+            <div className="border-2 border-black px-2 py-[7px] rounded-md w-full">
               {[
                 "Only Accounts",
                 "Inventory With Accounts",
@@ -330,7 +339,7 @@ const CreateCompany = () => {
             <div className="mobile flex flex-col lg:flex-row items-center space-x-4">
               <label
                 htmlFor="name"
-                className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[18vw]"
+                className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[22vw]"
               >
                 <span> Finacial Year </span>
               </label>
@@ -429,7 +438,7 @@ const CreateCompany = () => {
 
             <div className="relative">
               <input
-                className="p-2 border-2 bg-[#ffe49c] border-black rounded w-full"
+                className="p-2 border-2 z-0 bg-[#ffe49c] border-black rounded w-full"
                 type={showPassword ? "text" : "password"}
                 name="password"
                 value={formData.password}
