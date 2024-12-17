@@ -235,7 +235,7 @@ const Navbar = () => {
                   onMouseEnter={() => setHoveredItem(index)}
                   onMouseLeave={() => setHoveredItem(null)}
                 >
-                  <div className="bg-white rounded-[4px] p-[2px] shadow-lg shadow-gray-600">
+                  <div className=" shadow-md shadow-gray-600">
                     <NavLink
                       to={"#"}
                       className={({ isActive }) =>
