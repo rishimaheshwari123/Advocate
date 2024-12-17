@@ -39,7 +39,7 @@ const GetCompany = () => {
       {/* Table Container */}
       <div className="overflow-x-auto ">
         {/* Table Header */}
-        <div className="grid grid-cols-12 gap-x-2 p-2 shadow-md text-center font-bold min-w-[800px]">
+        <div className="grid grid-cols-12 gap-x-[2px] p-2  text-center font-bold min-w-[800px]">
           <div className="bg-white rounded p-2 border-2 text-[14px] border-black shadow col-span-2">
             S.N.
           </div>
@@ -59,7 +59,7 @@ const GetCompany = () => {
           ? filteredCompanies.map((company, index) => (
               <div
                 key={index}
-                className="grid grid-cols-12 gap-x-2 text-[12px]  p-2  text-center min-w-[800px]"
+                className="grid grid-cols-12 gap-x-[2px] -mt-3 text-[12px]  p-2  text-center min-w-[800px]"
               >
                 <div className="bg-white rounded text-[12px] border-2 border-black p-2 shadow font-bold col-span-2">
                   {index + 1}
@@ -81,7 +81,7 @@ const GetCompany = () => {
           : [...Array(6)].map((_, index) => (
               <div
                 key={index}
-                className="grid grid-cols-12 gap-x-2 bg-white p-2 rounded-lg shadow-md text-center min-w-[800px]"
+                className="grid grid-cols-12 gap-x-[1px] bg-white p-2 rounded-lg shadow-md text-center min-w-[800px]"
               >
                 <div className="bg-gray-100 rounded p-2 shadow font-bold col-span-2">
                   {index + 1}
