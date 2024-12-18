@@ -188,7 +188,7 @@ const Navbar = () => {
                 </div>
                 {locationName() === "/admin/dashboard" && (
                   <p
-                    className="p-2 font-bold text-[28px] text-center absolute left-1/2 transform -translate-x-1/2"
+                    className="p-2 font-bold  text-[28px] text-center absolute left-1/2 transform -translate-x-1/2"
                     style={{
                       textShadow: "2px 2px 4px yellow",
                     }}
@@ -198,16 +198,16 @@ const Navbar = () => {
                 )}
               </div>
 
-              <div className="h-[40px] my-[6px]">
+              <div className="h-[40px] my-[6px] ">
                 <div className=" flex   items-center h-full font-bold text-[14px]">
                   <Link
                     to={"/admin/dashboard"}
-                    className="bg-[#fcd5b5] rounded-sm s px-[72px] py-[14px]"
+                    className="bg-[#fcd5b5] rounded-sm s px-[72px] py-[14px] border border-black"
                   >
                     Dashboard
                   </Link>
                   {locationName() === "/admin/dashboard" && (
-                    <div className="bg-[#e1eeda] rounded-sm px-3 py-[14px]  s border min-w-[62%] m text-center">
+                    <div className="bg-[#e1eeda]  border-black rounded-sm px-3 py-[14px]  s border min-w-[62%] m text-center">
                       {user ? (
                         <div className="flex gap-2  justify-center items-center">
                           <p className="font-semibold ">
@@ -234,7 +234,7 @@ const Navbar = () => {
 
                   {locationName() === "/admin/dashboard" && (
                     <div className="flex mx-auto justify-center">
-                      <span className="border py-[14px] shadow-lg rounded-sm   text-center s bg-[#fcd5b5] px-3 ">
+                      <span className="border border-black py-[14px] shadow-lg rounded-sm   text-center s bg-[#fcd5b5] px-3 ">
                         {currentDate} <span className="mr-10 "></span>
                       </span>
                     </div>
@@ -242,13 +242,13 @@ const Navbar = () => {
 
                   {locationName() === "/admin/dashboard" && (
                     <>
-                      <div className="">
-                        <span className="border py-[14px] shadow-lg rounded-sm s bg-[#fcd5b5] px-2 ">
+                      <div className=" ">
+                        <span className=" py-[14px] border border-black  shadow-lg rounded-sm s bg-[#fcd5b5] px-2 ">
                           {currentDay}
                         </span>
                       </div>
                       <div className="">
-                        <span className="border py-[14px] shadow-lg rounded-sm s bg-[#fcd5b5] px-[1px]">
+                        <span className="border border-black py-[14px] shadow-lg rounded-sm s bg-[#fcd5b5] px-[1px]">
                           {currentTime}
                         </span>
                       </div>
@@ -324,27 +324,27 @@ const Navbar = () => {
                 </p>
                 <button
                   onClick={handleLogout}
-                  className="bg-[#853e10] rounded-md text-xl text-white border border-white py-2 flex items-center justify-center gap-2"
+                  className="bg-[#853e10] rounded-md text-xl text-white border border-white py-2 flex items-center justify-center gap-2 border border-black"
                 >
                   <MdLogout /> Logout
                 </button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
-                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black border border-black "></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
+                <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2 border border-black"></button>
               </div>
             </div>
           )}
