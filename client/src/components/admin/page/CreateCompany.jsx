@@ -140,7 +140,7 @@ const CreateCompany = () => {
           <div className="companyName flex flex-col lg:flex-row mt-10  items-center space-x-4">
             <label
               htmlFor="name"
-              className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[15vw]"
+              className="border-2 my-2 border-black pl-2 py-[7px] rounded-md  w-fit lg:w-[12vw]"
             >
               <span>Company Name</span>
             </label>
@@ -157,7 +157,7 @@ const CreateCompany = () => {
           <div className="companyName flex flex-col lg:flex-row space-x-4">
             <label
               htmlFor="name"
-              className="border-2 my-2 border-black px-4 h-fit py-2 rounded-md text-center w-fit lg:w-[15vw]"
+              className="border-2 my-2 border-black pl-2 h-fit py-2 rounded-md  w-fit lg:w-[12vw]"
             >
               <span>Address</span>
             </label>
@@ -248,27 +248,11 @@ const CreateCompany = () => {
             </div>
           </div>
 
-          {/* <div className="companycode flex flex-col lg:flex-row   items-center space-x-4">
-            <label
-              htmlFor="name"
-              className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[15vw]"
-            >
-              <span> Company Code</span>
-            </label>
-            <input
-              className="p-2 border-black border-2 rounded w-full"
-              type="text"
-              name="code"
-              value={formData.code}
-              onChange={handleChange}
-              required
-            />
-          </div> */}
           <div className="grid lg:grid-cols-2 gap-2">
             <div className="pen flex flex-col lg:flex-row items-center space-x-4">
               <label
                 htmlFor="pen"
-                className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[22vw]"
+                className="border-2 my-2 border-black pl-2 py-[7px] rounded-md  w-fit lg:w-[17vw]"
               >
                 <span> PAN </span>
               </label>
@@ -284,7 +268,7 @@ const CreateCompany = () => {
             <div className="telephone flex flex-col lg:flex-row items-center space-x-4">
               <label
                 htmlFor="ten"
-                className=" my-2 border-2 border-black px-4 py-[7px] rounded-md text-center min-w-fit "
+                className=" my-2 border-2 border-black pl-2 py-[7px] rounded-md  w-[13vw] "
               >
                 <span> TAN</span>
               </label>
@@ -300,9 +284,9 @@ const CreateCompany = () => {
           <div className="email flex flex-col lg:flex-row items-center space-x-4">
             <label
               htmlFor="name"
-              className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[15vw]"
+              className="border-2 my-2 border-black pl-2 py-[7px] rounded-md  w-fit lg:w-[12.2vw]"
             >
-              <span> EmailId </span>
+              <span> Email Id: </span>
             </label>
             <input
               className="p-2 border-black border-2 rounded w-full"
@@ -317,9 +301,9 @@ const CreateCompany = () => {
             <div className="mobile flex flex-col lg:flex-row items-center space-x-4">
               <label
                 htmlFor="name"
-                className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[22vw]"
+                className="border-2 my-2 border-black pl-2 py-[7px] rounded-md  w-fit lg:w-[17vw]"
               >
-                <span> Mobile Number </span>
+                <span> Mobile No. </span>
               </label>
               <input
                 className="p-2 border-black border-2 rounded w-full"
@@ -333,9 +317,9 @@ const CreateCompany = () => {
             <div className="telephone flex flex-col lg:flex-row items-center space-x-4">
               <label
                 htmlFor="name"
-                className=" my-2 border-2 border-black px-4 py-[7px] rounded-md text-center min-w-fit "
+                className=" my-2 border-2 border-black pl-2 py-[7px] rounded-md  w-[15vw] "
               >
-                <span> Telephone Number </span>
+                <span> Telephone No. </span>
               </label>
               <input
                 className="p-2 border-black border-2 rounded w-full"
@@ -346,11 +330,11 @@ const CreateCompany = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col lg:flex-row gap-5 items-center">
-            <h3 className="border-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[15vw]">
+          <div className="flex flex-col lg:flex-row gap-4 items-center">
+            <h3 className="border-2 border-black pl-2 py-[7px] rounded-md  w-fit lg:w-[12.5vw]">
               Manage For
             </h3>
-            <div className="border-2 border-black px-2 py-[7px] rounded-md w-full">
+            <div className="border-2 border-black px-8 py-[7px] rounded-md w-full">
               {[
                 "Only Accounts",
                 "Inventory With Accounts",
@@ -374,7 +358,7 @@ const CreateCompany = () => {
             <div className="mobile flex flex-col lg:flex-row items-center space-x-4">
               <label
                 htmlFor="name"
-                className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[22vw]"
+                className="border-2 my-2 border-black pl-2 py-[7px] rounded-md  w-fit lg:w-[17vw]"
               >
                 <span> Finacial Year </span>
               </label>
@@ -407,7 +391,7 @@ const CreateCompany = () => {
           <div className="companycode flex flex-col lg:flex-row   items-center space-x-4">
             <label
               htmlFor="name"
-              className="border-2 my-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[15vw]"
+              className="border-2 my-2 border-black pl-2 py-[7px] rounded-md  w-fit lg:w-[12.2vw]"
             >
               <span> Gst Details</span>
             </label>
@@ -421,11 +405,11 @@ const CreateCompany = () => {
             />
           </div>
 
-          <div className="flex flex-col lg:flex-row gap-5 items-center">
-            <h3 className="border-2 border-black px-4 py-[7px] rounded-md text-center w-fit lg:w-[15vw]">
+          <div className="flex flex-col lg:flex-row gap-4 items-center">
+            <h3 className="border-2 border-black pl-2 py-[7px] rounded-md  w-fit lg:w-[12.6vw]">
               Type of Dealer
             </h3>
-            <div className="border-2 border-black px-4 py-[7px] rounded-md w-full">
+            <div className="border-2 border-black px-12 py-[7px] rounded-md w-full">
               {["Regular", "Composition"].map((option) => (
                 <label key={option} className="ml-5  ">
                   <input

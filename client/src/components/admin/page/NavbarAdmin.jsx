@@ -286,8 +286,8 @@ const Navbar = () => {
             </div>
           </nav>
 
-          <div className="w-[9.8vw]">
-            <div className="absolute right-1 flex flex-col gap-1 font-semibold  px-1">
+          <div className="w-[9.8vw] max-h-screen">
+            <div className="absolute h-screen overflow-hidden right-1 grid grid-rows-[repeat(20,1fr)] gap-1 font-semibold px-1">
               <p className="bg-[#853e10] rounded-md text-xl text-white border border-white py-2 px-5 text-center">
                 My Profile
               </p>
@@ -297,21 +297,23 @@ const Navbar = () => {
               >
                 <MdLogout /> Logout
               </button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
-              <button className="bg-[#c6de97] s rounded-lg  py-5 flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
+              <button className="bg-[#c6de97] s py-[22.3px] rounded-lg flex items-center justify-center gap-2"></button>
             </div>
           </div>
         </div>
