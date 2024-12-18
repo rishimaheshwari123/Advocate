@@ -65,7 +65,8 @@ const Navbar = () => {
               { to: "#", label: "Licence" },
               { to: "#", label: "Backup Data" },
               { to: "#", label: "Google Meet" },
-              { to: "#", label: "Close Establishment" },
+              { to: "#", label: "Zoom" },
+              { to: "#", label: "Any Desk" },
             ],
           },
 
@@ -89,7 +90,7 @@ const Navbar = () => {
               { to: "#", label: "Data Export" },
               { to: "#", label: "Transactions" },
               { to: "#", label: "Display" },
-              { to: "#", label: "Outtanding" },
+              { to: "#", label: "OutSanding" },
             ],
           },
 
@@ -172,7 +173,7 @@ const Navbar = () => {
     <div>
       <div className="fixed top-0 left-0 w-full z-50   h-[140px]">
         <div className="flex ">
-          <nav className="flex items-center justify-between  w-[90vw] ">
+          <nav className="flex items-center justify-between  w-[102vw] ">
             <div className="flex-1">
               <div
                 className={`min-w-full flex justify-center items-center text-2xl  py-6 ${
@@ -198,23 +199,23 @@ const Navbar = () => {
                 )}
               </div>
 
-              <div className="h-[40px] my-[6px] ">
-                <div className=" flex   items-center h-full font-bold text-[14px]">
+              <div className="h-[43.5px] w-full">
+                <div className="flex items-center justify-between h-full font-bold text-[14px] w-full">
+                  {/* Dashboard Link */}
                   <Link
                     to={"/admin/dashboard"}
-                    className="bg-[#fcd5b5] rounded-sm s px-[72px] py-[14px] border border-black"
+                    className="bg-[#fcd5b5] rounded-sm s w-[10%] py-[10px] border border-black text-center"
                   >
                     Dashboard
                   </Link>
+
+                  {/* Conditional Location Block for Company Name */}
                   {locationName() === "/admin/dashboard" && (
-                    <div className="bg-[#e1eeda]  border-black rounded-sm px-3 py-[14px]  s border min-w-[62%] m text-center">
+                    <div className="bg-[#e1eeda] border border-black rounded-sm s w-[70%] py-[10px] text-center -mr-[1.8px]">
                       {user ? (
-                        <div className="flex gap-2  justify-center items-center">
-                          <p className="font-semibold ">
-                            S.D. Taxation Associate
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            {"( F.Y.2024-25)"}
+                        <div>
+                          <p className="font-semibold">
+                            S.D. Taxation Associate ( F.Y.2024-25 )
                           </p>
                         </div>
                       ) : company ? (
@@ -232,27 +233,19 @@ const Navbar = () => {
                     </div>
                   )}
 
+                  {/* Date, Day, Time Sections */}
                   {locationName() === "/admin/dashboard" && (
-                    <div className="flex mx-auto justify-center">
-                      <span className="border border-black py-[14px] shadow-lg rounded-sm   text-center s bg-[#fcd5b5] px-3 ">
-                        {currentDate} <span className="mr-10 "></span>
+                    <div className="flex items-center justify-center w-[20%]">
+                      <span className="border border-black shadow-lg rounded-sm s bg-[#fcd5b5] w-[33%] py-[10px] text-center">
+                        {currentDate}
+                      </span>
+                      <span className="border border-black shadow-lg rounded-sm s bg-[#fcd5b5] w-[33%] py-[10px] text-center">
+                        {currentDay}
+                      </span>
+                      <span className="border border-black shadow-lg rounded-sm s bg-[#fcd5b5] w-[33%] py-[10px] text-center">
+                        {currentTime}
                       </span>
                     </div>
-                  )}
-
-                  {locationName() === "/admin/dashboard" && (
-                    <>
-                      <div className=" ">
-                        <span className=" py-[14px] border border-black  shadow-lg rounded-sm s bg-[#fcd5b5] px-2 ">
-                          {currentDay}
-                        </span>
-                      </div>
-                      <div className="">
-                        <span className="border border-black py-[14px] shadow-lg rounded-sm s bg-[#fcd5b5] px-[1px]">
-                          {currentTime}
-                        </span>
-                      </div>
-                    </>
                   )}
                 </div>
               </div>
@@ -318,7 +311,7 @@ const Navbar = () => {
 
           {locationName() === "/admin/dashboard" && (
             <div className="w-[9.8vw] max-h-screen">
-              <div className="absolute h-screen overflow-hidden right-1 grid grid-rows-[repeat(20,1fr)] gap-1 font-semibold px-1">
+              <div className="absolute h-screen overflow-hidden -right-1 grid grid-rows-[repeat(20,1fr)]  font-semibold px-1">
                 <p className="bg-[#853e10] rounded-md text-xl text-white border border-white py-2 px-5 text-center">
                   My Profile
                 </p>
@@ -352,7 +345,7 @@ const Navbar = () => {
       </div>
 
       {locationName() === "/admin/dashboard" && (
-        <div className="hidden z-50 lg:block bg-[#b1d7e0]  overflow-hidden shadow-lg fixed bottom-[1px] w-[89.5vw]">
+        <div className="hidden z-50 lg:block bg-[#b1d7e0]  overflow-hidden shadow-lg fixed bottom-[1px] w-[91.2vw]">
           <div className="flex justify-between items-center px-1 border-black border-2">
             {/* Wishes Section */}
             <div className="flex items-center">
