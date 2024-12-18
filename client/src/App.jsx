@@ -100,8 +100,8 @@ const App = () => {
               <Route path="/admin/dashboard" element={<Dashboard />} />
               <Route path="/admin/addGallery" element={<AddGallery />} />
               <Route path="/admin/getGallery" element={<GetGallery />} />
-              <Route path="/admin/addCompany" element={<CreateCompany />} />
-              <Route path="/admin/getCompany" element={<GetComapny />} />
+              <Route path="/admin/establishment/addCompany" element={<CreateCompany />} />
+              <Route path="/admin/establishment/getCompany" element={<GetComapny />} />
               <Route path="/admin/create-leads" element={<CreateLeads />} />
             </>
           )}

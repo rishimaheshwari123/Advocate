@@ -131,7 +131,7 @@ const CreateCompany = () => {
   };
 
   return (
-    <div className=" w-[55vw] mx-auto  rounded-[100px] p-5 border-2 border-blue-500 shadow-lg shadow-blue-500">
+    <div className=" w-[55vw] mx-auto font-semibold  rounded-[100px] p-5 border-2 border-blue-500 shadow-lg shadow-blue-500">
       <div className="">
         <h2 className="text-center bg-[#fcd5b5] font-bold rounded-md px-4 py-2 w-fit mx-auto">
           Create New Company
@@ -165,7 +165,7 @@ const CreateCompany = () => {
               <div className="flex items-center">
                 <span className="text-sm mt-2">Flat/Block</span>
                 <input
-                  className=" border-b-2 px-1 border-black focus:border-black focus:outline-none w-full"
+                  className=" border-b-2 px-1 border-gray-400 focus:border-black focus:outline-none w-full"
                   type="text"
                   name="flatOrBlock"
                   value={formData.flatOrBlock}
@@ -175,7 +175,7 @@ const CreateCompany = () => {
               <div className="flex items-center">
                 <span className="text-sm mt-2">Building</span>
                 <input
-                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-gray-400 focus:border-black focus:outline-none w-full"
                   type="text"
                   name="building"
                   value={formData.building}
@@ -185,7 +185,7 @@ const CreateCompany = () => {
               <div className="flex items-center">
                 <span className="text-sm mt-2">Road/Street</span>
                 <input
-                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-gray-400 focus:border-black focus:outline-none w-full"
                   type="text"
                   name="roadStreet"
                   value={formData.roadStreet}
@@ -195,7 +195,7 @@ const CreateCompany = () => {
               <div className="flex items-center">
                 <span className="text-sm mt-2">Area</span>
                 <input
-                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-gray-400 focus:border-black focus:outline-none w-full"
                   type="text"
                   name="area"
                   value={formData.area}
@@ -206,7 +206,7 @@ const CreateCompany = () => {
               <div className="flex items-center">
                 <span className="text-sm mt-2">City</span>
                 <input
-                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-gray-400 focus:border-black focus:outline-none w-full"
                   type="text"
                   name="city"
                   value={formData.city}
@@ -216,7 +216,7 @@ const CreateCompany = () => {
               <div className="flex items-center">
                 <span className="text-sm mt-2">Pin</span>
                 <input
-                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-gray-400 focus:border-black focus:outline-none w-full"
                   type="text"
                   name="pin"
                   value={formData.pin}
@@ -226,7 +226,7 @@ const CreateCompany = () => {
               <div className="flex items-center">
                 <span className="text-sm mt-2">State</span>
                 <input
-                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-gray-400 focus:border-black focus:outline-none w-full"
                   type="text"
                   name="state"
                   value={formData.state}
@@ -237,7 +237,7 @@ const CreateCompany = () => {
               <div className="flex items-center">
                 <span className="text-sm mt-2">Country</span>
                 <input
-                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-gray-400 focus:border-black focus:outline-none w-full"
                   type="text"
                   name="country"
                   value={formData.country}
@@ -431,7 +431,7 @@ const CreateCompany = () => {
           </h2>
 
           <div className="border-2 border-black bg-[#b0d48c] py-2 text-center mt-3">
-            {["crm", "accounting", "hrm", "payroll"].map((perm) => (
+            {["CRM", "ERP", "HRM", "PAYROLL"].map((perm) => (
               <label key={perm} className="mr-4">
                 <input
                   type="checkbox"
@@ -446,24 +446,24 @@ const CreateCompany = () => {
 
           <div className="grid lg:grid-cols-2 gap-3 mt-3">
             <input
-              className="p-2 border-2 bg-[#ffe49c] border-black rounded w-full"
+              className="p-2 border-2 bg-[#ffe49c] text-black placeholder:text-black placeholder:text-center font-bold   border-black rounded w-full"
               type="text"
               name="userName"
               value={formData.userName}
               onChange={handleChange}
-              placeholder="user name"
+              placeholder="Create Id"
               required
             />
 
             <div className="relative">
               <input
-                className="p-2 border-2 z-0 bg-[#ffe49c] border-black rounded w-full"
+                className="p-2 border-2 z-0 bg-[#ffe49c] border-black rounded w-full text-black placeholder:text-black placeholder:text-center font-bold"
                 type={showPassword ? "text" : "password"}
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 required
-                placeholder="password"
+                placeholder="Password"
               />
               <div
                 className="absolute inset-y-0 right-3 flex items-center cursor-pointer text-gray-600"
