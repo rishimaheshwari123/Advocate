@@ -191,10 +191,10 @@ const Navbar = () => {
               </div>
 
               <div className="h-[40px] my-[6px]">
-                <div className=" flex gap-1  items-center h-full font-bold text-[14px]">
+                <div className=" flex   items-center h-full font-bold text-[14px]">
                   <Link
                     to={"/admin/dashboard"}
-                    className="bg-[#fcd5b5] rounded-sm s px-[62px] py-[14px]"
+                    className="bg-[#fcd5b5] rounded-sm s px-[72px] py-[14px]"
                   >
                     Dashboard
                   </Link>
@@ -226,12 +226,12 @@ const Navbar = () => {
                     </span>
                   </div>
                   <div className="">
-                    <span className="border py-[14px] shadow-lg rounded-sm s bg-[#fcd5b5] px-3 ">
+                    <span className="border py-[14px] shadow-lg rounded-sm s bg-[#fcd5b5] px-2 ">
                       {currentDay}
                     </span>
                   </div>
                   <div className="">
-                    <span className="border py-[14px] shadow-lg rounded-sm s bg-[#fcd5b5] px-3 ">
+                    <span className="border py-[14px] shadow-lg rounded-sm s bg-[#fcd5b5] px-[1px]">
                       {currentTime}
                     </span>
                   </div>

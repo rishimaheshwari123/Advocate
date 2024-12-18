@@ -131,7 +131,7 @@ const CreateCompany = () => {
   };
 
   return (
-    <div className=" w-[50vw] mx-auto  rounded-[100px] p-5 border-2 border-blue-500 shadow-lg shadow-blue-500">
+    <div className=" w-[55vw] mx-auto  rounded-[100px] p-5 border-2 border-blue-500 shadow-lg shadow-blue-500">
       <div className="">
         <h2 className="text-center bg-[#fcd5b5] font-bold rounded-md px-4 py-2 w-fit mx-auto">
           Create New Company
@@ -163,9 +163,9 @@ const CreateCompany = () => {
             </label>
             <div className="address grid lg:grid-cols-2 border-2 border-black rounded-3xl p-3 w-full">
               <div className="flex items-center">
-                <span className="text-sm mt-5">Flat/Block</span>
+                <span className="text-sm mt-2">Flat/Block</span>
                 <input
-                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className=" border-b-2 px-1 border-black focus:border-black focus:outline-none w-full"
                   type="text"
                   name="flatOrBlock"
                   value={formData.flatOrBlock}
@@ -173,9 +173,9 @@ const CreateCompany = () => {
                 />
               </div>
               <div className="flex items-center">
-                <span className="text-sm mt-5">Building</span>
+                <span className="text-sm mt-2">Building</span>
                 <input
-                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
                   type="text"
                   name="building"
                   value={formData.building}
@@ -183,9 +183,9 @@ const CreateCompany = () => {
                 />
               </div>
               <div className="flex items-center">
-                <span className="text-sm mt-5">Road/Street</span>
+                <span className="text-sm mt-2">Road/Street</span>
                 <input
-                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
                   type="text"
                   name="roadStreet"
                   value={formData.roadStreet}
@@ -193,9 +193,9 @@ const CreateCompany = () => {
                 />
               </div>
               <div className="flex items-center">
-                <span className="text-sm mt-5">Area</span>
+                <span className="text-sm mt-2">Area</span>
                 <input
-                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
                   type="text"
                   name="area"
                   value={formData.area}
@@ -204,9 +204,9 @@ const CreateCompany = () => {
               </div>
 
               <div className="flex items-center">
-                <span className="text-sm mt-5">City</span>
+                <span className="text-sm mt-2">City</span>
                 <input
-                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
                   type="text"
                   name="city"
                   value={formData.city}
@@ -214,9 +214,9 @@ const CreateCompany = () => {
                 />
               </div>
               <div className="flex items-center">
-                <span className="text-sm mt-5">Pin</span>
+                <span className="text-sm mt-2">Pin</span>
                 <input
-                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
                   type="text"
                   name="pin"
                   value={formData.pin}
@@ -224,9 +224,9 @@ const CreateCompany = () => {
                 />
               </div>
               <div className="flex items-center">
-                <span className="text-sm mt-5">State</span>
+                <span className="text-sm mt-2">State</span>
                 <input
-                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
                   type="text"
                   name="state"
                   value={formData.state}
@@ -235,9 +235,9 @@ const CreateCompany = () => {
                 />
               </div>
               <div className="flex items-center">
-                <span className="text-sm mt-5">Country</span>
+                <span className="text-sm mt-2">Country</span>
                 <input
-                  className="p-2 border-b-2 border-black focus:border-black focus:outline-none w-full"
+                  className="px-1 border-b-2 border-black focus:border-black focus:outline-none w-full"
                   type="text"
                   name="country"
                   value={formData.country}
