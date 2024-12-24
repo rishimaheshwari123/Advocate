@@ -17,6 +17,9 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [hoveredSubItem, setHoveredSubItem] = useState(null); // Track nested submenu hover
+
   useEffect(() => {
     const updateDateTime = () => {
       const date = new Date();
@@ -86,8 +89,12 @@ const Navbar = () => {
             icon: <FaRegNewspaper />,
             label: "ERP",
             sublinks: [
-              { to: "#", label: "Master" },
-              { to: "/admin/add-group", label: "Create Group" },
+              {
+                to: "#",
+                label: "Master",
+                link: [
+                  { to: "/admin/erp/add-group", label: "Create Group" },],
+              },
               { to: "#", label: "Transactions" },
               { to: "#", label: "Display" },
               { to: "#", label: "OutSanding" },
@@ -290,7 +297,9 @@ const Navbar = () => {
                           {item.sublinks.map((sublink, subIndex) => (
                             <li
                               key={subIndex}
-                              className=" bg-gray-200 hover:bg-gray-100  mx-1 "
+                              onMouseEnter={() => setHoveredSubItem(subIndex)}
+                              onMouseLeave={() => setHoveredSubItem(null)}
+                              className="relative group bg-gray-200 hover:bg-gray-100  mx-1 "
                             >
                               <NavLink
                                 to={sublink.to}
@@ -298,6 +307,26 @@ const Navbar = () => {
                               >
                                 {sublink.label}
                               </NavLink>
+
+                              {sublink.link && hoveredSubItem === subIndex && (
+                                <ul className="absolute top-0 left-[103%] bg-white rounded-sm shadow-md border w-48 z-50">
+                                  {sublink.link.map(
+                                    (nestedLink, nestedIndex) => (
+                                      <li
+                                        key={nestedIndex}
+                                        className="bg-gray-100 hover:bg-gray-50 mx-1"
+                                      >
+                                        <NavLink
+                                          to={nestedLink.to}
+                                          className="block px-4  py-2 my-1 shadow-inner   text-sm s rounded-md"
+                                        >
+                                          {nestedLink.label}
+                                        </NavLink>
+                                      </li>
+                                    )
+                                  )}
+                                </ul>
+                              )}
                             </li>
                           ))}
                         </ul>

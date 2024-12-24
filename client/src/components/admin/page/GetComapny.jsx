@@ -41,7 +41,7 @@ const GetCompany = () => {
       </div>
 
       {/* Table Container */}
-      <div className="overflow-x-auto ml-10">
+      <div className="overflow-x-auto ml-10 max-h-[60vh]">
         {/* Table Header */}
         <div className="grid grid-cols-[auto,4fr,1fr,2fr] gap-[2px] p-2 text-center font-bold min-w-[800px]">
           <div className="bg-white rounded p-2 border-2 w-10 text-[14px] border-black shadow">

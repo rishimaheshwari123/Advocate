@@ -110,7 +110,7 @@ const App = () => {
                 element={<GetComapny />}
               />
               <Route path="/admin/create-leads" element={<CreateLeads />} />
-              <Route path="/admin/add-group" element={<CreateGroup />} />
+              <Route path="/admin/erp/add-group" element={<CreateGroup />} />
             </>
           )}
 
