@@ -87,7 +87,7 @@ const Navbar = () => {
             label: "ERP",
             sublinks: [
               { to: "#", label: "Master" },
-              { to: "#", label: "Data Export" },
+              { to: "/admin/add-group", label: "Create Group" },
               { to: "#", label: "Transactions" },
               { to: "#", label: "Display" },
               { to: "#", label: "OutSanding" },

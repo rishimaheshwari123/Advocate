@@ -35,6 +35,46 @@ const CreateCompany = () => {
     role: "Company",
   });
 
+  const states = [
+    "Andaman and Nicobar Islands",
+    "Andhra Pradesh",
+    "Andhra Pradesh (New)",
+    "Arunachal Pradesh",
+    "Assam",
+    "Bihar",
+    "Chandigarh",
+    "Chattisgarh",
+    "Dadra and Nagar Haveli",
+    "Daman and Diu",
+    "Delhi",
+    "Goa",
+    "Gujarat",
+    "Haryana",
+    "Himachal Pradesh",
+    "Jammu and Kashmir",
+    "Jharkhand",
+    "Karnataka",
+    "Kerala",
+    "Lakshadweep Islands",
+    "Madhya Pradesh",
+    "Maharashtra",
+    "Manipur",
+    "Meghalaya",
+    "Mizoram",
+    "Nagaland",
+    "Odisha",
+    "Pondicherry",
+    "Punjab",
+    "Rajasthan",
+    "Sikkim",
+    "Tamil Nadu",
+    "Telangana",
+    "Tripura",
+    "Uttar Pradesh",
+    "Uttarakhand",
+    "West Bengal",
+  ];
+
   const handleChange = (e) => {
     const { name, type, checked, value } = e.target;
 
@@ -225,14 +265,23 @@ const CreateCompany = () => {
               </div>
               <div className="flex items-center">
                 <span className="text-sm mt-2">State</span>
-                <input
-                  className="px-1 border-b-2 border-gray-400 focus:border-black focus:outline-none w-full"
-                  type="text"
+                <select
+                  id="state"
                   name="state"
                   value={formData.state}
                   onChange={handleChange}
+                  className="px-1 py-2 border-b-2 border-gray-400 focus:border-black focus:outline-none w-full"
                   required
-                />
+                >
+                  <option value="" disabled>
+                    Select a State
+                  </option>
+                  {states.map((state, index) => (
+                    <option key={index} value={state}>
+                      {state}
+                    </option>
+                  ))}
+                </select>
               </div>
               <div className="flex items-center">
                 <span className="text-sm mt-2">Country</span>

@@ -27,6 +27,7 @@ import AddAttendance from "./components/admin/page/hrm/AddAttendance";
 import CreateLeads from "./components/admin/page/crm/CreateLeads";
 import ForgetPassword from "./pages/ForgetPassword";
 import ForgetPasswordComapany from "./pages/ForgetPasswordComapany";
+import CreateGroup from "./components/admin/page/accounting/CreateGroup";
 
 const App = () => {
   const location = useLocation();
@@ -100,9 +101,16 @@ const App = () => {
               <Route path="/admin/dashboard" element={<Dashboard />} />
               <Route path="/admin/addGallery" element={<AddGallery />} />
               <Route path="/admin/getGallery" element={<GetGallery />} />
-              <Route path="/admin/establishment/addCompany" element={<CreateCompany />} />
-              <Route path="/admin/establishment/getCompany" element={<GetComapny />} />
+              <Route
+                path="/admin/establishment/addCompany"
+                element={<CreateCompany />}
+              />
+              <Route
+                path="/admin/establishment/getCompany"
+                element={<GetComapny />}
+              />
               <Route path="/admin/create-leads" element={<CreateLeads />} />
+              <Route path="/admin/add-group" element={<CreateGroup />} />
             </>
           )}
 
@@ -120,6 +128,7 @@ const App = () => {
                 path="/company/get-attendance"
                 element={<AddAttendance />}
               />
+              <Route path="/company/add-group" element={<CreateGroup />} />
             </>
           )}
         </Route>

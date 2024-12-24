@@ -28,8 +28,13 @@ export const company = {
   SEND_OFFER_LETTER: BASE_URL + "/company/create-offerletter",
   ATTENDANCE: BASE_URL + "/company/create-attandance",
   FORGOT_PASSWORD_API: BASE_URL + "/company/forget-password",
-
-
-
   CREATE_LEAD_API: BASE_URL + "/company/leads/create"
+}
+
+
+export const group = {
+  CREATE_GROUP: BASE_URL + "/group/create",
+  GET_ALL_GROUP: BASE_URL + "/group/getAll",
+  GET_SUBGROUP_BY_ID: BASE_URL + "/group/get",
+
 }
