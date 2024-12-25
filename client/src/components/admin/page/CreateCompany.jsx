@@ -171,7 +171,7 @@ const CreateCompany = () => {
   };
 
   return (
-    <div className=" w-[55vw] mx-auto font-semibold  rounded-[100px] p-5 border-2 border-blue-500 shadow-lg shadow-blue-500">
+    <div className=" w-[55vw] bg-white mx-auto font-semibold  rounded-[100px] p-5 border-2 border-blue-500 shadow-lg shadow-blue-500">
       <div className="">
         <h2 className="text-center bg-[#fcd5b5] font-bold rounded-md px-4 py-2 w-fit mx-auto">
           Create New Company

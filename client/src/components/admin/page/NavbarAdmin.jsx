@@ -92,8 +92,7 @@ const Navbar = () => {
               {
                 to: "#",
                 label: "Master",
-                link: [
-                  { to: "/admin/erp/add-group", label: "Create Group" },],
+                link: [{ to: "/admin/erp/add-group", label: "Create Group" }],
               },
               { to: "#", label: "Transactions" },
               { to: "#", label: "Display" },
@@ -303,7 +302,7 @@ const Navbar = () => {
                             >
                               <NavLink
                                 to={sublink.to}
-                                className="block px-4  py-2 my-2 shadow-inner   text-sm s rounded-md"
+                                className="block px-4  py-2 my-[2px] shadow-inner   text-sm s rounded-md"
                               >
                                 {sublink.label}
                               </NavLink>
