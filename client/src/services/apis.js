@@ -36,5 +36,8 @@ export const group = {
   CREATE_GROUP: BASE_URL + "/group/create",
   GET_ALL_GROUP: BASE_URL + "/group/getAll",
   GET_SUBGROUP_BY_ID: BASE_URL + "/group/get",
-
+}
+export const ledger = {
+  CREATE_LEDGER: BASE_URL + "/ledger/create",
+  GET_ALL_LEDGER: BASE_URL + "/ledger/getAll",
 }

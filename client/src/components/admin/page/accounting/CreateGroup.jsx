@@ -151,14 +151,14 @@ const CreateGroup = () => {
             <div className="flex justify-center gap-1">
               {" "}
               <button
-                className="bg-[#fff2cc] w-fit text-center   px-10 text-black border-black border-[2px] p-2 rounded-lg mt-4"
+                className="bg-[#fff2cc] w-fit text-center   px-4 text-black border-black border-[2px] p-2 rounded-lg mt-4"
                 onClick={handleSubmit}
               >
                 Save
               </button>
               <Link
                 to={"/admin/dashboard"}
-                className="bg-[#fff2cc] w-fit text-center px-10 text-black border-black border-[2px] p-2 rounded-lg mt-4"
+                className="bg-[#fff2cc] w-fit text-center px-4 text-black border-black border-[2px] p-2 rounded-lg mt-4"
               >
                 Exit
               </Link>

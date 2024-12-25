@@ -40,7 +40,7 @@ const ledgerSchema = new mongoose.Schema({
         type: Boolean
     },
     ifsc: {
-        type: Number,
+        type: String,
     },
     acc: {
         type: Number,

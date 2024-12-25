@@ -1,150 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { FaPlus, FaEdit, FaEye } from "react-icons/fa"; // Import icons
-import { getAllGroupsApi } from "../../../../services/operations/group";
-import { createLedgerApi } from "../../../../services/operations/ledger";
-import { group } from "../../../../services/apis";
+<div className="bg-[#fbe5d6] text-center  py-2 border-[2px] rounded-lg border-white ">
+              Details
+            </div>
 
-const states = [
-  "Andaman and Nicobar Islands",
-  "Andhra Pradesh",
-  "Andhra Pradesh (New)",
-  "Arunachal Pradesh",
-  "Assam",
-  "Bihar",
-  "Chandigarh",
-  "Chattisgarh",
-  "Dadra and Nagar Haveli",
-  "Daman and Diu",
-  "Delhi",
-  "Goa",
-  "Gujarat",
-  "Haryana",
-  "Himachal Pradesh",
-  "Jammu and Kashmir",
-  "Jharkhand",
-  "Karnataka",
-  "Kerala",
-  "Lakshadweep Islands",
-  "Madhya Pradesh",
-  "Maharashtra",
-  "Manipur",
-  "Meghalaya",
-  "Mizoram",
-  "Nagaland",
-  "Odisha",
-  "Pondicherry",
-  "Punjab",
-  "Rajasthan",
-  "Sikkim",
-  "Tamil Nadu",
-  "Telangana",
-  "Tripura",
-  "Uttar Pradesh",
-  "Uttarakhand",
-  "West Bengal",
-];
-const CreateLegder = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    sName: "",
-    address: "",
-    state: "",
-    pin: "",
-    country: "",
-    mobile: "",
-    bank: "",
-    ifsc: "",
-    acc: "",
-    bankName: "",
-    pan: "",
-    gst: "",
-    typeOfDealer: "",
-    group: "",
-  });
-
-  const [groups, setGroups] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const fetchGroup = async () => {
-    try {
-      const response = await getAllGroupsApi();
-      if (response) {
-        setGroups(response);
-      }
-    } catch (error) {
-      console.error("Error fetching groups:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    console.log("Form Data Submitted:", formData);
-
-    const updatedFormData = {
-      ...formData,
-      group: formData.group,
-    };
-
-    const result = await createLedgerApi(updatedFormData);
-    if (result) {
-      setFormData({
-        name: "",
-        sName: "",
-        address: "",
-        state: "",
-        pin: "",
-        country: "",
-        mobile: "",
-        bank: "",
-        ifsc: "",
-        acc: "",
-        bankName: "",
-        pan: "",
-        gst: "",
-        typeOfDealer: "",
-        group: "", // Reset underGroup field as well
-      });
-    }
-  };
-
-  useEffect(() => {
-    fetchGroup();
-  }, []);
-
-  return (
-    <div className="flex items-start justify-center mt-10 ">
-      {/* Sidebar with icons */}
-      <div className="flex flex-col items-center mt-3 space-y-4 mr-4">
-        <button className="flex items-center justify-center cursor-pointer  w-16 h-10 bg-[#c5e0b5] border border-black rounded-md ">
-          <FaPlus className="text-red-600" />
-        </button>
-        <button className="flex items-center justify-center w-16 h-10 bg-[#c5e0b5] border border-black rounded-md ">
-          <FaEdit className="text-red-600" />
-        </button>
-        <button className="flex items-center justify-center w-16 h-10 bg-[#c5e0b5] border border-black rounded-md ">
-          <FaEye className="text-black" />
-        </button>
-      </div>
-
-      {/* Main form */}
-      <div className="w-fit font-semibold rounded-3xl  s border-[#c5e0b5] border-2 px-1 py-5 shadow-lg shadow-[#c5e0b5]">
-        <div>
-          <h2 className="bg-[#fbe5d6] text-center  py-2 border-[2px] rounded-lg border-white">
-            Create New Ledger
-          </h2>
-
-          <div className="mt-2">
             <div className="flex flex-col lg:flex-row items-center space-x-1">
               <label
                 htmlFor="name"
@@ -158,55 +15,6 @@ const CreateLegder = () => {
                 id="name"
                 name="name"
                 value={formData.name}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="flex flex-col lg:flex-row items-center space-x-1 mt-[2px]">
-              <label
-                htmlFor="group"
-                className="border-2 border-black -mr-[1px] pl-2 py-[8px] rounded-lg w-fit lg:w-[12vw]"
-              >
-                <span>Under</span>
-              </label>
-              <select
-                className="p-2 ml-1 border-black border-2 rounded-lg w-full"
-                name="group"
-                value={formData.group}
-                onChange={handleChange}
-              >
-                <option value="">Select Parent Group</option>
-                {isLoading ? (
-                  <option disabled>Loading groups...</option>
-                ) : groups.length > 0 ? (
-                  groups.map((group) => (
-                    <option key={group._id} value={group._id}>
-                      {group.name}
-                    </option>
-                  ))
-                ) : (
-                  <option disabled>No groups available</option>
-                )}
-              </select>
-            </div>
-            <div className="bg-[#fbe5d6] text-center  py-2 border-[2px] rounded-lg border-white ">
-              Details
-            </div>
-
-            <div className="flex flex-col lg:flex-row items-center space-x-1">
-              <label
-                htmlFor="sName"
-                className="border-2 border-black -mr-[1px] pl-2 py-[8px] rounded-lg w-fit lg:w-[12vw]"
-              >
-                <span> Name</span>
-              </label>
-              <input
-                className="p-2 border-black border-2 rounded-lg w-full"
-                type="text"
-                id="sName"
-                name="sName"
-                value={formData.sName}
                 onChange={handleChange}
                 required
               />
@@ -255,7 +63,7 @@ const CreateLegder = () => {
 
             <div className="flex flex-col lg:flex-row items-center space-y-2 mt-[2px] lg:space-y-0 lg:space-x-[4px] w-full">
               <label
-                htmlFor="pin"
+                htmlFor="name"
                 className="border-2 border-black pl-2 py-[8px] rounded-lg w-fit lg:w-[12vw]"
               >
                 Pin Code
@@ -264,19 +72,19 @@ const CreateLegder = () => {
                 <input
                   className="p-2 border-black border-2 rounded-lg flex-grow"
                   type="text"
-                  id="pin"
-                  name="pin"
-                  value={formData.pin}
+                  id="name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
                   required
                 />
                 <input
                   className="p-2 border-black border-2 rounded-lg flex-grow"
                   type="text"
-                  id="country"
-                  name="country"
+                  id="name"
+                  name="name"
                   placeholder="Country"
-                  value={formData.country}
+                  value={formData.name}
                   onChange={handleChange}
                   required
                 />
@@ -308,9 +116,9 @@ const CreateLegder = () => {
                   className="p-2 border-black border-2 rounded-lg flex-grow"
                   type="text"
                   id="mobileNumber"
-                  name="mobile"
+                  name="mobileNumber"
                   placeholder="Mobile Number"
-                  value={formData.mobile}
+                  value={formData.mobileNumber}
                   onChange={handleChange}
                   required
                 />
@@ -318,10 +126,10 @@ const CreateLegder = () => {
                   className="p-2 border-black border-2 rounded-lg flex-grow"
                   type="text"
                   id="country"
-                  // name="country"
+                  name="country"
                   placeholder="Telephone No."
-                  // value={formData.country}
-                  // onChange={handleChange}
+                  value={formData.country}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -337,10 +145,10 @@ const CreateLegder = () => {
 
               <div className="flex flex-col lg:flex-row space-x-[2px] flex-grow w-full">
                 <select
-                  name="bank"
+                  name="bankDetails"
                   id="bankDetails"
                   className="border-2 border-black pl-2 py-[8px] rounded-lg w-full"
-                  value={formData.bank}
+                  value={formData.bankDetails}
                   onChange={handleChange}
                 >
                   <option value="">Bank Details</option>
@@ -351,10 +159,10 @@ const CreateLegder = () => {
                 <input
                   className="p-2 border-black border-2 rounded-lg w-full"
                   type="text"
-                  id="ifsc"
-                  name="ifsc"
+                  id="country"
+                  name="country"
                   placeholder="IFSC Code"
-                  value={formData.ifsc}
+                  value={formData.country}
                   onChange={handleChange}
                   required
                 />
@@ -363,24 +171,24 @@ const CreateLegder = () => {
 
             <div className="flex flex-col lg:flex-row items-center space-x-1 mt-[2px]">
               <label
-                htmlFor="acc"
+                htmlFor="name"
                 className="border-2 border-black -mr-[1px] pl-2 py-[8px] rounded-lg w-fit lg:w-[12vw]"
               >
                 <span> Account No.</span>
               </label>
               <input
                 className="p-2 border-black border-2 rounded-lg w-full"
-                type="number"
-                id="acc"
-                name="acc"
-                value={formData.acc}
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
             </div>
             <div className="flex flex-col lg:flex-row items-center space-x-1 mt-[2px]">
               <label
-                htmlFor="bank name"
+                htmlFor="name"
                 className="border-2 border-black -mr-[1px] pl-2 py-[8px] rounded-lg w-fit lg:w-[12vw]"
               >
                 <span> Bank Name</span>
@@ -388,10 +196,10 @@ const CreateLegder = () => {
               <input
                 className="p-2 border-black border-2 rounded-lg w-full"
                 type="text"
-                id="bankName"
-                name="bankName"
+                id="name"
+                name="name"
                 placeholder="Bank Name"
-                value={formData.bankName}
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
@@ -403,7 +211,7 @@ const CreateLegder = () => {
 
             <div className="flex flex-col lg:flex-row items-center space-x-1 mt-[2px]">
               <label
-                htmlFor="Pan"
+                htmlFor="name"
                 className="border-2 border-black -mr-[1px] pl-2 py-[8px] rounded-lg w-fit lg:w-[12vw]"
               >
                 <span>PAN NO.</span>
@@ -412,9 +220,9 @@ const CreateLegder = () => {
                 className="p-2 border-black border-2 rounded-lg w-full"
                 type="text"
                 id="name"
-                name="pan"
+                name="name"
                 placeholder="Bank Name"
-                value={formData.pan}
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
@@ -428,9 +236,9 @@ const CreateLegder = () => {
                 <label className="flex items-center">
                   <input
                     type="radio"
-                    name="typeOfDealer"
+                    name="gstType"
                     value="Regular"
-                    checked={formData.typeOfDealer === "Regular"}
+                    checked={formData.gstType === "Regular"}
                     onChange={handleChange}
                     className="mr-2"
                   />
@@ -439,9 +247,9 @@ const CreateLegder = () => {
                 <label className="flex items-center">
                   <input
                     type="radio"
-                    name="typeOfDealer"
+                    name="gstType"
                     value="Composition"
-                    checked={formData.typeOfDealer === "Composition"}
+                    checked={formData.gstType === "Composition"}
                     onChange={handleChange}
                     className="mr-2"
                   />
@@ -450,9 +258,9 @@ const CreateLegder = () => {
                 <label className="flex items-center">
                   <input
                     type="radio"
-                    name="typeOfDealer"
+                    name="gstType"
                     value="Unregistered"
-                    checked={formData.typeOfDealer === "Unregistered"}
+                    checked={formData.gstType === "Unregistered"}
                     onChange={handleChange}
                     className="mr-2"
                   />
@@ -463,7 +271,7 @@ const CreateLegder = () => {
 
             <div className="flex flex-col lg:flex-row items-center space-x-1 mt-[2px]">
               <label
-                htmlFor="gst"
+                htmlFor="name"
                 className="border-2 border-black -mr-[1px] pl-2 py-[8px] rounded-lg w-fit lg:w-[12vw]"
               >
                 <span>GSTIN/UIN</span>
@@ -471,28 +279,11 @@ const CreateLegder = () => {
               <input
                 className="p-2 border-black border-2 rounded-lg w-full"
                 type="text"
-                id="gst"
-                name="gst"
+                id="name"
+                name="name"
                 placeholder="GSTIN/UIN"
-                value={formData.gst}
+                value={formData.name}
                 onChange={handleChange}
                 required
               />
             </div>
-            <div className="flex justify-center gap-1 ">
-              {" "}
-              <button
-                className="bg-[#fff2cc] w-fit text-center   px-4 text-black border-black border-[2px] p-2 rounded-lg mt-4"
-                onClick={handleSubmit}
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default CreateLegder;
