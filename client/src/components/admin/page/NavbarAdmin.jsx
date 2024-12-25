@@ -92,7 +92,10 @@ const Navbar = () => {
               {
                 to: "#",
                 label: "Master",
-                link: [{ to: "/admin/erp/add-group", label: "Create Group" }],
+                link: [
+                  { to: "/admin/erp/add-group", label: "Create Group" },
+                  { to: "/admin/erp/add-ledger", label: "Create Ledger" },
+                ],
               },
               { to: "#", label: "Transactions" },
               { to: "#", label: "Display" },

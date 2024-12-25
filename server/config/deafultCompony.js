@@ -1,7 +1,7 @@
 
 
-const  Company = require("../models/companyModel")
-const  Group = require("../models/groupModel")
+const Company = require("../models/companyModel")
+const Group = require("../models/groupModel")
 
 const DEFAULT_GROUPS = [
     "Bank Accounts",
@@ -43,11 +43,10 @@ const DEFAULT_GROUPS = [
 
 
 exports.createDefaultGroups = async (companyId) => {
-    // Map default group names into group objects
     const groups = DEFAULT_GROUPS.map((name) => ({
         name,
-        isPrimary: false, // Default groups are not primary
-        underGroup: null, // Default groups don't have a parent
+        isPrimary: false,
+        underGroup: null,
         company: companyId,
     }));
 

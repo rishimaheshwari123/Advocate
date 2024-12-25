@@ -28,6 +28,7 @@ import CreateLeads from "./components/admin/page/crm/CreateLeads";
 import ForgetPassword from "./pages/ForgetPassword";
 import ForgetPasswordComapany from "./pages/ForgetPasswordComapany";
 import CreateGroup from "./components/admin/page/accounting/CreateGroup";
+import CreateLegder from "./components/admin/page/accounting/CreateLegder";
 
 const App = () => {
   const location = useLocation();
@@ -111,6 +112,7 @@ const App = () => {
               />
               <Route path="/admin/create-leads" element={<CreateLeads />} />
               <Route path="/admin/erp/add-group" element={<CreateGroup />} />
+              <Route path="/admin/erp/add-ledger" element={<CreateLegder />} />
             </>
           )}
 

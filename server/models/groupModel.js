@@ -22,6 +22,12 @@ const groupSchema = new mongoose.Schema({
             ref: "Group", // Sub-groups reference
         },
     ],
+    ledger: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Legder",
+        },
+    ],
 });
 
 // Pre-save middleware to ensure consistency

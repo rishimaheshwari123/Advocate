@@ -46,6 +46,7 @@ app.use("/api/v1/contact", require("./routes/contact"));
 app.use("/api/v1/gallery", require("./routes/galleryRoute"))
 app.use("/api/v1/company", require("./routes/companyRoute"))
 app.use("/api/v1/group", require("./routes/groupRoute"))
+app.use("/api/v1/ledger", require("./routes/ledgerRoute"))
 
 
 
