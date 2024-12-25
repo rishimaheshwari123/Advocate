@@ -115,17 +115,24 @@ const CreateCompany = () => {
     const currentMonth = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
 
+    const formatDate = (date) => {
+      const day = String(date.getDate()).padStart(2, "0");
+      const month = String(date.getMonth() + 1).padStart(2, "0"); // months are zero-indexed
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    };
+
     if (currentMonth <= 3) {
       setFormData((prevData) => ({
         ...prevData,
-        from: `${year - 1}-04-01`,
-        to: `${year}-03-31`,
+        from: formatDate(new Date(`${year - 1}-04-01`)),
+        to: formatDate(new Date(`${year}-03-31`)),
       }));
     } else {
       setFormData((prevData) => ({
         ...prevData,
-        from: `${year}-04-01`,
-        to: `${year + 1}-03-31`,
+        from: formatDate(new Date(`${year}-04-01`)),
+        to: formatDate(new Date(`${year + 1}-03-31`)),
       }));
     }
   }, [formData.companyName]);
