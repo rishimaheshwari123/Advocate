@@ -61,7 +61,7 @@ const CreateLegder = () => {
 
   const fetchGroup = async () => {
     try {
-      const response = await getAllGroupsApi();
+      const response = await getAllGroupsApi("67454b90d519e0f67f7b2985");
       console.log(response);
       if (response) {
         setGroups(response);

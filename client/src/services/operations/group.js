@@ -21,9 +21,9 @@ export const createGroupApi = async (formData) => {
   }
 };
 
-export const getAllGroupsApi = async () => {
+export const getAllGroupsApi = async (componyId) => {
   try {
-    const response = await apiConnector("GET", GET_ALL_GROUP);
+    const response = await apiConnector("GET", `${GET_ALL_GROUP}/${componyId}`);
     console.log("API Response:", response);
     return response.data?.groups || []; // Safely access the groups array or return an empty array if it's null
   } catch (error) {

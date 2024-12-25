@@ -135,6 +135,12 @@ const companiSchema = new mongoose.Schema(
         ],
       },
     ],
+    groups: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Group", // Additional groups linked to the company
+      },
+    ],
   },
   { timestamps: true }
 );

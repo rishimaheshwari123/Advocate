@@ -1,7 +1,5 @@
-
-
-const Company = require("../models/companyModel")
-const Group = require("../models/groupModel")
+const Company = require("../models/companyModel");
+const Group = require("../models/groupModel");
 
 const DEFAULT_GROUPS = [
     "Bank Accounts",
@@ -40,20 +38,31 @@ const DEFAULT_GROUPS = [
     "Unsecured Loans",
 ];
 
-
-
 exports.createDefaultGroups = async (companyId) => {
+    // Check if the company already has default groups
+    console.log(companyId)
+    const company = await Company.findById(companyId);
+    if (!company) {
+        throw new Error("Company not found.");
+    }
+
+    // Check if the company already has groups
+    if (company.groups && company.groups.length > 0) {
+        return { message: "Company already has groups." };
+    }
+
+    // Map the default groups to create them
     const groups = DEFAULT_GROUPS.map((name) => ({
         name,
-        isPrimary: false,
-        underGroup: null,
+        isPrimary: false, // Default groups are not primary
+        underGroup: null, // You can set this if needed
         company: companyId,
     }));
 
-    // Bulk insert default groups
+    // Bulk insert the default groups into the Group collection
     const createdGroups = await Group.insertMany(groups);
 
-    // Link groups to the company
+    // Link the created groups to the company
     await Company.findByIdAndUpdate(companyId, {
         $push: { groups: { $each: createdGroups.map((group) => group._id) } },
     });

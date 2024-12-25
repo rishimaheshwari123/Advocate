@@ -8,7 +8,7 @@ const {
 
 router.post("/create", createGroup);
 
-router.get("/getAll", getAllGroups);
+router.get("/getAll/:companyId", getAllGroups);
 
 router.get("/get/:id", getSubGroupsById);
 
