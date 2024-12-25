@@ -4,7 +4,6 @@ const groupSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true, // Group name should be unique
         trim: true,
     },
     isPrimary: {
@@ -28,6 +27,11 @@ const groupSchema = new mongoose.Schema({
             ref: "Legder",
         },
     ],
+    company: { // Reference to the company this group belongs to
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Compani",
+        required: true, // Make this required to enforce the relationship
+    },
 });
 
 // Pre-save middleware to ensure consistency
